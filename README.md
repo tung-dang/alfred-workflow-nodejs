@@ -31,13 +31,11 @@ npm test
 * Edit main.js to add your logic.
 
 
-* Generate info/warning/error message
-```js
-workflow.info("title", "subtitle");
-workflow.warning("title", "subtitle");
-workflow.error("title", "subtitle");
+## Docs
 
-```
+- [docs/workflow](docs/workflow.md)
+
+*TODO*: move all document to `docs` folder
 
 ### Setting variables
 * Set variables via script output
@@ -231,8 +229,8 @@ Icons are from "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources
 ```js
 AlfredNode.ICONS.ERROR
 AlfredNode.ICONS.INFO
-
 ```
+
 (ACCOUNT, BURN, CLOCK, COLOR, EJECT, ERROR, FAVORITE, GROUP, HELP, HOME, INFO, NETWORK, NOTE, SETTINGS, SWIRL, SWITCH, SYNC, TRASH, USER, WARNING, WEB)
 
 ### Notes

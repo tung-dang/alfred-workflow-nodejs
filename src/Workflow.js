@@ -83,7 +83,8 @@ class Workflow {
             return ret;
         }
 
-        console.error('ERROR: can get give feedback in workflow', sortedItems);
+        this.clearItems();
+        this.error('ERROR', 'can get give feedback in workflow', sortedItems)
     }
 
     /**

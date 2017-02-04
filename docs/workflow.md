@@ -8,9 +8,13 @@ Workflow command has 2 parameters: `action` and `query`:
 **main.js**
 ```js
 const AlfredNode = require('alfred-workflow-nodejs');
-const { actionHandler, workflow, Item } = AlfredNode;
+const { actionHandler, Workflow, Item } = AlfredNode;
 
 (function main() {
+    const workflow = new Workflow();
+    // set name for workflow (you SHOULD set name for your wf)
+    workflow.setName('example-alfred-workflow-using-nodejs');
+    
     actionHandler.onAction('action1', (query) => {
         // your code to handle action 1 here
     });
@@ -31,12 +35,6 @@ const { actionHandler, workflow, Item } = AlfredNode;
 # Workflow and Item - Generate feedbacks
 
 Workflow is used to build and generate feedbacks
-
-```js
-const workflow = AlfredNode.workflow;
-// set name for workflow (you SHOULD set name for your wf)
-workflow.setName('example-alfred-workflow-using-nodejs');
-```
 
 Item is class that prepresent data of a feedback:
 * uid
@@ -86,8 +84,17 @@ const item3 = new Item({
 });
 workflow.addItem(item1);
 workflow.addItem(item2);
-...
+
+// ...
 
 // generate feedbacks
 workflow.feedback();
+```
+
+
+* Generate info/warning/error message
+```js
+workflow.info("title", "subtitle");
+workflow.warning("title", "subtitle");
+workflow.error("title", "subtitle");
 ```
