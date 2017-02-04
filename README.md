@@ -9,7 +9,7 @@ A small library providing helpers to create Alfred Workflow
 
 * Workflow & Item - Helper to build and generate feedbacks
 * Storage - Helper to CRUD data
-* Settings - Helper to CRUD settings, store password securely
+* settings - Helper to CRUD settings, store password securely
 * Utils  - Helper to filter arrays, run applesripts, etc...
 
 ## Installation
@@ -30,95 +30,6 @@ npm test
 * Update module name (in package.json) and workflow name (in main.js) - Optional but recommend
 * Edit main.js to add your logic.
 
-### Workflow skeleton 
-Workflow command
-```shell
-/usr/local/bin/node main.js "action" "query"
-```
-**main.js**
-```js
-var AlfredNode = require('alfred-workflow-nodejs');
-var actionHandler = AlfredNode.actionHandler;
-var workflow = AlfredNode.workflow;
-var Item = AlfredNode.Item;
-
-(function main() {
-    actionHandler.onAction("action1", function(query) {
-        // your code to handle action 1 here
-    });
-    actionHandler.onAction("action2", function(query) {
-        // your code to handle action 2 here
-    });
-    
-    actionHandler.onMenuItemSelected("action2", function(query, selectedTitle, selectedData) {
-        // your code to handle manu item selected of action 2 here
-    });
-
-    AlfredNode.run();
-})();
-```
-
-### Workflow and Item - Generate feedbacks 
-* Workflow is used to build and generate feedbacks
-
-```js
-var workflow = AlfredNode.workflow;
-// set name for workflow (you SHOULD set name for your wf)
-workflow.setName("example-alfred-workflow-using-nodejs");
-```
-
-* Item is class that prepresent data of a feedback:
-    * uid
-    * title
-    * subtitle
-    * arg (support variables in arg, alfred 3)
-    * icon
-    * valid(true/false, default is false)
-    * autocomplete
-    * type
-    * quicklookurl
-    * text
-    * mods
-
-```js
-var Item = AlfredNode.Item;
-var item1 = new Item({
-    title: "item 1",
-    subtitle: "sub 1"
-});
-
-var item2 = new Item({
-    uid: "uid",
-    title: "item 1",
-    subtitle: "sub 1",
-    valid: true,
-    icon: "icon.png",
-    arg: "arg",
-    autocomplete: "autocomplete"
-});
-
-var item3 = new Item({
-    title: "item 3",
-    subtitle: "sub 3",
-    mods: {
-        cmd: {
-            valid: true,
-            arg: "cmd arg",
-            subtitle: "pressing cmd"
-        },
-        alt: {
-            valid: false,
-            arg: "alt arg",
-            subtitle: "pressing alt"
-        }
-    }
-});
-workflow.addItem(item1);
-workflow.addItem(item2);
-// generate feedbacks
-workflow.feedback();
-
-```
 
 * Generate info/warning/error message
 ```js
@@ -166,7 +77,7 @@ actionHandler.onMenuItemSelected("action", function(query, selectedItemTitle, se
 ```
 
 --Scenario:
-Open Alfred and type "menu" => 2 feedbacks are generated: "Feedback A" and "Feeback B" 
+Open Alfred and type "menu" => 2 feedbacks are generated: "Feedback A" and "Feeback B"
 => use arrow key to navigate to "Feedback B" and press `TAB`
 => Alfred search bar will now become "Feedback A $>" and display menu items of "Feedback A": "Item 1 of Feedback A" and "Item 2 of Feedback A"
 
@@ -233,11 +144,11 @@ actionHandler.onMenuItemSelected("menuExample", function(query, title, data) {
 
 Download example workflow and test with keyword `menuexample` for more info
 
-### Storage - APIs to CRUD data 
+### Storage - APIs to CRUD data
 * set(key, value, [ttl])
     * key: string
     * value: string/object
-    * ttl: long (milisecond) // time to live 
+    * ttl: long (milisecond) // time to live
 * get(key)
 * remove(key)
 * clear() : clear all data, be carefull!!!
@@ -250,8 +161,8 @@ storage.get("key");
 storage.remove("key");
 storage.clear();
 ```
-    
-### Settings - APIs to CRUD settings 
+
+### settings - APIs to CRUD settings
 Helpers to store string key/value settings, store password into Mac keychain
 
 * set(key, value, [ttl])
@@ -277,15 +188,15 @@ settings.getPassword("username", function(error, password){
     console.log(password);
 });
 ```
-  
-### Utils - Helper functions 
+
+### Utils - Helper functions
 Some utilities
 
 * filter(query, list, keyBuilder) : filter list of object using fuzzy matching
     * query
     * list
     * keyBuilder : function to build key to compare from items in list
-    
+
 ```js
 var utils = AlfredNode.utils;
 // filter array of string/object using fuzzy matching
@@ -300,7 +211,7 @@ utils.filter("pen", [{name: "pencil"}, {name: "pen"}, {name: "book"}], function(
     * set(key, value) - value can be string or object. If value is object, it is stored as json string
     * get(key) - if stored value is object, this method will parse json string to object and return
 * wfVars: methods for workflow variables
-    * set(key, value, [callback]) 
+    * set(key, value, [callback])
         * key: variable name
         * value: need to be string **(object value is not supported)**
         * callback: callback(error) - optional
@@ -324,7 +235,7 @@ AlfredNode.ICONS.INFO
 ```
 (ACCOUNT, BURN, CLOCK, COLOR, EJECT, ERROR, FAVORITE, GROUP, HELP, HOME, INFO, NETWORK, NOTE, SETTINGS, SWIRL, SWITCH, SYNC, TRASH, USER, WARNING, WEB)
 
-### Notes 
+### Notes
 You can look at some tests in test folder in source code get more about usage
 
 ## Source code and document

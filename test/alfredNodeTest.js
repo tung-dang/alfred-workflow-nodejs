@@ -420,7 +420,7 @@ suite("#StorageTest", function() {
 });
 
 
-suite("#Settings test", function() {
+suite("#settings test", function() {
     var Settings = AlfredNode.settings;
 
     teardown(function() {
@@ -455,8 +455,8 @@ suite("#Settings test", function() {
     });
 
     /*test("test set password", function(done) {
-        Settings.setPassword("user1", "mypass");
-        Settings.getPassword("user1", function(error, password) {
+        settings.setPassword("user1", "mypass");
+        settings.getPassword("user1", function(error, password) {
             assert.strictEqual(password, "mypass");
             done();
         });
