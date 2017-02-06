@@ -34,31 +34,10 @@ npm test
 ## Docs
 
 - [docs/workflow](docs/workflow.md)
+- [docs/settings](docs/settings.md)
 
 *TODO*: move all document to `docs` folder
 
-### Setting variables
-* Set variables via script output
-```js
-AlfredNode.utils.generateVars({arg: 'xyz', variables: {key: value}};
-// output
-'{"alfredworkflow": {"arg": "xyz", "variables": {"key": "value"}}}'
-```
-* Set variables via wf feedback item
-```js
-var Item = AlfredNode.Item;
-var item = new Item({title: "item 1", arg: {arg: 'xyz', variables: {key: value}}});
-workflow.addItem(item);
-workflow.feedback();
-// output:
-{"items": [
-    {
-     "title": "item 1",
-     "arg": "{\"alfredworkflow\": {\"arg\": \"xyz\", \"variables\": {\"key\": \"value\"}}}"
-     }
-]}
-
-```
 
 ### Menu System
 - Get sub items by using `TAB` key when select a feeback

@@ -23,21 +23,6 @@ function removeEmptyProp(data) {
     return data;
 }
 
-function updateArg(data) {
-    if (typeof data === "object") {
-        var _arg = data.arg;
-        var _variables = data.variables;
-        return JSON.stringify({
-            alfredworkflow: {
-                arg: _arg,
-                variables: _variables
-            }
-        });
-    }
-
-    return data;
-}
-
 
 /**
  * If str is json string => return object
@@ -214,6 +199,5 @@ const utils = {
 
 module.exports = {
     removeEmptyProp,
-    updateArg,
     utils
 };

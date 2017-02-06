@@ -1,4 +1,4 @@
-const { removeEmptyProp, updateArg } = require('./utilities');
+const { removeEmptyProp } = require('./utilities');
 const constants = require('./constants');
 
 class Item {
@@ -10,11 +10,9 @@ class Item {
      * Generate feedback for a item
      */
     feedback() {
-        this.arg = updateArg(this.arg);
-
         const item = {
             uid: this.data.uid,
-            arg: this.data.arg,
+            arg: this._updateArg(this.data.arg),
             valid: this.data.valid === true ? 'YES' : 'NO',
             autocomplete: this.data.autocomplete,
             title: this.data.title,
@@ -33,6 +31,22 @@ class Item {
         }
 
         return item;
+    }
+
+
+    _updateArg(data) {
+        if (typeof data === "object") {
+            var _arg = data.arg;
+            var _variables = data.variables;
+            return JSON.stringify({
+                alfredworkflow: {
+                    arg: _arg,
+                    variables: _variables
+                }
+            });
+        }
+
+        return data;
     }
 }
 

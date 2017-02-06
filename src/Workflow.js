@@ -78,6 +78,7 @@ class Workflow {
         });
 
         if (ret) {
+            // console.log('Workflow feedback: ');
             // don't remove this line, it will help generate data into UI
             console.log(ret);
             return ret;

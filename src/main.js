@@ -2,17 +2,17 @@ const Item = require('./Item');
 const Workflow = require('./Workflow');
 const { utils } = require('./utilities');
 const { ICONS } = require('./constants');
+const settings = require('./settings');
 const storage = require('./storage');
-const Settings = require('./Settings');
 const actionHandler = require('./actionHandler');
 
 
 // module export
 module.exports = {
-    storage,
     Workflow,
     actionHandler: actionHandler,
-    settings: Settings,
+    storage,
+    settings,
     utils,
     ICONS,
     run: function() {
