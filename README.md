@@ -209,11 +209,13 @@ Icons are from "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources
 AlfredNode.ICONS.ERROR
 AlfredNode.ICONS.INFO
 ```
+See more in `src/constants.js`
 
-(ACCOUNT, BURN, CLOCK, COLOR, EJECT, ERROR, FAVORITE, GROUP, HELP, HOME, INFO, NETWORK, NOTE, SETTINGS, SWIRL, SWITCH, SYNC, TRASH, USER, WARNING, WEB)
 
-### Notes
-You can look at some tests in test folder in source code get more about usage
+## Notes/Tips
+
+- You can look at some tests in test folder in source code get more about usage.
+- You can use `console.trace('==========================', data)` to debug code.
 
 ## Source code and document
 https://github.com/giangvo/alfred-workflow-nodejs
