@@ -1,6 +1,4 @@
-// const _ = require('lodash');
 const events = require('events');
-const loudRejection = require('loud-rejection');
 
 const { SUB_ACTION_SEPARATOR } = require('./constants');
 const storage = require('./storage');
@@ -9,41 +7,45 @@ const Item = require('./Item');
 
 
 class Workflow {
-    constructor() {
+    constructor(options) {
+        options = options || {};
+
         this._items = [];
         this._name = 'AlfredWfNodeJs';
-        this.eventEmitter = new events.EventEmitter();
-        this.isDebug = false;
+        this._eventEmitter = new events.EventEmitter();
+        this.isDebug = options.isDebug;
     }
 
-    // save item data into storage as "item title" => item data
-    static saveItemData(item) {
+    static _saveItemArg(item) {
         let wfData = storage.get(WF_DATA_KEY) || {};
-        wfData[item.title] = item;
+        const data = item.getData();
+        wfData[data.title] = data.arg;
         storage.set(WF_DATA_KEY, wfData);
     }
 
-    static getItemData(itemTitle) {
-        const wfData = storage.get('wfData');
+    static _getItemArg(itemTitle) {
+        const wfData = storage.get(WF_DATA_KEY);
         return wfData ? wfData[itemTitle] : undefined;
     }
 
     start() {
-        const action = process.argv[2];
+        const actionName = process.argv[2];
         const query = process.argv[3];
         process.on('uncaughtException', this.error.bind(this));
-        loudRejection(this.error.bind(this));
 
-        this.handle(action, query, this);
+        this._trigger(actionName, query, this);
     }
 
     /**
      * Add one feedback item
      */
     addItem(item) {
-        const data = item.feedback();
-        Workflow.saveItemData(data);
-        this._items.push(data);
+        if (item instanceof Item) {
+            Workflow._saveItemArg(item);
+            this._items.push(item.getData());
+        } else {
+            this.error('ERROR: item is not an instance of Item class!');
+        }
     }
 
     /**
@@ -79,16 +81,6 @@ class Workflow {
      * Generate feedback
      */
     feedback() {
-        // let usage = storage.get('usage') || {};
-
-        // this._items.forEach(item => {
-        //     const title = item.title;
-        //     item.count = usage[title] ? (0 - usage[title]) : 0;
-        // });
-
-        //const sortedItems = _.sortBy(this._items, 'count');
-        //sortedItems.forEach(item => delete item.count);
-
         let ret;
         try {
             ret = JSON.stringify({
@@ -98,6 +90,7 @@ class Workflow {
             console.warn('Workflow feedback: ');
             this.output(ret);
             this.clearItems();
+            return ret;
         } catch (e) {
             console.warn('Can not generate JSON string', this._items);
         }
@@ -111,6 +104,8 @@ class Workflow {
         this.addItem(new Item({
             title,
             subtitle,
+            valid: true,
+            hasSubItems: false,
             icon: ICONS.INFO
         }));
 
@@ -125,6 +120,8 @@ class Workflow {
         this.addItem(new Item({
             title,
             subtitle,
+            valid: true,
+            hasSubItems: false,
             icon: ICONS.WARNING
         }));
 
@@ -141,6 +138,8 @@ class Workflow {
         this.addItem(new Item({
             title,
             subtitle,
+            valid: true,
+            hasSubItems: false,
             icon: ICONS.ERROR
         }));
 
@@ -173,54 +172,56 @@ class Workflow {
             return;
         }
 
-        this.eventEmitter.on(`action-${action}`, handler);
+        this._eventEmitter.on(`action-${action}`, handler);
     }
 
     /**
      * Register menu item selected handler
      */
-    onMenuItemSelected(action, handler) {
+    onSubActionSelected(action, handler) {
         if (!action || !handler) {
             return;
         }
 
-        this.eventEmitter.on(`menuItemSelected-${action}`, handler);
+        this._eventEmitter.on(`subActionSelected-${action}`, handler);
     }
 
     /**
-     * Handle action by delegate to registered action/menuItem handlers
+     * Handle action by delegate to registered action/subAction handlers
      */
-    handle(action, query) {
+    _trigger(action, query) {
         if (!query || query.indexOf(SUB_ACTION_SEPARATOR) === -1) {
             // handle first level action
-            // console.trace('==================query: ', query);
-            query = query && query.trim ? query.trim() : query;
-            this.eventEmitter.emit(`action-${action}`, query);
+            this._eventEmitter.emit(`action-${action}`, this._sanitizeQuery(query));
             return;
         }
 
         // handle sub action
-        const tmp = query.split(SUB_ACTION_SEPARATOR);
+        const arrays = query.split(SUB_ACTION_SEPARATOR);
+        
+        if (arrays.length >= 2) {
+            const previousActionTitleSelected = this._sanitizeQuery(arrays[arrays.length - 2]);
+            query = this._sanitizeQuery(arrays[arrays.length - 1]); // last string is query
 
-        const selectedItemTitle = tmp[0].trim();
-        query = tmp[1] ? tmp[1].trim() : '';
+            let previousArgActionSelected = Workflow._getItemArg(previousActionTitleSelected);
+            try {
+                previousArgActionSelected = JSON.parse(previousArgActionSelected);
+            } catch(e) {
+                console.warn('Can not convert arg string into Object!');
+            }
 
-        this.saveUsage(query, selectedItemTitle);
-
-        const selectedData = Workflow.getItemData(selectedItemTitle);
-        this.eventEmitter.emit(
-            `menuItemSelected-${action}`,
-            query,
-            selectedItemTitle,
-            selectedData
-        );
+            this._eventEmitter.emit(
+                `subActionSelected-${action}`,
+                query,
+                previousActionTitleSelected,
+                previousArgActionSelected
+            );
+        }
     }
 
-    /**
-     * Unregister all action handlers
-     */
-    clear() {
-        this.eventEmitter.removeAllListeners();
+    _sanitizeQuery(query) {
+        query = query && query.trim ? query.trim() : query;
+        return query;
     }
 
     output(str) {
@@ -233,19 +234,6 @@ class Workflow {
             }
         } catch (e) {
             console.warn('Can not generate JSON string', this._items);
-        }
-    }
-
-    saveUsage(query, itemTitle) {
-        if (!query) {
-            let usage = storage.get('usage');
-            usage = usage || {};
-
-            let count = usage[itemTitle];
-            count = count || 0;
-            usage[itemTitle] = count + 1;
-
-            storage.set('usage', usage);
         }
     }
 }

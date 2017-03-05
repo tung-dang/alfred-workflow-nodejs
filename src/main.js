@@ -1,6 +1,6 @@
 const Item = require('./Item');
 const Workflow = require('./Workflow');
-const { utils } = require('./utilities');
+const utils = require('./utilities');
 const { ICONS } = require('./constants');
 const settings = require('./settings');
 const storage = require('./storage');

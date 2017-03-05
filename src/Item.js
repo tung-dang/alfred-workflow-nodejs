@@ -1,44 +1,35 @@
-const { removeEmptyProp } = require('./utilities');
+// const { removeEmptyProp } = require('./utilities');
 const constants = require('./constants');
 
 /**
+ * Each item describes a result row displayed in Alfred.
  * All props of an item are described here: https://www.alfredapp.com/help/workflows/inputs/script-filter/json/
  */
 class Item {
-    constructor(data) {
-        this.data = data;
-    }
-
-    /**
-     * Generate feedback for a item
-     */
-    feedback() {
-        // const isValid = (typeof this.data.valid !== 'undefined') ? !!this.data.valid : true;
-        // console.warn('==================isValid: ', isValid);
-
-        const item = {
-            uid: this.data.uid,
-            arg: this._updateArg(this.data.arg),
-            autocomplete: this.data.autocomplete,
-            title: this.data.title,
-            subtitle: this.data.subtitle,
-            type: this.data.type,
-            icon: {
-                'path': this.data.icon
-            },
-            quicklookurl: this.data.quicklookurl,
-            text: this.data.text,
-            mods: this.data.mods,
-            valid: !!this.data.valid, // default: true
-            hasSubItems: !!this.data.hasSubItems, // default: false
+    constructor(options) {
+        const tempData = {
+            uid: options.uid,
+            arg: this._hygieneArg(options.arg),
+            autocomplete: options.autocomplete,
+            title: options.title,
+            subtitle: options.subtitle || '',
+            type: options.type,
+            icon: (typeof options.icon === 'string')
+                ? { path: options.icon }
+                : options.icon,
+            quicklookurl: options.quicklookurl || options.title,
+            text: options.text,
+            mods: options.mods,
+            valid: options.valid, // default: true
+            hasSubItems: !!options.hasSubItems, // default: false
         };
 
 
-        if (item.hasSubItems) {
-            item.autocomplete = `${item.title} ${constants.SUB_ACTION_SEPARATOR} `;
+        if (tempData.hasSubItems) {
+            tempData.autocomplete = `${tempData.title} ${constants.SUB_ACTION_SEPARATOR} `;
         }
 
-        return item;
+        this._data = tempData;
     }
 
     /**
@@ -46,26 +37,26 @@ class Item {
      * @param key
      */
     get(key) {
-        return this.data[key];
+        return this._data[key];
     }
 
-    _updateArg(data) {
-        if (!data) {
-            return '';
-        }
+    /**
+     * Get internal data object
+     */
+    getData() {
+        return this._data;
+    }
 
+    _hygieneArg(data) {
         if (typeof data === "object") {
-            var _arg = data.arg;
-            var _variables = data.variables;
-            return JSON.stringify({
-                alfredworkflow: {
-                    arg: _arg,
-                    variables: _variables
-                }
-            });
+            return JSON.stringify(data);
         }
 
-        return data;
+        if (typeof data === 'string') {
+            return data;
+        }
+
+        return '';
     }
 }
 

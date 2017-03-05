@@ -2,26 +2,7 @@ const fuzzy = require('fuzzy');
 const applescript = require('node-osascript');
 const exec = require('child_process').exec;
 const utilLib = require("util");
-
-function removeEmptyProp(data) {
-    for (let key in data) {
-        let value = data[key];
-
-        if (typeof value === 'object') {
-            value = removeEmptyProp(value);
-            if (!Object.keys(value).length) {
-                value = null;
-            }
-        }
-
-        if (value === undefined ||
-            value === null) {
-            delete data[key];
-        }
-    }
-
-    return data;
-}
+const storage = require('./storage');
 
 
 /**
@@ -39,8 +20,7 @@ function _toObjectIfJSONString(str) {
 }
 
 
-const utils = {
-
+module.exports = {
     filter: function (query, list, keyBuilder) {
         if (!query) {
             return list;
@@ -194,10 +174,23 @@ const utils = {
                 }
             })
         }
-    }
-};
+    },
 
-module.exports = {
-    removeEmptyProp,
-    utils
+    memorize: (keyCache, ttl, func, isDebug) => {
+        ttl = ttl || true; // true means 24 caching
+
+        const dataFromCache = storage.get(keyCache);
+        if (dataFromCache && !isDebug) {
+            console.warn('Get data from cache with key=', keyCache);
+            return new Promise((resolve) => resolve(dataFromCache));
+        }
+
+        console.warn('Start to get new fresh data since can not find data from cache: ', keyCache);
+        return func().then((data) => {
+            console.warn('Save data to cache, key=', keyCache);
+            console.warn('data=', data);
+            storage.set(keyCache, data, ttl);
+            return data;
+        });
+    }
 };
