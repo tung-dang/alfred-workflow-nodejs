@@ -1,5 +1,5 @@
 const fuzzy = require('fuzzy');
-const applescript = require('node-osascript');
+const appleScript = require('node-osascript');
 const exec = require('child_process').exec;
 const utilLib = require("util");
 
@@ -46,7 +46,7 @@ module.exports = {
          * @param handler: function(err, result)
          */
         execute: function (script, handler) {
-            applescript.execute(script, handler);
+            appleScript.execute(script, handler);
         },
 
         /**
@@ -56,7 +56,7 @@ module.exports = {
          * @param handler: function(err, result, raw)
          */
         executeFile: function (path, varibale, handler) {
-            applescript.executeFile.apply(this, arguments);
+            appleScript.executeFile.apply(this, arguments);
         }
     },
 
@@ -176,7 +176,7 @@ module.exports = {
         }
     },
 
-    memorize: (keyCache, ttl, func, isDebug) => {
+    memorizePromise: (keyCache, ttl, func, isDebug) => {
         ttl = ttl || true; // true means 24 caching
 
         const dataFromCache = storage.get(keyCache);

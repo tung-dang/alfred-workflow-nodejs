@@ -1,7 +1,7 @@
 {
   "name": "alfred-workflow-nodejs-next",
   "version": "1.0.0",
-  "description": "Alfred workflow nodejs module in ES6",
+  "description": "Alfred Workflow NodeJS helper in ES6",
   "author": "Tung Dang",
   "main": "src/main.js",
   "repository": {
@@ -12,7 +12,7 @@
     "fuzzy": "^0.1.3",
     "keychain": "^1.2.0",
     "node-osascript": "^2.0.0",
-    "node-persist": "^2.0.8"
+    "node-persist": "^2.0.10"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -21,6 +21,7 @@
     "sinon": "^1.17.7"
   },
   "scripts": {
+    "clean": "rm -rf ./node_modules",
     "test": "NODE_ENV=testing TESTING=true mocha \"test/**/*-test.js\" \"src/**/*-test.js\" ",
     "test-watch": "yarn test -- --watch"
   },

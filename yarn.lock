@@ -216,9 +216,9 @@ node-osascript@^2.0.0:
   dependencies:
     buffers "^0.1.1"
 
-node-persist@^2.0.8:
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/node-persist/-/node-persist-2.0.8.tgz#553b44270a4260ce4553dee7b7df18b1cabed3d6"
+node-persist@^2.0.10:
+  version "2.0.10"
+  resolved "https://registry.yarnpkg.com/node-persist/-/node-persist-2.0.10.tgz#78f5a44b267fa9146ab297048e942cb4b9c1a32a"
   dependencies:
     mkdirp "~0.5.1"
     q "~1.1.1"

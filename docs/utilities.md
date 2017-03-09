@@ -1,44 +1,66 @@
-### Utils - Helper functions
 Some utilities
 
-* filter(query, list, keyBuilder) : filter list of object using fuzzy matching
-    * query
-    * list
-    * keyBuilder : function to build key to compare from items in list
+
+### `debug()` 
+Show log message by using `console.warn` since `console.log` is used to log JSON string only.
+The log message is not printed in `testing` environment.
+
+
+### `filter(query, list, keyBuilder)`
+
+Filter list of object using fuzzy matching. Example: 
 
 ```js
-var utils = AlfredNode.utils;
-// filter array of string/object using fuzzy matching
-utils.filter("a", ["a", "b", "c"], function(item){return item});
-// => return ["a"]
-utils.filter("pen", [{name: "pencil"}, {name: "pen"}, {name: "book"}], function(item){ return item.name});
-// => return [{name: "pencil"}, {name: "pen"}]
+const { utils } = require('alfred-workflow-nodejs-next');
+
+// filter array of string by using fuzzy matching
+utils.filter('a', ['a', 'b', 'c'], (item) => item);
+// => return ['a']
+
+// filter array of object by using fuzzy matching
+utils.filter('pen', [
+    { name: 'pencil' }, 
+    { name: 'pen' }, 
+    { name: 'book' }
+], (item) => item.name);
+// => return [{ name: 'pencil' }, { name: 'pen' }]
 ```
 
-* generateVars: set variables via script output (see "Setting variables" section above for usage)
-* envVars: methods for enviroment variables
-    * set(key, value) - value can be string or object. If value is object, it is stored as json string
-    * get(key) - if stored value is object, this method will parse json string to object and return
-* wfVars: methods for workflow variables
-    * set(key, value, [callback])
-        * key: variable name
-        * value: need to be string **(object value is not supported)**
-        * callback: callback(error) - optional
-    * get(key, callback)
-        * key: variable name
-        * callback: callback(error, value)
-    * remove(key, callback)
-        * key: variable name
-        * callback: callback(error) - optional
-    * clear(key, callback) - **Clear all** wf variables
-        * key: variable name
-        * callback: callback(error) - optional
 
-### Icons - Some built-in icons
-Icons are from "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources"
+### `memorizePromise(keyCache, ttl, func, isDebug)`
+
+Help to cache result of a promise. Example, you have a promise to get a data like this: 
 
 ```js
-AlfredNode.ICONS.ERROR
-AlfredNode.ICONS.INFO
+fetchDataFromServer(url).then((data) => {
+    // do something with data
+});
 ```
+
+We can use `memorizePrmise` to help to save cached data to local which is resolved by a promise.
+
+```js
+const { utils } = require('alfred-workflow-nodejs-next');
+const ONE_M = 1000 * 60;
+const _30_MINUTES = ONE_M * 30;
+
+utils.memorizePrmise('fetchDataFromServer_cache_key', _30_MINUTES, () => {
+    return fetchDataFromServer(url);
+}).then((data) => {
+    // data may be gotten from cache instead of from server. 
+});
+```
+
+## Icons - Some built-in icons
+
+Icons are from `/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources`
+
+```js
+const { constants } = require('alfred-workflow-nodejs-next');
+
+// constants.ICONS.ERROR
+// constants.ICONS.INFO 
+// ...
+```
+
 See more in `src/constants.js`

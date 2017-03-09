@@ -27,7 +27,7 @@ yarn test-watch
 
 ## Docs
 
-* [docs/Workflow & Item](docs/workflow.md) - Build and generate Alfred workflow feedback
+* [docs/Workflow & Item](docs/workflow-items.md) - Build and generate Alfred workflow feedback
 * [docs/Utilities](docs/utilities.md)  - Helper to filter arrays, run applesripts, etc...
 * [docs/Storage](docs/storage.md) - Helper to CRUD temporary / permanent(settings) data.
 

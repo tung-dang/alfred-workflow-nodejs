@@ -7,7 +7,7 @@ The bash command has 2 input: `action_name` and `query`:
 
 
 ```shell
-# should use full path of `node`. I don't know how to use `node` global in Alfred Script Filter yet. 
+# Must use full path of `node`. I don't know how to use `node` global in Alfred Script Filter yet. 
 # Please suggest me if you have a better solution
 /usr/local/bin/node main.js "action_name" "query"
 ```
@@ -16,7 +16,7 @@ The bash command has 2 input: `action_name` and `query`:
 ```js
 const { Workflow, Item } = require('alfred-workflow-nodejs-next');
 
-(function main() {
+(function initMyWorkflow() {
     const workflow = new Workflow();
     workflow.setName('example-alfred-workflow-using-nodejs');
 
@@ -38,34 +38,35 @@ const { Workflow, Item } = require('alfred-workflow-nodejs-next');
 
 ## A Workflow example scenario:
 
-- Open Alfred and type main workflow name shortcut `testworkflow`
-    + => There are 2 top level feedbacks are generated: `Feedback A` and `Feeback B`
-    + => Use arrow key to navigate to `Feedback B` and press `TAB` or `ENTER`
+- Open Alfred and type workflow shortcut, ex: `testworkflow`
+    + => Alfred shows 2 top level feedbacks/actions in UI: `Feedback A` and `Feeback B`
+    + => use arrow key to navigate to `Feedback B` row and press `TAB` or `ENTER` to choose that action.
     + => Alfred search bar will now become `Feedback B ➤ `
     + => and display sub action items of `Feedback B`: `Item 1 of Feedback B` and `Item 2 of Feedback B`
-    + => Execute a sub item by using `TAB` or `ENTER` key when select a sub action item
+    + => Execute a sub action item by using `TAB` or `ENTER` key
 
-### Register listener for action name `testworkflow`
+Here are some steps to implement above example scenario: 
 
-- The action name `testworkflow` will generate 2 top level items: `Feedback A` and `Feeback B`
+### Register listener for Workflow shortcut name `testworkflow`
+
+- The action name `load_top_level_actions` will generate 2 top level items: `Feedback A` and `Feeback B`
 - Top level action usually has arg data so that sub action can know what data of parent action passes to.
-- So it is not necessary if sub action has arg data 
   
 ```js
-workflow.onAction('testworkflow', function(query) {
-    // generate feeback A
+workflow.onAction('load_top_level_actions', function(query) {
+    // generate feedback A
     const itemA = new Item({
         title: 'Feedback A',
-        subtitle: 'Press tab to get menu items',
+        subtitle: 'Press tab/enter to get menu items',
         arg: { alias: 'X' }, // we can set data to top level item to use later to build sub items
-        hasSubItems: true // set this to true to tell that this feedback has sub Items
+        hasSubItems: true // set this to true to tell that this feedback has sub Items, `valid` prop is false when `hasSubItems` is true
     });
     workflow.addItem(itemA);
 
-    // generate feeback B
+    // generate feedback B
     const itemB = new Item({
         title: 'Feedback B',
-        subtitle: 'Press tab to get menu items',
+        subtitle: 'Press tab/enter to get menu items',
         arg: { alias: 'Y' }, // we can set data to top level item to use later to build sub items
         hasSubItems: true // set this to true to tell that this feedback has sub Items
     });
