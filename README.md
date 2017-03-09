@@ -1,4 +1,4 @@
-Alfred 3 Workflow NodeJS Next Library
+Alfred 3 Workflow NodeJS Next library
 =====================================
 
 ![Travis build](https://img.shields.io/travis/tung-dang/alfred-workflow-nodejs-next.svg)

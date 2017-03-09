@@ -3,3 +3,4 @@ persist
 npm-debug.log
 .node-persist
 .archive
+.idea/*
