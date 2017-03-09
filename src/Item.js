@@ -20,10 +20,13 @@ class Item {
             quicklookurl: options.quicklookurl || options.title,
             text: options.text,
             mods: options.mods,
-            valid: options.valid, // default: true
+            valid: (typeof options.valid === 'undefined') ? true : options.valid, // default: true
             hasSubItems: !!options.hasSubItems, // default: false
         };
 
+        if (tempData.hasSubItems) {
+            tempData.valid = false;
+        }
 
         if (tempData.hasSubItems) {
             tempData.autocomplete = `${tempData.title} ${constants.SUB_ACTION_SEPARATOR} `;

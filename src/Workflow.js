@@ -4,7 +4,10 @@ const { SUB_ACTION_SEPARATOR } = require('./constants');
 const storage = require('./storage');
 const { ICONS, WF_DATA_KEY } = require('./constants');
 const Item = require('./Item');
+const utils = require('./utilities');
 
+const ACTION_NAMESPACE_EVENT = 'action';
+const SUB_ACTION_NAMESPACE_EVENT = 'subActionSelected';
 
 class Workflow {
     constructor(options) {
@@ -87,12 +90,12 @@ class Workflow {
                 items: this._items
             }, null, '\t');
 
-            console.warn('Workflow feedback: ');
+            utils.debug('Workflow feedback: ');
             this.output(ret);
             this.clearItems();
             return ret;
         } catch (e) {
-            console.warn('Can not generate JSON string', this._items);
+            utils.debug('Can not generate JSON string', this._items);
         }
     }
 
@@ -132,7 +135,7 @@ class Workflow {
      * Generating error feedback
      */
     error(title, subtitle) {
-        console.warn('Error: ', title, subtitle);
+        utils.debug('Error: ', title, subtitle);
 
         this.clearItems();
         this.addItem(new Item({
@@ -172,7 +175,7 @@ class Workflow {
             return;
         }
 
-        this._eventEmitter.on(`action-${action}`, handler);
+        this._eventEmitter.on(`${ACTION_NAMESPACE_EVENT}-${action}`, handler);
     }
 
     /**
@@ -183,7 +186,7 @@ class Workflow {
             return;
         }
 
-        this._eventEmitter.on(`subActionSelected-${action}`, handler);
+        this._eventEmitter.on(`${SUB_ACTION_NAMESPACE_EVENT}-${action}`, handler);
     }
 
     /**
@@ -192,13 +195,13 @@ class Workflow {
     _trigger(action, query) {
         if (!query || query.indexOf(SUB_ACTION_SEPARATOR) === -1) {
             // handle first level action
-            this._eventEmitter.emit(`action-${action}`, this._sanitizeQuery(query));
+            this._eventEmitter.emit(`${ACTION_NAMESPACE_EVENT}-${action}`, this._sanitizeQuery(query));
             return;
         }
 
         // handle sub action
         const arrays = query.split(SUB_ACTION_SEPARATOR);
-        
+
         if (arrays.length >= 2) {
             const previousActionTitleSelected = this._sanitizeQuery(arrays[arrays.length - 2]);
             query = this._sanitizeQuery(arrays[arrays.length - 1]); // last string is query
@@ -207,16 +210,26 @@ class Workflow {
             try {
                 previousArgActionSelected = JSON.parse(previousArgActionSelected);
             } catch(e) {
-                console.warn('Can not convert arg string into Object!');
+                utils.debug('Can not convert arg string into Object!');
             }
 
             this._eventEmitter.emit(
-                `subActionSelected-${action}`,
+                `${SUB_ACTION_NAMESPACE_EVENT}-${action}`,
                 query,
                 previousActionTitleSelected,
                 previousArgActionSelected
             );
         }
+    }
+
+    /**
+     * Clear everything.
+     */
+    reset() {
+        this._items = [];
+        this._name = '';
+        this._eventEmitter.removeAllListeners();
+        storage.clear();
     }
 
     _sanitizeQuery(query) {
@@ -226,14 +239,14 @@ class Workflow {
 
     output(str) {
         try {
-            console.warn('Workflow feedback: ');
-            if (this.isDebug) {
-                console.warn(str);
+            utils.debug('Workflow feedback: ');
+            if (this.isDebug || process.env.NODE_ENV === 'testing') {
+                utils.debug(str);
             } else {
                 console.log(str);
             }
         } catch (e) {
-            console.warn('Can not generate JSON string', this._items);
+            utils.debug('Can not generate JSON string', this._items);
         }
     }
 }

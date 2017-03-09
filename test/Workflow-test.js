@@ -46,8 +46,9 @@ describe('#WorkflowTest', function() {
                         title: 'title',
                         subtitle: '',
                         quicklookurl: 'title',
+                        valid: true,
                         hasSubItems: false,
-                    },
+                    }
 
                 ]
             }));
@@ -70,7 +71,8 @@ describe('#WorkflowTest', function() {
                         title: 'title1',
                         subtitle: '',
                         quicklookurl: 'title1',
-                        hasSubItems: false,
+                        valid: true,
+                        hasSubItems: false
                     },
 
                     {
@@ -78,7 +80,8 @@ describe('#WorkflowTest', function() {
                         title: 'title2',
                         subtitle: '',
                         quicklookurl: 'title2',
-                        hasSubItems: false,
+                        valid: true,
+                        hasSubItems: false
                     }
                 ]
             }));
@@ -205,7 +208,7 @@ describe('#WorkflowTest', function() {
             assert.isTrue(spy.calledWith('queryabc', 'top_action_name_1', ''));
         });
 
-        it.only('should handle non top level action and arg', () => {
+        it('should handle non top level action and arg', () => {
             const spy = sandbox.spy();
 
             const item = new Item({

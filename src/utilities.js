@@ -2,8 +2,8 @@ const fuzzy = require('fuzzy');
 const applescript = require('node-osascript');
 const exec = require('child_process').exec;
 const utilLib = require("util");
-const storage = require('./storage');
 
+const storage = require('./storage');
 
 /**
  * If str is json string => return object
@@ -181,16 +181,26 @@ module.exports = {
 
         const dataFromCache = storage.get(keyCache);
         if (dataFromCache && !isDebug) {
-            console.warn('Get data from cache with key=', keyCache);
+            this.debug('Get data from cache with key=', keyCache);
             return new Promise((resolve) => resolve(dataFromCache));
         }
 
-        console.warn('Start to get new fresh data since can not find data from cache: ', keyCache);
+        this.debug('Start to get new fresh data since can not find data from cache: ', keyCache);
         return func().then((data) => {
-            console.warn('Save data to cache, key=', keyCache);
-            console.warn('data=', data);
+            this.debug('Save data to cache, key=', keyCache);
+            this.debug('data=', data);
             storage.set(keyCache, data, ttl);
             return data;
         });
+    },
+
+    debug() {
+        const args = Array.prototype.slice.call(arguments);
+        // do not log message in test environment
+        if (process.env.NODE_ENV === 'testing') {
+            return;
+        }
+
+        console.warn('==================', args);
     }
 };

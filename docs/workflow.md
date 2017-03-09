@@ -9,7 +9,7 @@ Workflow command has 2 parameters: `action_name` and `query`:
 
 **main.js**
 ```js
-const { Workflow, Item } = require('alfred-workflow-nodejs');
+const { Workflow, Item } = require('alfred-workflow-nodejs-next');
 
 (function main() {
     const workflow = new Workflow();
@@ -23,7 +23,7 @@ const { Workflow, Item } = require('alfred-workflow-nodejs');
         // your code to handle action 2 here
     });
 
-    actionHandler.onSubActionSelected('action_name_2', (query, previousSelectedTitle, previousSelectedData) => {
+    actionHandler.onSubActionSelected('action_name_2', (query, previousSelectedTitle, previousSelectedArg) => {
         // your code to handle selected sub action item of action_name_2 here
     });
 
@@ -53,8 +53,7 @@ workflow.onAction('testworkflow', function(query) {
         title: 'Feedback A',
         subtitle: 'Press tab to get menu items',
         arg: { alias: 'X' }, // we can set data to top level item to use later to build sub items
-        hasSubItems: true, // set this to true to tell that this feedback has sub Items
-        valid: true
+        hasSubItems: true // set this to true to tell that this feedback has sub Items
     });
     workflow.addItem(itemA);
 
@@ -63,8 +62,7 @@ workflow.onAction('testworkflow', function(query) {
         title: 'Feedback B',
         subtitle: 'Press tab to get menu items',
         arg: { alias: 'Y' }, // we can set data to top level item to use later to build sub items
-        hasSubItems: true, // set this to true to tell that this feedback has sub Items
-        valid: true
+        hasSubItems: true // set this to true to tell that this feedback has sub Items
     });
     workflow.addItem(itemB);
 
@@ -81,23 +79,23 @@ workflow.onAction('testworkflow', function(query) {
 * selectedItemTitle: title of selected top level item
 * selectedItemArg: arg of selected top level item
 **/
-workflow.onSubActionSelected('testworkflow', (query, previousSelectedTitle, previousSelectedData) => { 
+workflow.onSubActionSelected('testworkflow', (query, previousSelectedTitle, previousSelectedArg) => { 
     // ...
 })
 ```
 
 ```js
-workflow.onSubActionSelected('testworkflow', (query, previousSelectedTitle, previousSelectedData) => {
+workflow.onSubActionSelected('testworkflow', (query, previousSelectedTitle, previousSelectedArg) => {
     const item1 = new Item({
         title: 'Item 1 of ' + title,
-        subtitle: previousSelectedData.alias,
+        subtitle: previousSelectedArg.alias,
         valid: true,
         hasSubItems: false
     });
 
     const item2 = new Item({
         title: 'Item 2 of ' + title,
-        subtitle: previousSelectedData.alias,
+        subtitle: previousSelectedArg.alias,
         valid: true,
         hasSubItems: false
     });
@@ -119,12 +117,13 @@ workflow.onSubActionSelected('testworkflow', (query, previousSelectedTitle, prev
 * subtitle
 * arg (support variables in arg, alfred 3)
 * icon
-* valid(true/false, default is false)
+* valid: default is true
 * autocomplete
 * type
 * quicklookurl
 * text
 * mods
+* hasSubItems: is a custom option of this `alfred-workflow-nodejs-next`. If `hasSubItems` is true, `valid` option is false.  
 
 ```js
 const item1 = new Item({
