@@ -1,9 +1,14 @@
 ## Workflow skeleton
 
-Workflow command has 2 parameters: `action_name` and `query`:
+In Alfred Workflow tab UI, create a `Input -> Script Filter` item and insert a bash command to start your app.
+The bash command has 2 input: `action_name` and `query`:
+
+![Script Filter config](images/script_filter.png)
+
 
 ```shell
-# should use full path of `node`. I don't know how to use `node` in global yet
+# should use full path of `node`. I don't know how to use `node` global in Alfred Script Filter yet. 
+# Please suggest me if you have a better solution
 /usr/local/bin/node main.js "action_name" "query"
 ```
 
@@ -33,12 +38,12 @@ const { Workflow, Item } = require('alfred-workflow-nodejs-next');
 
 ## A Workflow example scenario:
 
-- Open Alfred and type main action name `testworkflow`
-=> There are 2 top level feedbacks are generated: `Feedback A` and `Feeback B`
-=> Use arrow key to navigate to `Feedback B` and press `TAB` or `ENTER`
-=> Alfred search bar will now become `Feedback B ➤ `
-=> and display sub action items of `Feedback B`: `Item 1 of Feedback B` and `Item 2 of Feedback B`
-=> Execute a sub item by using `TAB` or `ENTER` key when select a sub action item
+- Open Alfred and type main workflow name shortcut `testworkflow`
+    + => There are 2 top level feedbacks are generated: `Feedback A` and `Feeback B`
+    + => Use arrow key to navigate to `Feedback B` and press `TAB` or `ENTER`
+    + => Alfred search bar will now become `Feedback B ➤ `
+    + => and display sub action items of `Feedback B`: `Item 1 of Feedback B` and `Item 2 of Feedback B`
+    + => Execute a sub item by using `TAB` or `ENTER` key when select a sub action item
 
 ### Register listener for action name `testworkflow`
 
@@ -112,18 +117,18 @@ workflow.onSubActionSelected('testworkflow', (query, previousSelectedTitle, prev
 
 - Workflow is used to build and generate feedback
 - Item is a class that represent data of a row of feedback in Alfred. `Item.getData` method will return an object containing follow props which is documented officially in Alfred site here: (https://www.alfredapp.com/help/workflows/inputs/script-filter/json/)[https://www.alfredapp.com/help/workflows/inputs/script-filter/json/]:
-* uid
-* title
-* subtitle
-* arg (support variables in arg, alfred 3)
-* icon
-* valid: default is true
-* autocomplete
-* type
-* quicklookurl
-* text
-* mods
-* hasSubItems: is a custom option of this `alfred-workflow-nodejs-next`. If `hasSubItems` is true, `valid` option is false.  
+    * uid
+    * title
+    * subtitle
+    * arg (support variables in arg, alfred 3)
+    * icon
+    * valid: default is true
+    * autocomplete
+    * type
+    * quicklookurl
+    * text
+    * mods
+    * hasSubItems: is a custom option of this `alfred-workflow-nodejs-next`. If `hasSubItems` is true, `valid` option is false.  
 
 ```js
 const item1 = new Item({
@@ -176,5 +181,5 @@ workflow.feedback();
 workflow.info('title', 'subtitle');
 workflow.warning('title', 'subtitle');
 workflow.error('title', 'subtitle');
-// DO NOT work now: workflow.showLoading();
+// DOES NOT work: workflow.showLoading();
 ```
