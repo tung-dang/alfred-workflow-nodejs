@@ -1,6 +1,9 @@
 Alfred 3 Workflow NodeJS Next Library
 =====================================
 
+![Travis build]()
+
+
 This is a forked version of [https://github.com/giangvo/alfred-workflow-nodejs](https://github.com/giangvo/alfred-workflow-nodejs) and is converted to ES6. 
 
 
