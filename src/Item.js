@@ -29,7 +29,7 @@ class Item {
         }
 
         if (tempData.hasSubItems) {
-            tempData.autocomplete = `${tempData.title} ${constants.SUB_ACTION_SEPARATOR} `;
+            tempData.autocomplete = `${tempData.title} ${constants.SUB_ACTION_DIVIDER_SYMBOL} `;
         }
 
         this._data = tempData;

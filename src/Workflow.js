@@ -1,6 +1,6 @@
 const events = require('events');
 
-const { SUB_ACTION_SEPARATOR } = require('./constants');
+const { SUB_ACTION_DIVIDER_SYMBOL } = require('./constants');
 const storage = require('./storage');
 const { ICONS, WF_DATA_KEY } = require('./constants');
 const Item = require('./Item');
@@ -31,9 +31,20 @@ class Workflow {
         return wfData ? wfData[itemTitle] : undefined;
     }
 
+    /* istanbul ignore next */
     start() {
-        const actionName = process.argv[2];
-        const query = process.argv[3];
+        const args = Array.prototype.slice.apply(this, arguments);
+        let actionName;
+        let query;
+
+        if (args.length === 0) {
+            actionName = process.argv[2];
+            query = process.argv[3];
+        } else {
+            actionName = args[0];
+            query = args[1];
+        }
+
         process.on('uncaughtException', this.error.bind(this));
 
         this._trigger(actionName, query, this);
@@ -192,15 +203,15 @@ class Workflow {
     /**
      * Handle action by delegate to registered action/subAction handlers
      */
-    _trigger(action, query) {
-        if (!query || query.indexOf(SUB_ACTION_SEPARATOR) === -1) {
+    _trigger(actionName, query) {
+        if (!query || query.indexOf(SUB_ACTION_DIVIDER_SYMBOL) === -1) {
             // handle first level action
-            this._eventEmitter.emit(`${ACTION_NAMESPACE_EVENT}-${action}`, this._sanitizeQuery(query));
+            this._eventEmitter.emit(`${ACTION_NAMESPACE_EVENT}-${actionName}`, this._sanitizeQuery(query));
             return;
         }
 
         // handle sub action
-        const arrays = query.split(SUB_ACTION_SEPARATOR);
+        const arrays = query.split(SUB_ACTION_DIVIDER_SYMBOL);
 
         if (arrays.length >= 2) {
             const previousActionTitleSelected = this._sanitizeQuery(arrays[arrays.length - 2]);
@@ -214,7 +225,7 @@ class Workflow {
             }
 
             this._eventEmitter.emit(
-                `${SUB_ACTION_NAMESPACE_EVENT}-${action}`,
+                `${SUB_ACTION_NAMESPACE_EVENT}-${actionName}`,
                 query,
                 previousActionTitleSelected,
                 previousArgActionSelected
@@ -237,6 +248,7 @@ class Workflow {
         return query;
     }
 
+    /* istanbul ignore next */
     output(str) {
         try {
             utils.debug('Workflow feedback: ');

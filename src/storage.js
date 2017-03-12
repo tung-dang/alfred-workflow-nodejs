@@ -1,8 +1,6 @@
 const keychain = require('keychain');
 const nodePersist = require('node-persist');
 
-const utils = require('./utilities');
-
 class Storage {
     constructor() {
         nodePersist.initSync({
@@ -64,7 +62,7 @@ class Storage {
             service: workflow.getName(),
             password: password
         }, function(err) {
-            utils.debug('Can not set password: ', err);
+            console.warn('Can not set password: ', err);
         });
     }
 
@@ -86,6 +84,7 @@ class Storage {
             }, (error, password) => {
                 if (error) {
                     workflow.error('ERROR', 'Can not get password data');
+                    reject();
                     return;
                 }
     

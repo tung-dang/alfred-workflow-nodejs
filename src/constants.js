@@ -3,7 +3,7 @@ const ICON_ROOT = '/System/Library/CoreServices/CoreTypes.bundle/Contents/Resour
 
 
 module.exports = {
-    SUB_ACTION_SEPARATOR: '➤',
+    SUB_ACTION_DIVIDER_SYMBOL: '➤',
 
     WF_DATA_KEY: 'wfData',
 

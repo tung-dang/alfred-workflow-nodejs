@@ -1,8 +1,8 @@
 Alfred 3 Workflow NodeJS Next library
 =====================================
 
-![Travis build](https://img.shields.io/travis/tung-dang/alfred-workflow-nodejs-next.svg)
-
+![Travis build](https://img.shields.io/travis/tung-dang/alfred-workflow-nodejs-next.svg?style=flat-square)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 ## Overview
 A small library providing helpers to create [Alfred Workflow](https://www.alfredapp.com/workflows/).
@@ -15,14 +15,19 @@ Because `alfred-workflow-nodejs-next` returns JSON format to Alfred so this is c
 * Use yarn: `yarn add alfred-workflow-nodejs-next`
 * Use npm: `npm install --save alfred-workflow-nodejs-next`
 
+If you have any issue with yarn or npm, run `yarn run clean` to remove all packages in `node_modules` folder.
+
 ## Tests
 
 ```shell
 # running test
 yarn test
 
-# or running test in watch mode
+# or running test in watch mode when developing
 yarn test-watch
+
+# running test with reporting coverage
+yarn test-coverage
 ```
 
 ## Docs

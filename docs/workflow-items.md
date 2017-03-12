@@ -45,6 +45,8 @@ const { Workflow, Item } = require('alfred-workflow-nodejs-next');
     + => and display sub action items of `Feedback B`: `Item 1 of Feedback B` and `Item 2 of Feedback B`
     + => Execute a sub action item by using `TAB` or `ENTER` key
 
+- I tested with 2 action levels. I have not tested more than 2 action levels.
+  
 Here are some steps to implement above example scenario: 
 
 ### Register listener for Workflow shortcut name `testworkflow`

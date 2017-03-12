@@ -14,16 +14,27 @@
     "node-osascript": "^2.0.0",
     "node-persist": "^2.0.10"
   },
+  "bugs": {
+    "url": "https://github.com/tung-dang/alfred-workflow-nodejs-next/issues"
+  },
+  "homepage": "https://github.com/tung-dang/alfred-workflow-nodejs-next",
   "devDependencies": {
+    "babel-register": "^6.23.0",
     "chai": "^3.5.0",
+    "codecov.io": "^0.1.6",
     "fs": "0.0.2",
     "mocha": "^3.2.0",
+    "nyc": "^10.1.2",
+    "proxyquire": "^1.7.11",
     "sinon": "^1.17.7"
   },
   "scripts": {
     "clean": "rm -rf ./node_modules",
-    "test": "NODE_ENV=testing TESTING=true mocha \"test/**/*-test.js\" \"src/**/*-test.js\" ",
-    "test-watch": "yarn test -- --watch"
+    "test": "NODE_ENV=testing TESTING=true mocha \"test/**/*-test.js\" \"src/**/*-test.js\" --compilers js:babel-register",
+    "test-watch": "yarn test -- --watch",
+    "test-coverage": "rm -rf coverage && nyc --reporter=lcov yarn test",
+    "check-coverage": "nyc check-coverage --statement 50 --branches 50 --function 50 --lines 50",
+    "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov"
   },
   "contributors": [
     {
@@ -41,5 +52,10 @@
     "nodejs",
     "es6"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "config": {
+    "ghooks": {
+      "pre-commit": "yarn check-coverage"
+    }
+  }
 }

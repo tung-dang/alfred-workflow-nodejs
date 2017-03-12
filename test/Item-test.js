@@ -1,7 +1,7 @@
 const { assert } = require('chai');
 
 const { Item } = require('../src/main');
-const { SUB_ACTION_SEPARATOR } = require('../src/constants');
+const { SUB_ACTION_DIVIDER_SYMBOL } = require('../src/constants');
 
 describe('#Item', function() {
     it('check `title` prop', function() {
@@ -80,12 +80,12 @@ describe('#Item', function() {
         });
     });
 
-    it('`autocomplete` prop should include previous title if has sub items', function() {
+    it('autocomplete prop should include previous title if has sub items', function() {
         const item = new Item({
             title: 'this is a title',
             hasSubItems: true
         });
 
-        assert.propertyVal(item.getData(), 'autocomplete', `this is a title ${SUB_ACTION_SEPARATOR} `);
+        assert.propertyVal(item.getData(), 'autocomplete', `this is a title ${SUB_ACTION_DIVIDER_SYMBOL} `);
     });
 });

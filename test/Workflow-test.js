@@ -1,8 +1,9 @@
 const { assert } = require('chai');
 const sinon = require('sinon');
+const proxyquire = require('proxyquire');
 
-const { Workflow, Item, storage } = require('../src/main');
-const { SUB_ACTION_SEPARATOR } = require('../src/constants');
+const { Item, storage } = require('../src/main');
+const { SUB_ACTION_DIVIDER_SYMBOL } = require('../src/constants');
 
 const convertJSObjectToString = (obj) => JSON.stringify(obj, null, '\t');
 
@@ -10,8 +11,11 @@ describe('#WorkflowTest', function() {
     const sandbox = sinon.sandbox.create();
 
     let workflow;
+    let Workflow;
 
     beforeEach(() => {
+        Workflow = proxyquire.noCallThru().load('../src/Workflow', {});
+
         workflow = new Workflow();
     });
 
@@ -27,13 +31,24 @@ describe('#WorkflowTest', function() {
         assert.equal(workflow.getName('test name'), 'test name');
     });
 
+    it('#reset', () => {
+        const item = new Item({
+            title: 'title'
+        });
+        workflow.addItem(item);
+
+        workflow.reset();
+
+        assert.deepEqual(workflow._items, []);
+        assert.deepEqual(workflow._name, '');
+    });
+
     describe('Generate feedback', () => {
         it('With empty item list', () => {
             assert.strictEqual(workflow.feedback(), convertJSObjectToString({ items: [] }));
         });
 
-
-        it('Add a item', function() {
+        it('#addItem: Add an item', function() {
             const item = new Item({
                 title: 'title'
             });
@@ -189,7 +204,7 @@ describe('#WorkflowTest', function() {
         it('should handle non top level action', () => {
             const spy = sandbox.spy();
             workflow.onSubActionSelected('action_name', spy);
-            workflow._trigger('action_name', 'top_action_name_1 ' + SUB_ACTION_SEPARATOR + ' queryabc');
+            workflow._trigger('action_name', 'top_action_name_1 ' + SUB_ACTION_DIVIDER_SYMBOL + ' queryabc');
 
             assert.isTrue(spy.calledWith('queryabc'));
         });
@@ -203,7 +218,7 @@ describe('#WorkflowTest', function() {
             });
             workflow.addItem(item);
             workflow.onSubActionSelected('action_name', spy);
-            workflow._trigger('action_name', 'top_action_name_1 ' + SUB_ACTION_SEPARATOR + ' queryabc     ');
+            workflow._trigger('action_name', 'top_action_name_1 ' + SUB_ACTION_DIVIDER_SYMBOL + ' queryabc     ');
 
             assert.isTrue(spy.calledWith('queryabc', 'top_action_name_1', ''));
         });
@@ -220,7 +235,7 @@ describe('#WorkflowTest', function() {
             });
             workflow.addItem(item);
             workflow.onSubActionSelected('action_name', spy);
-            workflow._trigger('action_name', 'top_action_name_1 ' + SUB_ACTION_SEPARATOR + ' queryabc     ');
+            workflow._trigger('action_name', 'top_action_name_1 ' + SUB_ACTION_DIVIDER_SYMBOL + ' queryabc     ');
 
             assert.isTrue(spy.calledWith('queryabc', 'top_action_name_1', { a: 1, b: 2 }));
         });

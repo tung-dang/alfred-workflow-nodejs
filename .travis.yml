@@ -1,3 +1,8 @@
 os: osx
 language: node_js
 cache: yarn
+
+script:
+  - yarn run check-coverage
+after_success:
+  - yarn run report-coverage
