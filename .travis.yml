@@ -5,6 +5,7 @@ cache:
     - node_modules
 
 after_success:
+  - yarn run test-coverage
   - yarn run check-coverage
   - yarn run report-coverage
 
