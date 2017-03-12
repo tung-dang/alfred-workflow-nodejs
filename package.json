@@ -9,6 +9,7 @@
     "url": "git+https://github.com/tung-dang/alfred-workflow-nodejs-next"
   },
   "dependencies": {
+    "codecov": "^1.0.1",
     "fuzzy": "^0.1.3",
     "keychain": "^1.2.0",
     "node-osascript": "^2.0.0",
@@ -20,13 +21,12 @@
   "homepage": "https://github.com/tung-dang/alfred-workflow-nodejs-next",
   "devDependencies": {
     "babel-register": "^6.23.0",
-    "chai": "^3.5.0",
-    "codecov.io": "^0.1.6",
+    "chai": "3.5.0",
     "fs": "0.0.2",
-    "mocha": "^3.2.0",
-    "nyc": "^10.1.2",
-    "proxyquire": "^1.7.11",
-    "sinon": "^1.17.7"
+    "mocha": "3.2.0",
+    "nyc": "10.1.2",
+    "proxyquire": "1.7.11",
+    "sinon": "1.17.7"
   },
   "scripts": {
     "clean": "rm -rf ./node_modules",
@@ -34,7 +34,7 @@
     "test-watch": "yarn test -- --watch",
     "test-coverage": "rm -rf coverage && nyc --reporter=lcov yarn test",
     "check-coverage": "nyc check-coverage --statement 50 --branches 50 --function 50 --lines 50",
-    "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov"
+    "report-coverage": "codecov"
   },
   "contributors": [
     {
