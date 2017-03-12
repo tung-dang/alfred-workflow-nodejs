@@ -2,7 +2,9 @@ Alfred 3 Workflow NodeJS Next library
 =====================================
 
 ![Travis build](https://img.shields.io/travis/tung-dang/alfred-workflow-nodejs-next.svg?style=flat-square)
+[![codecov](https://codecov.io/gh/tung-dang/alfred-workflow-nodejs-next/branch/master/graph/badge.svg)](https://codecov.io/gh/tung-dang/alfred-workflow-nodejs-next)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+
 
 ## Overview
 A small library providing helpers to create [Alfred Workflow](https://www.alfredapp.com/workflows/).

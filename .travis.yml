@@ -10,5 +10,6 @@ after_success:
   - yarn run report-coverage
 
 env:
-- TESTING=true
-- NODE_ENV=testing
+  global:
+    - TESTING=true
+    - NODE_ENV=testing
