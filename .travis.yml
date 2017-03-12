@@ -1,8 +1,14 @@
-os: osx
 language: node_js
-cache: yarn
+cache:
+  yarn: true
+  directories:
+    - node_modules
 
 script:
   - yarn run check-coverage
 after_success:
   - yarn run report-coverage
+
+env:
+- TESTING=true
+- NODE_ENV=testing
