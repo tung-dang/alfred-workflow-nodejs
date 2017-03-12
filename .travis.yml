@@ -4,9 +4,8 @@ cache:
   directories:
     - node_modules
 
-script:
-  - yarn run check-coverage
 after_success:
+  - yarn run check-coverage
   - yarn run report-coverage
 
 env:
