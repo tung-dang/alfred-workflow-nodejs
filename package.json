@@ -39,7 +39,8 @@
   "contributors": [
     {
       "name": "Tung Dang",
-      "email": "tung.dang.js@gmail.com"
+      "email": "tung.dang.js@gmail.com",
+      "url": "https://github.com/tung-dang"
     },
     {
       "name": "Giang Vo",
@@ -52,10 +53,5 @@
     "nodejs",
     "es6"
   ],
-  "license": "MIT",
-  "config": {
-    "ghooks": {
-      "pre-commit": "yarn check-coverage"
-    }
-  }
+  "license": "MIT"
 }

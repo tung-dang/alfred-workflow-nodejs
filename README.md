@@ -49,3 +49,4 @@ yarn test-coverage
 - You can look at some tests in test folder in source code get more about usage.
 - You can use `console.trace('==========================', data)` or `console.warn('==========================', data)` to debug code. 
 **DO NOT** use `console.log` because it is used to return JSON string data to Alfred.
+- Open "Toggle Debugging Mode" of Alfred to see all logs when developing.
