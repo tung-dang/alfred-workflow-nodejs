@@ -40,9 +40,12 @@ yarn test-coverage
 * [docs/Storage](docs/storage.md) - Helper to CRUD temporary / permanent(settings) data.
 
 
-## Sample workflows
+## Sample workflow using this library. 
 - [alfred-workflow-go-links](https://github.com/tung-dang/alfred-workflow-go-links)
+- [alfred-workflow-yarn-api-search](https://github.com/tung-dang/alfred-workflow-yarn-api-search)
 - TODO: add more 
+
+Notice:  [docs/import-workflow-source-to-alfred.md](docs/import-workflow-source-to-alfred.md) - to show how to import workflow source code into Alfred. 
 
 ## Notes/Tips
 
