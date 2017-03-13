@@ -1,6 +1,6 @@
 {
   "name": "alfred-workflow-nodejs-next",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Alfred Workflow NodeJS helper in ES6",
   "author": "Tung Dang",
   "main": "src/main.js",
