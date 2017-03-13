@@ -123,14 +123,14 @@ workflow.onSubActionSelected('testworkflow', (query, previousSelectedTitle, prev
     * uid
     * title
     * subtitle
-    * arg (support variables in arg, alfred 3)
+    * arg (support variables in arg, alfred 3): is an object and is converted to string type when passing to Alfred eventually.
     * icon
     * valid: default is true
     * autocomplete
     * type
     * quicklookurl
     * text
-    * mods
+    * mods: `arg` prop inside `mods[xxx]` is an object and is converted to string type when passing to Alfred eventually.
     * hasSubItems: is a custom option of this `alfred-workflow-nodejs-next`. If `hasSubItems` is true, `valid` option is false.  
 
 ```js
@@ -155,15 +155,11 @@ const item3 = new Item({
     title: 'item 3',
     subtitle: 'sub 3',
     mods: {
+        // when users press CMD and enter to select a feedback, value of `arg` will be passed to next handler. 
         cmd: {
             valid: true,
-            arg: 'cmd arg',
+            arg: { a1: 'value1', a2: 'value2'},
             subtitle: 'pressing cmd'
-        },
-        alt: {
-            valid: false,
-            arg: 'alt arg',
-            subtitle: 'pressing alt'
         }
     }
 });

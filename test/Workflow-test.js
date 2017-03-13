@@ -191,6 +191,14 @@ describe('#WorkflowTest', function() {
             assert.isTrue(spy.calledWith('queryabc'));
         });
 
+        it('should handle top level action with query as object', () => {
+            const spy = sandbox.spy();
+            workflow.onAction('action_name', spy);
+            workflow._trigger('action_name', '{ "a": 1, "b": 2 }');
+
+            assert.isTrue(spy.calledWith({ a: 1, b: 2 }));
+        });
+
         it('should handle top level action with trimmed query', () => {
             const spy = sandbox.spy();
             workflow.onAction('action_name', spy);

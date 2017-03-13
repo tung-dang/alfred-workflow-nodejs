@@ -32,6 +32,15 @@ class Item {
             tempData.autocomplete = `${tempData.title} ${constants.SUB_ACTION_DIVIDER_SYMBOL} `;
         }
 
+        if (tempData.mods) {
+            for(let key in tempData.mods) {
+                const obj = tempData.mods[key];
+                if (typeof obj.arg !== 'string') {
+                    obj.arg = this._hygieneArg(obj.arg);
+                }
+            }
+        }
+
         this._data = tempData;
     }
 
@@ -50,13 +59,19 @@ class Item {
         return this._data;
     }
 
-    _hygieneArg(data) {
-        if (typeof data === "object") {
-            return JSON.stringify(data);
+    /**
+     * `arg` props is passed as an object and we need to convert it to string type so that Alfred can understand.
+     * @param arg
+     * @returns {String}
+     * @private
+     */
+    _hygieneArg(arg) {
+        if (typeof arg === 'object') {
+            return JSON.stringify(arg);
         }
 
-        if (typeof data === 'string') {
-            return data;
+        if (typeof arg === 'string') {
+            return arg;
         }
 
         return '';

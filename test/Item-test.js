@@ -45,28 +45,66 @@ describe('#Item', function() {
         assert.propertyVal(item.getData(), 'hasSubItems', true);
     });
 
-    it('`arg` prop should be string type if passing an object', function() {
-        const item = new Item({
-            title: 'this is a title',
-            arg: {
+    describe('#arg', () => {
+        it('`arg` prop should be string type if passing an object', function() {
+            const item = new Item({
+                title: 'this is a title',
+                arg: {
+                    a: 1,
+                    b: 2
+                }
+            });
+
+            assert.propertyVal(item.getData(), 'arg', JSON.stringify({
                 a: 1,
                 b: 2
-            }
+            }));
         });
 
-        assert.propertyVal(item.getData(), 'arg', JSON.stringify({
-            a: 1,
-            b: 2
-        }));
-    });
+        it('`arg` prop should be string type if passing a string', function() {
+            const item = new Item({
+                title: 'this is a title',
+                arg: 'this is a arg'
+            });
 
-    it('`arg` prop should be string type if passing an string', function() {
-        const item = new Item({
-            title: 'this is a title',
-            arg: 'this is a arg'
+            assert.propertyVal(item.getData(), 'arg', 'this is a arg');
         });
 
-        assert.propertyVal(item.getData(), 'arg', 'this is a arg');
+        it('`arg` prop in `mods` prop should be string type if passing an object', function() {
+            const item = new Item({
+                title: 'this is a title',
+                mods: {
+                    alt: {
+                        "valid": true,
+                        arg: {
+                            a: 1,
+                            b: 2
+                        },
+                        subtitle: 'https://www.alfredapp.com/powerpack/'
+                    }
+                }
+            });
+
+            assert.propertyVal(item.getData().mods.alt, 'arg', JSON.stringify({
+                a: 1,
+                b: 2
+            }));
+        });
+
+        it('`arg` prop in `mods` prop should be string type if passing a string', function() {
+            const item = new Item({
+                title: 'this is a title',
+                mods: {
+                    alt: {
+                        "valid": true,
+                        arg: '{ a: 1, b: 2 }',
+                        subtitle: 'https://www.alfredapp.com/powerpack/'
+                    }
+                }
+            });
+
+            assert.propertyVal(item.getData().mods.alt, 'arg', '{ a: 1, b: 2 }');
+        });
     });
 
     it('`icon` prop should be object type if passing a string type', function() {

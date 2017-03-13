@@ -204,14 +204,18 @@ class Workflow {
      * Handle action by delegate to registered action/subAction handlers
      */
     _trigger(actionName, query) {
-        if (!query || query.indexOf(SUB_ACTION_DIVIDER_SYMBOL) === -1) {
-            // handle first level action
-            this._eventEmitter.emit(`${ACTION_NAMESPACE_EVENT}-${actionName}`, this._sanitizeQuery(query));
+        const tempQuery = this._sanitizeQuery(query);
+
+        // handle first level action
+        if (!tempQuery ||
+            (typeof tempQuery === 'object') ||
+            (typeof tempQuery === 'string' && tempQuery.indexOf(SUB_ACTION_DIVIDER_SYMBOL) === -1)) {
+            this._eventEmitter.emit(`${ACTION_NAMESPACE_EVENT}-${actionName}`, tempQuery);
             return;
         }
 
         // handle sub action
-        const arrays = query.split(SUB_ACTION_DIVIDER_SYMBOL);
+        const arrays = tempQuery.split(SUB_ACTION_DIVIDER_SYMBOL);
 
         if (arrays.length >= 2) {
             const previousActionTitleSelected = this._sanitizeQuery(arrays[arrays.length - 2]);
@@ -243,9 +247,18 @@ class Workflow {
         storage.clear();
     }
 
-    _sanitizeQuery(query) {
-        query = query && query.trim ? query.trim() : query;
-        return query;
+    _sanitizeQuery(rawQuery) {
+        let finalQuery = rawQuery;
+
+        try {
+            finalQuery = JSON.parse(rawQuery);
+        } catch(e) {
+            // can not parse to object, we keep it as string
+            finalQuery = rawQuery;
+        }
+
+        finalQuery = finalQuery && finalQuery.trim ? finalQuery.trim() : finalQuery;
+        return finalQuery;
     }
 
     /* istanbul ignore next */

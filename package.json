@@ -1,6 +1,6 @@
 {
   "name": "alfred-workflow-nodejs-next",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Alfred Workflow NodeJS helper in ES6",
   "author": "Tung Dang",
   "main": "src/main.js",
@@ -32,7 +32,7 @@
     "test": "NODE_ENV=testing TESTING=true mocha \"test/**/*-test.js\" \"src/**/*-test.js\" --compilers js:babel-register",
     "test-watch": "yarn test -- --watch",
     "test-coverage": "rm -rf coverage && nyc --reporter=lcov yarn test",
-    "check-coverage": "nyc check-coverage --statement 50 --branches 50 --function 50 --lines 50",
+    "check-coverage": "nyc check-coverage --statement 80 --branches 80 --function 80 --lines 80",
     "report-coverage": "codecov"
   },
   "contributors": [
