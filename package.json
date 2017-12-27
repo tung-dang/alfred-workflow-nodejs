@@ -1,6 +1,6 @@
 {
   "name": "alfred-workflow-nodejs-next",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Alfred Workflow NodeJS helper in ES6",
   "author": "Tung Dang",
   "main": "src/main.js",
@@ -52,5 +52,8 @@
     "nodejs",
     "es6"
   ],
+  "bin": {
+    "run-node": "./bin/run-node"
+  },
   "license": "MIT"
 }

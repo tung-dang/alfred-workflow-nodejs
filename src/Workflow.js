@@ -94,20 +94,28 @@ class Workflow {
     /**
      * Generate feedback
      */
-    feedback() {
-        let ret;
+    feedback(strFeedback) {
+        let strOutput = '';
+
         try {
-            ret = JSON.stringify({
-                items: this._items
-            }, null, '\t');
+            if (strFeedback) {
+                strOutput = strFeedback;
+            } else {
+                strOutput = JSON.stringify({
+                    items: this._items
+                }, null, '\t');
+            }
 
             utils.debug('Workflow feedback: ');
-            this.output(ret);
+            this.output(strOutput);
             this.clearItems();
-            return ret;
+
+            return strOutput;
         } catch (e) {
             utils.debug('Can not generate JSON string', this._items);
         }
+
+        return strOutput;
     }
 
     /**
@@ -168,7 +176,7 @@ class Workflow {
 
         this.addItem(new Item({
             title: 'Loading',
-            subtitle: '...🤞',
+            subtitle: '...??',
             icon: ICONS.CLOCK
         }));
 

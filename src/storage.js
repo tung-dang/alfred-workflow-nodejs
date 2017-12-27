@@ -32,31 +32,31 @@ class Storage {
         settings[key] = value;
         this.set('settings', settings, false);
     }
-    
+
     getSetting(key) {
         const settings = this.get('settings');
         if (settings) {
             return settings[key];
         }
     }
-    
+
     removeSetting(key) {
         const settings = this.get('settings');
         if (settings) {
             delete settings[key];
         }
     }
-    
+
     clearSetting() {
         this.remove('settings');
     }
-    
+
     setPassword(username, password, workflow) {
         if (!username || !password || !workflow) {
             console.error('Invalid arguments: userName, password or workflow!');
             return;
         }
-    
+
         keychain.setPassword({
             account: username,
             service: workflow.getName(),
@@ -77,7 +77,7 @@ class Storage {
                 reject();
                 return;
             }
-    
+
             keychain.getPassword({
                 account: username,
                 service: workflow.getName()
@@ -87,11 +87,11 @@ class Storage {
                     reject();
                     return;
                 }
-    
+
                 resolve(password);
             });
         });
-    
+
         return p;
     }
 }
