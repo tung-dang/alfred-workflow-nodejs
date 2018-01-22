@@ -1,0 +1,27 @@
+{
+  "name": "@alfred-workflow-node/alfred-wf-yarn-api-search",
+  "main": "src/main.js",
+  "description": "Alfred workflow to search Yarn API",
+  "version": "1.0.0",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/tung-dang/alfred-workflow-yarn-api-search/issues"
+  },
+  "homepage": "https://github.com/tung-dang/alfred-workflow-yarn-api-search",
+  "dependencies": {
+    "alfred-workflow-nodejs-next": "^1.1.2",
+    "octonode": "^0.9.1"
+  },
+  "scripts": {
+    "export-wf": "git archive --format zip --output ./exported-workflow-file/YarnApiSearch.alfredworkflow master",
+    "export-push": "yarn run export-wf && git add --all && git commit -m \"export workflow to file\" && git push --follow-tags"
+  },
+  "contributors": [
+    {
+      "name": "Tung Dang",
+      "email": "tung.dang.js@gmail.com",
+      "url": "https://github.com/tung-dang"
+    }
+  ],
+  "license": "MIT"
+}

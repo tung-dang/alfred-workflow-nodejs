@@ -1,0 +1,7 @@
+persist
+.node-persist
+node_modules
+config.json
+go_list.txt
+icons/
+.idea/

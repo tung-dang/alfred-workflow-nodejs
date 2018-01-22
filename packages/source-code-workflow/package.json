@@ -1,0 +1,7 @@
+{
+    "name": "@alfred-workflow-node/alfred-source-code-wf",
+    "main": "src/main.js",
+    "dependencies": {
+        "alfred-workflow-nodejs-next": "1.1.2"
+    }
+}

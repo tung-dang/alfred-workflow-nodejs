@@ -1,0 +1,9 @@
+node_modules
+persist
+npm-debug.log
+.node-persist
+.archive
+.idea/*
+.nyc_output
+coverage
+coverage.lcov

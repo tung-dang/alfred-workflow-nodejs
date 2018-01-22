@@ -1,0 +1,13 @@
+# TODO: rename this file to go_list.txt before using it.
+
+# Go format
+go/helpdesk | Go Helpdesk
+
+# Normal format
+https://docs.atlassian.com/aui/latest/docs/icons.html | AUI Icons
+
+# With parameter format
+https://jira.atlassian.com/browse/{0} | Search JIRA by issue key...
+
+# A absolute path of a folder
+/Users/tungdang/Google Drive | Goolge Drive

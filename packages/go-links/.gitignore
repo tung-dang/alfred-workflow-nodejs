@@ -1,0 +1,15 @@
+# temp data
+persist
+.node-persist
+.idea/
+.vscode/
+.yarnclean
+
+# env
+node_modules
+./config.json
+./config.js
+
+# this is config file which contains link addresses.
+go_list.txt
+
