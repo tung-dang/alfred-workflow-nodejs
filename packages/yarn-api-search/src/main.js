@@ -6,7 +6,8 @@ const YARN_API_PATH = 'lang/en/docs/cli';
 const BRANCH = 'master';
 const YARN_WEBSITE_CLI = 'https://yarnpkg.com/en/docs/cli/';
 
-const github = require('octonode');
+importgithub = require('octonode');
+
 const client = github.client();
 const ghrepo = client.repo(YARN_REPO);
 

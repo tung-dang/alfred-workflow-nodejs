@@ -1,12 +1,14 @@
 import { Workflow, Item, storage, utils } from 'alfred-workflow-nodejs-next';
 import { openLinkExecutor } from './executors.js';
+import { FileItem } from "./types";
 
 const REPO = 'airbnb/enzyme';
 const API_PATH = 'docs/api';
 const BRANCH = 'master';
 const WEBSITE_CLI = 'http://airbnb.io/enzyme/docs/api/';
 
-import github from 'octonode';
+import * as github from 'octonode';
+
 const client = github.client();
 const githubRepo = client.repo(REPO);
 
@@ -33,7 +35,7 @@ export default class MainApp {
     this.workflow.setName('alfred-wf-yarn-api-search');
 
     this.workflow.onAction(commands.LOAD_ALL_LINKS, query =>
-      this.loadAllLinks(query)
+      this._loadAllLinks(query)
     );
     this.workflow.onAction(commands.CLEAR_CACHE, () => storage.clear());
 
@@ -46,7 +48,7 @@ export default class MainApp {
     });
   }
 
-  fetchFolder(url = API_PATH) {
+  _fetchFolder(url = API_PATH) {
     const promise = new Promise(resolve => {
       const fetchedItems = [];
 
@@ -66,21 +68,21 @@ export default class MainApp {
     return promise;
   }
 
-  loadAllLinks(query) {
+  _loadAllLinks(query) {
     if (!this.workflow.isDebug) {
       const dataFromCache = storage.get('cache_links');
       if (dataFromCache) {
         console.warn('Get data from cache...');
-        this.generateFeedback(dataFromCache, query);
+        this._generateFeedback(dataFromCache, query);
         return;
       }
     }
 
     console.warn('Start fetching...');
 
-    const rootFolderPromise = this.fetchFolder(API_PATH);
-    const folder1stPromise = this.fetchFolder(API_PATH + '/ReactWrapper');
-    const folder2ndPromise = this.fetchFolder(API_PATH + '/ShallowWrapper');
+    const rootFolderPromise = this._fetchFolder(API_PATH);
+    const folder1stPromise = this._fetchFolder(API_PATH + '/ReactWrapper');
+    const folder2ndPromise = this._fetchFolder(API_PATH + '/ShallowWrapper');
     Promise.all([rootFolderPromise, folder1stPromise, folder2ndPromise]).then(
       results => {
         let files = [];
@@ -89,12 +91,12 @@ export default class MainApp {
         });
 
         storage.set('cache_links', files, ONE_WEEK);
-        this.generateFeedback(files, query);
+        this._generateFeedback(files, query);
       }
     );
   }
 
-  generateFeedback(response, query: string) {
+  _generateFeedback(response: FileItem[], query: string) {
     const items = [];
 
     response.forEach(item => {
@@ -102,7 +104,9 @@ export default class MainApp {
       cliName = cliName.replace('.md', '');
       const url = item.html_url;
 
-      const path = item.path.replace('docs/api/', '').replace('.md', '.html');
+      const path = item.path
+        .replace('docs/api/', '')
+        .replace('.md', '.html');
       const urlWebsite = WEBSITE_CLI + path;
 
       items.push(

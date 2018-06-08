@@ -6,8 +6,8 @@ const REPO = 'airbnb/enzyme';
 const API_PATH = 'docs/api';
 const BRANCH = 'master';
 const WEBSITE_CLI = 'http://airbnb.io/enzyme/docs/api/';
-const octonode_1 = require("octonode");
-const client = octonode_1.default.client();
+const github = require("octonode");
+const client = github.client();
 const githubRepo = client.repo(REPO);
 const ONE_MINUTE = 1000 * 60;
 const ONE_HOUR = ONE_MINUTE * 60;
@@ -25,7 +25,7 @@ class MainApp {
             isDebug: false
         });
         this.workflow.setName('alfred-wf-yarn-api-search');
-        this.workflow.onAction(commands.LOAD_ALL_LINKS, query => this.loadAllLinks(query));
+        this.workflow.onAction(commands.LOAD_ALL_LINKS, query => this._loadAllLinks(query));
         this.workflow.onAction(commands.CLEAR_CACHE, () => alfred_workflow_nodejs_next_1.storage.clear());
         this.workflow.onAction(commands.OPEN_LINK, arg => {
             if (typeof arg === 'string') {
@@ -36,7 +36,7 @@ class MainApp {
             }
         });
     }
-    fetchFolder(url = API_PATH) {
+    _fetchFolder(url = API_PATH) {
         const promise = new Promise(resolve => {
             const fetchedItems = [];
             githubRepo.contents(url, BRANCH, (error, res) => {
@@ -52,35 +52,37 @@ class MainApp {
         });
         return promise;
     }
-    loadAllLinks(query) {
+    _loadAllLinks(query) {
         if (!this.workflow.isDebug) {
             const dataFromCache = alfred_workflow_nodejs_next_1.storage.get('cache_links');
             if (dataFromCache) {
                 console.warn('Get data from cache...');
-                this.generateFeedback(dataFromCache, query);
+                this._generateFeedback(dataFromCache, query);
                 return;
             }
         }
         console.warn('Start fetching...');
-        const rootFolderPromise = this.fetchFolder(API_PATH);
-        const folder1stPromise = this.fetchFolder(API_PATH + '/ReactWrapper');
-        const folder2ndPromise = this.fetchFolder(API_PATH + '/ShallowWrapper');
+        const rootFolderPromise = this._fetchFolder(API_PATH);
+        const folder1stPromise = this._fetchFolder(API_PATH + '/ReactWrapper');
+        const folder2ndPromise = this._fetchFolder(API_PATH + '/ShallowWrapper');
         Promise.all([rootFolderPromise, folder1stPromise, folder2ndPromise]).then(results => {
             let files = [];
             results.forEach(function (items) {
                 files = files.concat(items);
             });
             alfred_workflow_nodejs_next_1.storage.set('cache_links', files, ONE_WEEK);
-            this.generateFeedback(files, query);
+            this._generateFeedback(files, query);
         });
     }
-    generateFeedback(response, query) {
+    _generateFeedback(response, query) {
         const items = [];
         response.forEach(item => {
             let cliName = item.name;
             cliName = cliName.replace('.md', '');
             const url = item.html_url;
-            const path = item.path.replace('docs/api/', '').replace('.md', '.html');
+            const path = item.path
+                .replace('docs/api/', '')
+                .replace('.md', '.html');
             const urlWebsite = WEBSITE_CLI + path;
             items.push(new alfred_workflow_nodejs_next_1.Item({
                 uid: url,

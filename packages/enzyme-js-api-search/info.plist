@@ -48,6 +48,31 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<true/>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
+				<string>## Choose a link and then open it
+
+./run-node.sh . "open_link" "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>78DFBB49-56D4-40B6-9DE3-62EF266A19C7</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -71,7 +96,7 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>./node_modules/.bin/run-node . "load_all_links" "{query}"</string>
+				<string>./run-node.sh . "load_all_links" "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -95,54 +120,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<true/>
-				<key>escaping</key>
-				<integer>4</integer>
-				<key>script</key>
-				<string>## Choose a link and then open it
-
-/Users/tthanhdang/.nvm/versions/node/v8.5.0/bin/node . "open_link" "{query}"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>5</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>78DFBB49-56D4-40B6-9DE3-62EF266A19C7</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<true/>
-				<key>escaping</key>
-				<integer>4</integer>
-				<key>script</key>
-				<string>/Users/tthanhdang/.nvm/versions/node/v8.5.0/bin/node . "clear_cache"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>5</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>2144BAF4-BBDC-4622-9F71-302B5F832B8A</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>keyword</key>
@@ -160,6 +137,29 @@
 			<string>DF217F50-2341-4449-889A-AAEB44E4882A</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<true/>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
+				<string>./run-node.sh . "clear_cache"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>2144BAF4-BBDC-4622-9F71-302B5F832B8A</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
