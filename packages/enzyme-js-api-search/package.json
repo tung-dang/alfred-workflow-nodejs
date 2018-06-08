@@ -1,6 +1,7 @@
 {
   "name": "@alfred-workflow-node/alfred-wf-enzyme-js-api-search",
-  "main": "src/main.js",
+  "main": "dist/index",
+  "types": "lib/index",
   "description": "Alfred workflow to search Enzyme JS API",
   "version": "1.0.0",
   "private": true,
@@ -12,11 +13,22 @@
     "alfred-workflow-nodejs-next": "^1.1.2",
     "octonode": "^0.9.1"
   },
+  "devDependencies": {
+    "@types/node": "10.3.2",
+    "nodemon": "1.17.5",
+    "ts-node": "6.1.0",
+    "typescript": "2.9.1"
+  },
   "scripts": {
-    "clean": "rm -rf ./exported-workflow-file/*.*",
+    "clean": "../../scripts/cleanup.sh",
+    "format": "../../scripts/format_files.sh",
     "archive-zip": "git archive --verbose --format zip --output ./exported-workflow-file/EnzymeJSApiSearch.alfredworkflow master",
     "export-wf": "yarn run clean && yarn run archive-zip",
-    "export-push": "yarn run export-wf && git add --all && git commit -m \"export workflow to file\" && git push --follow-tags"
+    "export-push": "yarn run export-wf && git add --all && git commit -m \"export workflow to file\" && git push --follow-tags",
+    "tsc": "tsc",
+    "build": "tsc  -p tsconfig.json",
+    "build:live": "nodemon --exec yarn build ",
+    "start": "yarn build:live"
   },
   "bin": {
     "run-node": "./scripts/run-node.sh"

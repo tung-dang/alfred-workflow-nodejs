@@ -1,0 +1,1 @@
+/Users/tthanhdang/src/_my-src/alfred-workflow-node/bin/run-node.sh

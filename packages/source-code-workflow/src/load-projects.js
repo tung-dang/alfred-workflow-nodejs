@@ -8,33 +8,37 @@ const utils = require('./utils');
 class LoadProjects {
     constructor(options) {
         this.workflow = options.workflow;
+        this.projects = this._loadProjectData();
+    }
+
+    _loadProjectData() {
+        var projects = [];
+         // get from cache
+         const keyCache = 'load_projects';
+         const data = storage.get(keyCache);
+         if (data) {
+             console.warn('Load all projects from cache :)');
+             projects = data;
+         } else {
+             console.warn('Load all projects from hard disk! :(');
+             sourceFolders.forEach((path) => {
+                 const childFolders = utils.getDirectories(path);
+                 childFolders && childFolders.forEach((folder) => {
+                     projects.push({
+                         name: folder,
+                         path: path + '/' + folder
+                     });
+                 });
+             });
+
+             // cache in 24h
+             storage.set(keyCache, projects);
+         }
+         return data;
     }
 
     run(query) {
-        let projects = [];
-
-        // get from cache
-        const keyCache = 'load_projects';
-        const data = storage.get(keyCache);
-        if (data) {
-            console.warn('Load all projects from cache :)');
-            projects = data;
-        } else {
-            console.warn('Load all projects from hard disk! :(');
-            sourceFolders.forEach((path) => {
-                const childFolders = utils.getDirectories(path);
-                childFolders && childFolders.forEach((folder) => {
-                    projects.push({
-                        name: folder,
-                        path: path + '/' + folder
-                    });
-                });
-            });
-
-            // cache in 24h
-            storage.set(keyCache, projects);
-        }
-
+        const projects = this.projects;
 
         if (projects.length === 0) {
             this.workflow.addItem(new Item({
