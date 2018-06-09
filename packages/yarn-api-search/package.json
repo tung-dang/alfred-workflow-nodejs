@@ -1,8 +1,9 @@
 {
   "name": "@alfred-workflow-node/alfred-wf-yarn-api-search",
-  "main": "src/main.js",
+  "main": "dist/index",
+  "types": "lib/index",
   "description": "Alfred workflow to search Yarn API",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "private": true,
   "bugs": {
     "url": "https://github.com/tung-dang/alfred-workflow-yarn-api-search/issues"
@@ -10,11 +11,16 @@
   "homepage": "https://github.com/tung-dang/alfred-workflow-yarn-api-search",
   "dependencies": {
     "alfred-workflow-nodejs-next": "^1.1.2",
-    "octonode": "^0.9.1"
+    "octonode": "^0.9.2"
   },
   "scripts": {
     "export-wf": "git archive --format zip --output ./exported-workflow-file/YarnApiSearch.alfredworkflow master",
-    "export-push": "yarn run export-wf && git add --all && git commit -m \"export workflow to file\" && git push --follow-tags"
+    "export-push": "yarn run export-wf && git add --all && git commit -m \"export workflow to file\" && git push --follow-tags",
+    "cleanup": "../../scripts/cleanup.sh",
+    "format": "../../scripts/format_files.sh",
+    "build": "../../scripts/build.sh",
+    "build:live": "../../scripts/build-live.sh",
+    "start": "yarn build:live"
   },
   "contributors": [
     {

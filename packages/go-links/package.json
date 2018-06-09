@@ -16,7 +16,7 @@
     "export-wf": "tar -cv . | gzip > exported-workflow-file/Go.alfredworkflow",
     "cleanup": "../../scripts/cleanup.sh",
     "format": "../../scripts/format_files.sh",
-    "build": "tsc -p tsconfig.json",
+    "build": "../../scripts/build.sh",
     "build:live": "../../scripts/build-live.sh",
     "start": "yarn build:live"
   },

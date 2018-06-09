@@ -1,7 +1,1 @@
-persist
-.node-persist
-node_modules
-config.json
-go_list.txt
-icons/
-.idea/
+/Users/tthanhdang/src/_my-src/alfred-workflow-node/.gitignore

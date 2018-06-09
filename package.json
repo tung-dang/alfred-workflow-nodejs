@@ -1,8 +1,7 @@
 {
   "private": true,
-  "name": "@alfred-workflow-node/alfred-workflow-node-js-next",
-  "version": "1.1.2",
-  "description": "Alfred Workflow NodeJS helper in ES6",
+  "version": "0.0.0",
+  "description": "Alfred Workflow in NodeJS",
   "author": "Tung Dang",
   "repository": {
     "type": "git",

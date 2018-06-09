@@ -6,3 +6,4 @@ go_list.txt
 icons/
 .idea/
 yarn-error.log
+dist

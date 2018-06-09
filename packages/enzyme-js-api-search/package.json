@@ -22,7 +22,7 @@
     "export-push": "yarn run export-wf && git add --all && git commit -m \"export workflow to file\" && git push --follow-tags",
     "cleanup": "../../scripts/cleanup.sh",
     "format": "../../scripts/format_files.sh",
-    "build": "tsc -p tsconfig.json",
+    "build": "../../scripts/build.sh",
     "build:live": "../../scripts/build-live.sh",
     "start": "yarn build:live"
   },

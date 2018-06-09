@@ -50,7 +50,7 @@ export default class CommandHandler {
     return this.rawData;
   }
 
-  loadAllLinks = (query) => {
+  loadAllLinks = query => {
     this.query = query ? query.trim() : '';
 
     const rawData = this._readLinkRepo();
@@ -61,7 +61,7 @@ export default class CommandHandler {
     this.workflow.feedback();
   };
 
-  _processLine = (line) => {
+  _processLine = line => {
     line = line.trim();
     if (!line || isCommentLine(line)) {
       return;
@@ -94,7 +94,7 @@ export default class CommandHandler {
 
       this.workflow.addItem(item);
     }
-  }
+  };
 
   _createNewLinkItem({ address, title, subtitle, finalLink }) {
     const item = new Item({
@@ -178,7 +178,7 @@ export default class CommandHandler {
     return params;
   }
 
-  _getSubTitleFromAddress = (address) => {
+  _getSubTitleFromAddress = address => {
     let subTitle = address;
 
     const isGoAddress = isShortenUrl(address);
@@ -192,5 +192,5 @@ export default class CommandHandler {
     subTitle = subTitle.replace(/\/$/, '');
 
     return subTitle;
-  }
+  };
 }
