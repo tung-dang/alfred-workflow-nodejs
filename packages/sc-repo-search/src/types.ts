@@ -1,4 +1,5 @@
 export interface Executor {
-  actionName: string;
+  key: string;
+  name: string;
   execute: (args: any) => void;
 }

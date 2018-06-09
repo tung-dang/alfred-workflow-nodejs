@@ -1,7 +1,18 @@
 {
     "name": "@alfred-wf-node/search-source-code-repo",
-    "main": "src/main.js",
+    "main": "dist/index",
+    "types": "lib/index",
+    "version": "0.0.0",
+    "private": true,
     "dependencies": {
         "alfred-workflow-nodejs-next": "1.1.2"
+    },
+    "scripts": {
+      "export-wf": "tar -cv . | gzip > exported-workflow-file/Go.alfredworkflow",
+      "cleanup": "../../scripts/cleanup.sh",
+      "format": "../../scripts/format_files.sh",
+      "build": "../../scripts/build.sh",
+      "build:live": "../../scripts/build-live.sh",
+      "start": "yarn build:live"
     }
 }
