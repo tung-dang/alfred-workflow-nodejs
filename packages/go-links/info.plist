@@ -68,7 +68,7 @@
 				<key>script</key>
 				<string>## Choose a link and then open it
 
-/Users/tthanhdang/.nvm/versions/node/v8.5.0/bin/node . "open_link" "{query}"</string>
+./run-node.sh . "open_link" "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -88,6 +88,8 @@
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -107,7 +109,7 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>/Users/tthanhdang/.nvm/versions/node/v8.5.0/bin/node . "load_all_links" "{query}"</string>
+				<string>./run-node.sh . "load_all_links" "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -174,7 +176,7 @@
 				<key>escaping</key>
 				<integer>4</integer>
 				<key>script</key>
-				<string>/Users/tthanhdang/.nvm/versions/node/v8.5.0/bin/node . "clear_cache"</string>
+				<string>./run-node.sh . "clear_cache"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -194,6 +196,8 @@
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>

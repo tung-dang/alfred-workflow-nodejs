@@ -20,7 +20,9 @@
   "devDependencies": {
   },
   "scripts": {
-    "clean": "./bin/clean.sh"
+    "clean": "./scripts/cleanup.sh",
+    "tsc": "tsc",
+    "nodemon": "nodemon"
   },
   "license": "MIT"
 }

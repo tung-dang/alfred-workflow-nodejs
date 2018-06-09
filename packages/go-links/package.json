@@ -1,8 +1,9 @@
 {
   "name": "@alfred-workflow-node/alfred-wf-go-bookmarks",
-  "main": "src/main.js",
+  "main": "dist/index",
+  "types": "lib/index",
   "description": "Alfred workflow to search bookmarks in a simple formarted text file",
-  "version": "1.0.2",
+  "version": "0.0.0",
   "private": true,
   "bugs": {
     "url": "https://github.com/tung-dang/alfred-workflow-go-links/issues"
@@ -12,7 +13,12 @@
     "alfred-workflow-nodejs-next": "1.1.2"
   },
   "scripts": {
-    "export-wf": "tar -cv . | gzip > exported-workflow-file/Go.alfredworkflow"
+    "export-wf": "tar -cv . | gzip > exported-workflow-file/Go.alfredworkflow",
+    "cleanup": "../../scripts/cleanup.sh",
+    "format": "../../scripts/format_files.sh",
+    "build": "tsc -p tsconfig.json",
+    "build:live": "../../scripts/build-live.sh",
+    "start": "yarn build:live"
   },
   "contributors": [
     {
