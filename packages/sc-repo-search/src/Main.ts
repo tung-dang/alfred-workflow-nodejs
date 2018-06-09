@@ -5,7 +5,7 @@ import {
   storage,
   settings
 } from 'alfred-workflow-nodejs-next';
-import * as executors from './executors.js';
+import * as executors from './executors';
 
 const commands = {
   LOAD_PROJECTS: 'loadProjects',
@@ -16,12 +16,14 @@ const commands = {
 import LoadProjects from './load-projects';
 import LoadProjectAction from './load-project-actions';
 
+const pkg = require("../package.json");
+
 export default class MainApp {
   workflow: Workflow;
 
   constructor() {
     this.workflow = new Workflow();
-    this.workflow.setName('alfred-source-code-wf');
+    this.workflow.setName(pkg.name);
 
     const loadProjects = new LoadProjects({
       workflow: this.workflow
@@ -31,9 +33,7 @@ export default class MainApp {
     });
 
     // load projects list
-    this.workflow.onAction(commands.LOAD_PROJECTS, query => {
-      loadProjects.run(query);
-    });
+    this.workflow.onAction(commands.LOAD_PROJECTS, loadProjects.run);
     // load project's actions
     this.workflow.onSubActionSelected(
       commands.LOAD_PROJECTS,
@@ -45,7 +45,7 @@ export default class MainApp {
     // execute project action
     this.workflow.onAction(commands.EXECUTE, function(arg) {
       // Handle project actions
-      executors.forEach(executor => {
+      Array.from(executors as any).forEach(executor => {
         executor.execute(arg);
       });
     });

@@ -44,7 +44,7 @@ export default class LoadProjects {
     return data;
   }
 
-  run(query) {
+  run = (query: string) => {
     const projects = this.projects;
 
     if (projects.length === 0) {

@@ -1,5 +1,4 @@
 import { exec } from 'child_process';
-// import fs from 'fs';
 import * as utils from './utils';
 
 /**

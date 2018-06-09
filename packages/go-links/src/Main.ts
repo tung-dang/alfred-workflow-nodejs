@@ -10,13 +10,14 @@ const commands = {
   OPEN_LINK: 'open_link',
   CLEAR_CACHE: 'clear_cache'
 };
+const pkg = require("../package.json");
 
 export default class MainApp {
   workflow: Workflow;
 
   constructor() {
     this.workflow = new Workflow();
-    this.workflow.setName('alfred-go-wf');
+    this.workflow.setName(pkg.name);
 
     const handler = new CommandHandler({
       workflow: this.workflow

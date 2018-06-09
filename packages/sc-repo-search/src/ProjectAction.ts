@@ -6,13 +6,17 @@ const DEFAULT_ICON = 'code.png';
 export default class ProjectAction implements Executor {
   shortcut: any;
   icon: any;
+  key: string;
+  name: string;
+  executor: (args: any) => void;
 
   constructor(options) {
+    this.key = options.key;
+    this.name = options.name;
+    this.executor = options.executor;
+
     this.shortcut = options.shortcut || '';
     this.icon = options.icon || DEFAULT_ICON;
-    if (options.getSubTitle) {
-      this.getSubTitle = options.getSubTitle;
-    }
   }
 
   shouldDisplay(data) {
@@ -53,5 +57,14 @@ export default class ProjectAction implements Executor {
 
   filterKey() {
     return `${this.name}${this.shortcut ? ' ' + this.shortcut : ''}`;
+  }
+
+  execute(arg) {
+    arg = (typeof arg === 'string') ? JSON.parse(arg) : arg;
+
+    if ((this.name !== undefined && this.name === arg.actionName) ||
+        (this.key !== undefined && this.key === arg.actionKey)) {
+        this.executor(arg);
+    }
   }
 }

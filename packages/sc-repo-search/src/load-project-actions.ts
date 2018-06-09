@@ -8,7 +8,7 @@ export default class LoadProjectActions {
     this.workflow = options.workflow;
   }
 
-  run(query, arg) {
+  run = (query, arg) => {
     const projectActions = executors;
 
     const filteredActions = nodeJSUtils.filter(query, projectActions, function(

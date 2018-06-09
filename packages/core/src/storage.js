@@ -1,29 +1,29 @@
 const keychain = require('keychain');
-const nodePersist = require('node-persist');
+const storage = require('node-persist');
 
 class Storage {
     constructor() {
-        nodePersist.initSync({
+        storage.init({
             ttl: true
         });
     }
 
     set(key, value, ttl) {
-        nodePersist.setItemSync(key, value, {
+        storage.setItemSync(key, value, {
             ttl
         });
     }
 
     get(key) {
-        return nodePersist.getItemSync(key);
+        return storage.getItemSync(key);
     }
 
     remove(key) {
-        nodePersist.removeItemSync(key);
+        storage.removeItemSync(key);
     }
 
     clear() {
-        nodePersist.clearSync();
+        storage.clearSync();
     }
 
     setSetting(key, value) {

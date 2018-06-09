@@ -1,4 +1,4 @@
-import { Workflow, Item, storage, utils } from 'alfred-workflow-nodejs-next';
+import { Workflow, Item, storage, utils } from '@alfred-wf-node/core';
 import { openLinkExecutor } from './executors.js';
 import { FileItem } from "./types";
 
@@ -22,6 +22,7 @@ const commands = {
   OPEN_LINK: 'open_link',
   CLEAR_CACHE: 'clear_cache'
 };
+const pkg = require("../package.json");
 
 export default class MainApp {
   workflow: Workflow;
@@ -32,7 +33,7 @@ export default class MainApp {
       isDebug: false
     });
 
-    this.workflow.setName('alfred-wf-yarn-api-search');
+    this.workflow.setName(pkg.name);
 
     this.workflow.onAction(commands.LOAD_ALL_LINKS, query =>
       this._loadAllLinks(query)

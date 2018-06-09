@@ -21,6 +21,7 @@ const commands = {
   OPEN_LINK: 'open_link',
   CLEAR_CACHE: 'clear_cache'
 };
+const pkg = require("../package.json");
 
 export default class MainApp {
   workflow: Workflow;
@@ -29,7 +30,7 @@ export default class MainApp {
     this.workflow = new Workflow({
       isDebug: false
     });
-    this.workflow.setName('alfred-wf-yarn-api-search');
+    this.workflow.setName(pkg.name);
 
     this.workflow.onAction(commands.LOAD_ALL_LINKS, this._loadAllLinks);
     this.workflow.onAction(commands.CLEAR_CACHE, storage.clear);

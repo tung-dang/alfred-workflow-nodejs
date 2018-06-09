@@ -1,5 +1,5 @@
 {
-  "name": "alfred-workflow-nodejs-next",
+  "name": "@alfred-wf-node/core",
   "version": "1.1.2",
   "description": "Alfred Workflow NodeJS helper in ES6",
   "author": "Tung Dang",
@@ -20,12 +20,12 @@
   "homepage": "https://github.com/tung-dang/alfred-workflow-nodejs-next",
   "devDependencies": {
     "babel-register": "^6.26.0",
-    "chai": "3.5.0",
-    "codecov": "^1.0.1",
-    "mocha": "3.2.0",
-    "nyc": "10.1.2",
-    "proxyquire": "1.7.11",
-    "sinon": "1.17.7",
+    "chai": "4.1.2",
+    "codecov": "^3.0.2",
+    "mocha": "5.2.0",
+    "nyc": "12.0.2",
+    "proxyquire": "2.0.1",
+    "sinon": "5.1.1",
     "typescript": "2.9.1"
   },
   "scripts": {
