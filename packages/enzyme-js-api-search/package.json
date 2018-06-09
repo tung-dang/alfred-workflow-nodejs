@@ -1,5 +1,5 @@
 {
-  "name": "@alfred-workflow-node/alfred-wf-enzyme-js-api-search",
+  "name": "@alfred-wf-node/search-enzyme-js",
   "main": "dist/index",
   "types": "lib/index",
   "description": "Alfred workflow to search Enzyme JS API",

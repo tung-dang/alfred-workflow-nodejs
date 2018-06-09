@@ -1,5 +1,5 @@
 {
-  "name": "@alfred-workflow-node/alfred-wf-go-bookmarks",
+  "name": "@alfred-wf-node/go-bookmarks",
   "main": "dist/index",
   "types": "lib/index",
   "description": "Alfred workflow to search bookmarks in a simple formarted text file",

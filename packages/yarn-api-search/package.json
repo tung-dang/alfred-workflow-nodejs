@@ -1,5 +1,5 @@
 {
-  "name": "@alfred-workflow-node/alfred-wf-yarn-api-search",
+  "name": "@alfred-wf-node/search-yarn-api",
   "main": "dist/index",
   "types": "lib/index",
   "description": "Alfred workflow to search Yarn API",
