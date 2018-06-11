@@ -1,5 +1,5 @@
-import { Item } from 'alfred-workflow-nodejs-next';
-import { Executor } from './types';
+import { Item } from '@alfred-wf-node/core';
+import { CommandParams, Executor } from './types';
 
 const DEFAULT_ICON = 'code.png';
 
@@ -59,12 +59,14 @@ export default class ProjectAction implements Executor {
     return `${this.name}${this.shortcut ? ' ' + this.shortcut : ''}`;
   }
 
-  execute(arg) {
-    arg = (typeof arg === 'string') ? JSON.parse(arg) : arg;
+  execute(arg: CommandParams) {
+    arg = typeof arg === 'string' ? JSON.parse(arg) : arg;
 
-    if ((this.name !== undefined && this.name === arg.actionName) ||
-        (this.key !== undefined && this.key === arg.actionKey)) {
-        this.executor(arg);
+    if (
+      (this.name !== undefined && this.name === arg.actionName) ||
+      (this.key !== undefined && this.key === arg.actionKey)
+    ) {
+      this.executor(arg);
     }
   }
 }

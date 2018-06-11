@@ -1,4 +1,5 @@
 const events = require('events');
+const fs = require('fs');
 
 const { SUB_ACTION_DIVIDER_SYMBOL } = require('./constants');
 const storage = require('./storage');
@@ -103,10 +104,11 @@ class Workflow {
             } else {
                 strOutput = JSON.stringify({
                     items: this._items
-                }, null, '\t');
+                }, null, '  ');
             }
 
             utils.debug('Workflow feedback: ');
+            fs.writeFile("test-json-output.json", strOutput);
             this.output(strOutput);
             this.clearItems();
 

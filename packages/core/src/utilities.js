@@ -11,8 +11,6 @@ function debug() {
     if (process.env.NODE_ENV === 'testing') {
         return;
     }
-
-    console.warn('==================', args);
 }
 
 module.exports = {

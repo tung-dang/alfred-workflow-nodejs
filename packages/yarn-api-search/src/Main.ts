@@ -1,4 +1,4 @@
-import { Workflow, Item as AfItem, storage, utils } from 'alfred-workflow-nodejs-next';
+import { Workflow, Item as AfItem, storage, utils } from '@alfred-wf-node/core';
 import { openLinkExecutor } from './executors.js';
 import * as github from 'octonode';
 import { FileItem } from "./types";
@@ -42,8 +42,6 @@ export default class MainApp {
         openLinkExecutor.execute(arg);
       }
     });
-
-    this.workflow.start();
   }
 
   _loadAllLinks = (query) => {

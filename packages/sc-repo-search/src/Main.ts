@@ -1,11 +1,5 @@
-import {
-  Workflow,
-  Item,
-  ICONS,
-  storage,
-  settings
-} from 'alfred-workflow-nodejs-next';
-import * as executors from './executors';
+import { Workflow, Item, ICONS, storage, settings } from '@alfred-wf-node/core';
+import executors from './executors';
 
 const commands = {
   LOAD_PROJECTS: 'loadProjects',
@@ -13,10 +7,11 @@ const commands = {
   CLEAR_CACHE: 'clear_cache'
 };
 
-import LoadProjects from './load-projects';
-import LoadProjectAction from './load-project-actions';
+import LoadProjects from './actions/load-projects';
+import LoadProjectActions from './actions/load-project-actions';
+import { Executor, CommandParams } from './types';
 
-const pkg = require("../package.json");
+const pkg = require('../package.json');
 
 export default class MainApp {
   workflow: Workflow;
@@ -28,7 +23,7 @@ export default class MainApp {
     const loadProjects = new LoadProjects({
       workflow: this.workflow
     });
-    const loadProjectAction = new LoadProjectAction({
+    const loadProjectAction = new LoadProjectActions({
       workflow: this.workflow
     });
 
@@ -37,7 +32,11 @@ export default class MainApp {
     // load project's actions
     this.workflow.onSubActionSelected(
       commands.LOAD_PROJECTS,
-      (query, previousSelectedTitle, previousSelectedArg) => {
+      (
+        query: string,
+        previousSelectedTitle: string,
+        previousSelectedArg: CommandParams
+      ) => {
         loadProjectAction.run(query, previousSelectedArg);
       }
     );
@@ -45,7 +44,7 @@ export default class MainApp {
     // execute project action
     this.workflow.onAction(commands.EXECUTE, function(arg) {
       // Handle project actions
-      Array.from(executors as any).forEach(executor => {
+      Array.from(executors as any).forEach((executor: Executor) => {
         executor.execute(arg);
       });
     });

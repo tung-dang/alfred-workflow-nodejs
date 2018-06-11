@@ -1,72 +1,31 @@
-import { exec } from 'child_process';
-import * as utils from './utils';
+import * as util from 'util';
+// find API of git-utils in https://www.npmjs.com/package/git-utils
+import * as git from 'git-utils';
+import { GitInfo } from './types';
 
-/**
- * path
- * callback(error, gitInfo)
- * stashServer
- */
-export const gitInfo = function(path, callback, stashServer) {
-  const command = 'cd ' + path + ' && git config --get remote.origin.url';
-  exec(command, function(error, stdout, stderr) {
-    if (error || !stdout) {
-      callback('git config: not a git repo');
-      return;
-    }
+export const gitInfo = function(
+  path: string,
+  stashServer: string
+): GitInfo | null {
+  const repo = git.open(path, false);
+  if (!repo) {
+    return null;
+  }
 
-    const url = stdout.trim();
+  const remoteUrl = repo.getConfigValue('remote.origin.url');
+  if (!remoteUrl) {
+    return null;
+  }
 
-    // get branch
-    gitBranch(function(error, branch) {
-      if (error) {
-        callback(error);
-        return;
-      }
+  const branch = repo.getShortHead();
 
-      // get repo info
-      const info = _parseGitUrl(url, branch, stashServer);
-      if (!info) {
-        callback(error);
-        return;
-      }
+  const info: any = _parseGitUrl(remoteUrl, branch, stashServer);
+  if (!info) {
+    return null;
+  }
+  info.gitRootPath = repo.getWorkingDirectory();
 
-      // get git root path
-      gitRootPath(function(error, gitRootPath) {
-        if (error) {
-          callback(error);
-          return;
-        }
-        info.gitRootPath = gitRootPath;
-        callback(undefined, info);
-      });
-    });
-  });
-};
-
-/**
- * callback(error, branch)
- */
-export const gitBranch = function(callback) {
-  exec('git rev-parse --abbrev-ref HEAD', function(error, stdout, stderr) {
-    if (error || !stdout) {
-      callback('gitBranch: not a git repo');
-      return;
-    }
-    callback(undefined, stdout.trim());
-  });
-};
-
-/**
- * callback(error, branch)
- */
-export const gitRootPath = function(callback) {
-  exec('git rev-parse --show-toplevel', function(error, stdout, stderr) {
-    if (error || !stdout) {
-      callback('gitRootPath: not a git repo');
-      return;
-    }
-    callback(undefined, stdout.trim());
-  });
+  return info;
 };
 
 // start of private methods
@@ -118,15 +77,10 @@ export const _getBitButketInfo = function(url, branch) {
       branch: branch,
       url: url,
 
-      link: utils.format(BITBUCKET_REPO_LINK, project, repo),
-      prsLink: utils.format(BITBUCKET_REPO_PRS_LINK, project, repo),
-      prLink: utils.format(BITBUCKET_BRANCH_PR_LINK, project, repo, branch),
-      createPrLink: utils.format(
-        BITBUCKET_CREATE_PR_LINK,
-        project,
-        repo,
-        branch
-      )
+      link: util.format(BITBUCKET_REPO_LINK, project, repo),
+      prsLink: util.format(BITBUCKET_REPO_PRS_LINK, project, repo),
+      prLink: util.format(BITBUCKET_BRANCH_PR_LINK, project, repo, branch),
+      createPrLink: util.format(BITBUCKET_CREATE_PR_LINK, project, repo, branch)
     };
   }
 };
@@ -157,10 +111,10 @@ export const _getGithubInfo = function(url, branch) {
       branch: branch,
       url: url,
 
-      link: utils.format(GITHUB_REPO_LINK, project, repo),
-      prsLink: utils.format(GITHUB_REPO_PRS_LINK, project, repo),
-      prLink: utils.format(GITHUB_BRANCH_PR_LINK, project, repo),
-      createPrLink: utils.format(GITHUB_CREATE_PR_LINK, project, repo, branch)
+      link: util.format(GITHUB_REPO_LINK, project, repo),
+      prsLink: util.format(GITHUB_REPO_PRS_LINK, project, repo),
+      prLink: util.format(GITHUB_BRANCH_PR_LINK, project, repo),
+      createPrLink: util.format(GITHUB_CREATE_PR_LINK, project, repo, branch)
     };
   }
 };
@@ -205,10 +159,10 @@ export const _getStashInfo = function(url, branch, stashServer) {
       branch: branch,
       url: url,
 
-      link: utils.format(STASH_REPO_LINK, project, repo),
-      prsLink: utils.format(STASH_REPO_PRS_LINK, project, repo),
-      prLink: utils.format(STASH_REPO_PRS_LINK, project, repo),
-      createPrLink: utils.format(STASH_CREATE_PR_LINK, project, repo, branch)
+      link: util.format(STASH_REPO_LINK, project, repo),
+      prsLink: util.format(STASH_REPO_PRS_LINK, project, repo),
+      prLink: util.format(STASH_REPO_PRS_LINK, project, repo),
+      createPrLink: util.format(STASH_CREATE_PR_LINK, project, repo, branch)
     };
   }
 };

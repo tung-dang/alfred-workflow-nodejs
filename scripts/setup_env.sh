@@ -11,4 +11,3 @@ nvm alias default 8
 
 npm install --global typescript
 npm install --global prettier
-npm install --global nodemon

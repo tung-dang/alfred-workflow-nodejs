@@ -1,5 +1,5 @@
 import { exec } from 'child_process';
-import { utils } from 'alfred-workflow-nodejs-next';
+import { utils } from '@alfred-wf-node/core';
 
 import ProjectAction from './ProjectAction';
 import ProjectGitAction from './project-git-action';
@@ -166,3 +166,21 @@ export const openConfigFileAction: Executor = {
   name: 'Open Config File',
   execute: arg => exec('open config.json')
 };
+
+const executors = [
+  openInFinderAction,
+  openInVSCode,
+  openInItermAction,
+  openInItermCurrentSessionAction,
+  openInNewItermSplitPanelAction,
+  openInSublimeAction,
+  openInIDEA,
+  openInWebStorm,
+  openInSourceTree,
+  openRepoLink,
+  createPullRequest,
+  openPullRequests,
+  openConfigFileAction
+];
+
+export default executors;

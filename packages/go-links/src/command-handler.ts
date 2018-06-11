@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { Item } from 'alfred-workflow-nodejs-next';
+import { Item } from '@alfred-wf-node/core';
 
 import * as executors from './executors.js';
 import * as config from '../config.json';

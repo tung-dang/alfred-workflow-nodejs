@@ -101,15 +101,6 @@ ajv@^5.1.0:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.3.0"
 
-alfred-workflow-nodejs-next@1.1.2, alfred-workflow-nodejs-next@^1.1.2:
-  version "1.1.2"
-  resolved "https://packages.atlassian.com/api/npm/npm-remote/alfred-workflow-nodejs-next/-/alfred-workflow-nodejs-next-1.1.2.tgz?dl=https://registry.npmjs.org/alfred-workflow-nodejs-next/-/alfred-workflow-nodejs-next-1.1.2.tgz#0922a8ce4034fd8982a8a0c02c181eeabffb8e96"
-  dependencies:
-    fuzzy "^0.1.3"
-    keychain "^1.3.0"
-    node-osascript "^2.0.0"
-    node-persist "^2.1.0"
-
 align-text@^0.1.1, align-text@^0.1.3:
   version "0.1.4"
   resolved "https://packages.atlassian.com/api/npm/npm-remote/align-text/-/align-text-0.1.4.tgz#0cd90a561093f35d0a99256c22b7069433fad117"
@@ -194,7 +185,7 @@ assign-symbols@^1.0.0:
   version "1.0.0"
   resolved "https://packages.atlassian.com/api/npm/npm-remote/assign-symbols/-/assign-symbols-1.0.0.tgz?dl=https://registry.npmjs.org/assign-symbols/-/assign-symbols-1.0.0.tgz#59667f41fadd4f20ccbc2bb96b8d4f7f78ec0367"
 
-async@^1.4.0:
+async@^1.4.0, async@^1.5.2:
   version "1.5.2"
   resolved "https://packages.atlassian.com/api/npm/npm-remote/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
 
@@ -826,6 +817,15 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
+fs-plus@^3.0.0:
+  version "3.0.2"
+  resolved "https://packages.atlassian.com/api/npm/npm-remote/fs-plus/-/fs-plus-3.0.2.tgz?dl=https://registry.npmjs.org/fs-plus/-/fs-plus-3.0.2.tgz#6b5f52a7712894c4dde9fd8f81fa8c60df041f3d"
+  dependencies:
+    async "^1.5.2"
+    mkdirp "^0.5.1"
+    rimraf "^2.5.2"
+    underscore-plus "1.x"
+
 fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://packages.atlassian.com/api/npm/npm-remote/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
@@ -855,6 +855,13 @@ getpass@^0.1.1:
   resolved "https://packages.atlassian.com/api/npm/npm-remote/getpass/-/getpass-0.1.7.tgz#5eff8e3e684d569ae4cb2b1282604e8ba62149fa"
   dependencies:
     assert-plus "^1.0.0"
+
+git-utils@5.4.0:
+  version "5.4.0"
+  resolved "https://packages.atlassian.com/api/npm/npm-remote/git-utils/-/git-utils-5.4.0.tgz?dl=https://registry.npmjs.org/git-utils/-/git-utils-5.4.0.tgz#de57acf5ce8fbfacd72a511a65e2bb7794cffc88"
+  dependencies:
+    fs-plus "^3.0.0"
+    nan "^2.0.0"
 
 glob@7.1.2, glob@^7.0.5, glob@^7.0.6:
   version "7.1.2"
@@ -1482,6 +1489,10 @@ ms@2.0.0:
   version "2.0.0"
   resolved "https://packages.atlassian.com/api/npm/npm-remote/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
 
+nan@^2.0.0:
+  version "2.10.0"
+  resolved "https://packages.atlassian.com/api/npm/npm-remote/nan/-/nan-2.10.0.tgz?dl=https://registry.npmjs.org/nan/-/nan-2.10.0.tgz#96d0cd610ebd58d4b4de9cc0c6828cda99c7548f"
+
 nanomatch@^1.2.9:
   version "1.2.9"
   resolved "https://packages.atlassian.com/api/npm/npm-remote/nanomatch/-/nanomatch-1.2.9.tgz?dl=https://registry.npmjs.org/nanomatch/-/nanomatch-1.2.9.tgz#879f7150cb2dab7a471259066c104eee6e0fa7c2"
@@ -1896,7 +1907,7 @@ right-align@^0.1.1:
   dependencies:
     align-text "^0.1.1"
 
-rimraf@^2.6.1, rimraf@^2.6.2:
+rimraf@^2.5.2, rimraf@^2.6.1, rimraf@^2.6.2:
   version "2.6.2"
   resolved "https://packages.atlassian.com/api/npm/npm-remote/rimraf/-/rimraf-2.6.2.tgz#2ed8150d24a16ea8651e6d6ef0f47c4158ce7a36"
   dependencies:
@@ -2240,6 +2251,16 @@ uglify-to-browserify@~1.0.0:
 unc-path-regex@^0.1.0:
   version "0.1.2"
   resolved "https://packages.atlassian.com/api/npm/npm-remote/unc-path-regex/-/unc-path-regex-0.1.2.tgz#e73dd3d7b0d7c5ed86fbac6b0ae7d8c6a69d50fa"
+
+underscore-plus@1.x:
+  version "1.6.8"
+  resolved "https://packages.atlassian.com/api/npm/npm-remote/underscore-plus/-/underscore-plus-1.6.8.tgz?dl=https://registry.npmjs.org/underscore-plus/-/underscore-plus-1.6.8.tgz#894b5132763e9e5ce9d50f2687b68dba6082de22"
+  dependencies:
+    underscore "~1.8.3"
+
+underscore@~1.8.3:
+  version "1.8.3"
+  resolved "https://packages.atlassian.com/api/npm/npm-remote/underscore/-/underscore-1.8.3.tgz?dl=https://registry.npmjs.org/underscore/-/underscore-1.8.3.tgz#4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022"
 
 union-value@^1.0.0:
   version "1.0.0"

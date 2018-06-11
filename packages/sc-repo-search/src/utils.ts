@@ -1,16 +1,18 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { storage } from 'alfred-workflow-nodejs-next';
+import { storage } from '@alfred-wf-node/core';
 
 import * as git from './git-info.js';
+import { FolderInfo, ProjectInfo, GitInfo, ProjectType } from './types.js';
 
 const config = require('../config.json');
-const sourceFolders = config['source-folders'];
+// const sourceFolders = config['source-folders'];
 const sources = config['sources'];
 const stashServer = config['stash-server'];
 
-export function getDirectories(folderPath) {
+export function getDirectories(folderPath: string): string[] {
   let rootFolder;
+
   try {
     rootFolder = fs.readdirSync(folderPath);
     if (rootFolder) {
@@ -50,38 +52,36 @@ export function getDirectories(folderPath) {
  *          gitRootPath: '/Users/tthanhdang/src/_tools/alfred-workflows/workflows/alfred-source-code-workflow'
  *          }
  * }
- * @param path
- * @param callback
  */
-export function detectProjectInfo(path, callback) {
+export function getProjectInfo(path: string) {
   const keyCache = 'projectsInfo';
 
   // get from cache
-  let projectsInfo = storage.get(keyCache) || {};
-  if (projectsInfo[path]) {
-    callback(projectsInfo[path]);
-    return;
+  const projects: { [path: string]: ProjectInfo } = storage.get(keyCache) || {};
+  if (projects[path]) {
+    return projects[path];
   }
 
-  const projectInfo = {
-    projectType: detectProjectType(path)
+  // construct a new object
+  const projectType = getProjectType(path);
+  if (!projectType) {
+    return null;
+  }
+
+  const pInfo: ProjectInfo = {
+    projectType,
+    gitInfo: getGitInfo(path) as GitInfo
   };
 
-  detectGitInfo(path, function(gitInfo) {
-    projectInfo.gitInfo = gitInfo;
-    projectsInfo[path] = projectInfo;
-
-    storage.set(keyCache, projectsInfo);
-    callback(projectInfo);
-  });
+  projects[path] = pInfo;
+  storage.set(keyCache, projects);
+  return pInfo;
 }
 
 /**
  * Detect project type of a folder
- * @param  {string} - path path of a folder
- * @return {string} - project type
  */
-export function detectProjectType(path) {
+export function getProjectType(path: string): ProjectType | null {
   if (isFileExists(path + '/pom.xml')) {
     return 'java';
   }
@@ -90,31 +90,21 @@ export function detectProjectType(path) {
     return 'nodejs';
   }
 
-  return;
+  return null;
 }
 
-export function detectGitInfo(path, callback) {
-  git.gitInfo(
-    path,
-    function(error, info) {
-      callback(info);
-    },
-    stashServer
-  );
+export function getGitInfo(path): GitInfo {
+  return git.gitInfo(path, stashServer);
 }
 
 /**
  * Check a file is exist or not
- * @param  {string} filePath - file path
- * @return {boolean} returns true if file is exist or otherwise returns false
  */
-export function isFileExists(filePath) {
+export function isFileExists(filePath: string): boolean {
   try {
     fs.accessSync(filePath);
     return true;
   } catch (e) {
     return false;
   }
-
-  return false;
 }

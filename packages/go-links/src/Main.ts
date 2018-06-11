@@ -1,4 +1,4 @@
-import { Workflow, storage } from 'alfred-workflow-nodejs-next';
+import { Workflow, storage } from '@alfred-wf-node/core';
 import { openLinkExecutor, openInFinderAction } from './executors';
 import CommandHandler from './command-handler';
 import { Executor } from './types';

@@ -5,14 +5,15 @@
     "version": "0.0.0",
     "private": true,
     "dependencies": {
-        "@alfred-wf-node/core": "^1.1.2"
+        "@alfred-wf-node/core": "^1.1.2",
+        "git-utils": "5.4.0"
     },
     "scripts": {
-      "export-wf": "tar -cv . | gzip > exported-workflow-file/Go.alfredworkflow",
-      "cleanup": "../../scripts/cleanup.sh",
-      "format": "../../scripts/format_files.sh",
-      "build": "../../scripts/build.sh",
-      "build:live": "../../scripts/build-live.sh",
-      "start": "yarn build:live"
+        "export-wf": "tar -cv . | gzip > exported-workflow-file/Go.alfredworkflow",
+        "cleanup": "../../scripts/cleanup.sh",
+        "format": "../../scripts/format_files.sh",
+        "build": "../../scripts/build.sh",
+        "build:live": "../../scripts/build-live.sh",
+        "start": "yarn build:live"
     }
 }

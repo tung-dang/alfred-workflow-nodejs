@@ -3,15 +3,23 @@ const storage = require('node-persist');
 
 class Storage {
     constructor() {
-        storage.init({
-            ttl: true
+        storage.initSync({
+          ttl: true,
+          stringify: (data) => {
+            return JSON.stringify(data, null, "  ")
+          }
         });
     }
 
     set(key, value, ttl) {
+      if (ttl) {
         storage.setItemSync(key, value, {
-            ttl
+          ttl
         });
+      } else {
+        storage.setItemSync(key, value);
+      }
+
     }
 
     get(key) {
