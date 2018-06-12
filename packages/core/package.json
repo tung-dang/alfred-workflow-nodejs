@@ -1,9 +1,10 @@
 {
   "name": "@alfred-wf-node/core",
-  "version": "1.1.2",
+  "version": "1.0.0",
   "description": "Alfred Workflow NodeJS helper in ES6",
   "author": "Tung Dang",
-  "main": "src/main.js",
+  "main": "dist/index",
+  "types": "lib/index",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tung-dang/alfred-workflow-nodejs-next"
@@ -29,12 +30,16 @@
     "typescript": "2.9.1"
   },
   "scripts": {
-    "clean": "rm -rf ./node_modules",
     "test": "NODE_ENV=testing TESTING=true mocha \"test/**/*-test.js\" \"src/**/*-test.js\" --compilers js:babel-register",
     "test-watch": "yarn test -- --watch",
     "test-coverage": "rm -rf coverage && nyc --reporter=lcov yarn test",
     "check-coverage": "nyc check-coverage --statement 80 --branches 80 --function 80 --lines 80",
-    "report-coverage": "codecov"
+    "report-coverage": "codecov",
+    "cleanup": "../../scripts/cleanup.sh",
+    "format": "../../scripts/format_files.sh",
+    "build": "../../scripts/build.sh",
+    "build:live": "../../scripts/build-live.sh",
+    "start": "yarn build:live"
   },
   "contributors": [
     {
@@ -54,7 +59,7 @@
     "es6"
   ],
   "bin": {
-    "run-node": "./scripts/run-node"
+    "run-node": "../../scripts/run-node"
   },
   "license": "MIT"
 }

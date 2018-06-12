@@ -6,7 +6,8 @@
     "outDir": "dist",
     "sourceMap": false,
     "pretty": false,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "**/*.ts",

@@ -1,9 +1,1 @@
-node_modules
-persist
-npm-debug.log
-.node-persist
-.archive
-.idea/*
-.nyc_output
-coverage
-coverage.lcov
+/Users/tthanhdang/src/_my-src/alfred-workflow-node/.gitignore

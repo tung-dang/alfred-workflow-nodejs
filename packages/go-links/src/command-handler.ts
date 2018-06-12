@@ -1,8 +1,6 @@
 import * as fs from 'fs';
 import { Item } from '@alfred-wf-node/core';
 
-import * as executors from './executors.js';
-import * as config from '../config.json';
 import {
   isShortenUrl,
   cleanProtocols,
@@ -13,6 +11,7 @@ import {
   EXECUTOR_OPEN_LINK
 } from './helpers';
 
+const config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
 const ONE_MINUTE = 1000 * 60;
 const ONE_HOUR = ONE_MINUTE * 60;
 const ONE_DAY = ONE_HOUR * 24;
@@ -106,7 +105,8 @@ export default class CommandHandler {
         actionName: EXECUTOR_OPEN_LINK,
         link: finalLink,
         params: this._getParamFromQuery()
-      }
+      },
+      icon: "icon.png"
     });
 
     return item;

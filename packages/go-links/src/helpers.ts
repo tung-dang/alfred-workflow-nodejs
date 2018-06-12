@@ -1,4 +1,7 @@
-import * as config from '../config.json';
+import * as fs from 'fs';
+
+
+const config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
 const SEPARATOR = config['separator'];
 
 export const EXECUTOR_OPEN_IN_FINDER = 'open_in_finder';
