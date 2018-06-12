@@ -20,7 +20,10 @@
   },
   "scripts": {
     "clean": "./scripts/cleanup.sh",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "wsrun": "wsrun",
+    "build": "yarn wsrun build",
+    "test": "yarn wsrun test"
   },
   "license": "MIT"
 }
