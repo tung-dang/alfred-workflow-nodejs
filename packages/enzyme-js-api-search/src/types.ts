@@ -7,4 +7,4 @@ export interface FileItem {
   name: string;
   html_url: string;
   path: string;
-};
+}

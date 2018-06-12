@@ -32,8 +32,8 @@ export type GitInfo = {
 export type CommandParams = {
   name: string;
   path: string;
-  actionName: string;
-  actionKey: string;
-  gitInfo: GitInfo;
+  actionName?: string;
+  actionKey?: string;
+  gitInfo?: GitInfo;
   projectType: ProjectType;
 };

@@ -26,10 +26,10 @@ export function filter(query, list, keyBuilder) {
   return fuzzy.filter(query, list, options).map(item => item.original);
 }
 
-  /**
-   * a wrapper of "applescript" module
-   * @type {Object}
-   */
+/**
+ * a wrapper of "applescript" module
+ * @type {Object}
+ */
 export const applescript = {
   /**
    * execute script
@@ -48,12 +48,12 @@ export const applescript = {
    * @param handler: function(err, result, raw)
    */
   /* istanbul ignore next */
-  executeFile: function(path, varibale, handler) {
+  executeFile: function(/*path, varibale, handler*/) {
     appleScript.executeFile.apply(this, arguments);
   }
 };
 
-export function memorizePromise (keyCache, ttl, func, isDebug) {
+export function memorizePromise(keyCache, ttl, func, isDebug) {
   ttl = ttl || true; // true means 24 caching
 
   const dataFromCache = storage.get(keyCache);
@@ -63,7 +63,7 @@ export function memorizePromise (keyCache, ttl, func, isDebug) {
   }
 
   debug(
-    "Start to get new fresh data since can not find data from cache: ",
+    'Start to get new fresh data since can not find data from cache: ',
     keyCache
   );
   return func().then(data => {

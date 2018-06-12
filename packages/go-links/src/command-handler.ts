@@ -1,5 +1,5 @@
-import * as fs from 'fs';
 import { Item } from '@alfred-wf-node/core';
+import * as fs from 'fs';
 
 import {
   isShortenUrl,
@@ -12,9 +12,9 @@ import {
 } from './helpers';
 
 const config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
-const ONE_MINUTE = 1000 * 60;
-const ONE_HOUR = ONE_MINUTE * 60;
-const ONE_DAY = ONE_HOUR * 24;
+// const ONE_MINUTE = 1000 * 60;
+// const ONE_HOUR = ONE_MINUTE * 60;
+// const ONE_DAY = ONE_HOUR * 24;
 
 const GO_LIST_FILE = config['go_link_file_name'];
 // some words will be excluded in parameter of search
@@ -106,7 +106,7 @@ export default class CommandHandler {
         link: finalLink,
         params: this._getParamFromQuery()
       },
-      icon: "icon.png"
+      icon: 'icon.png'
     });
 
     return item;
@@ -162,7 +162,7 @@ export default class CommandHandler {
    * Last word is param. Now we just support only one param.
    */
   _getParamFromQuery() {
-    const params = [];
+    const params: string[] = [];
 
     const words = this.query.split(' ');
     // remove last item
@@ -170,7 +170,7 @@ export default class CommandHandler {
     if (lastWord) {
       let param = lastWord.trim();
       EXCLUDED_WORDS.forEach(
-        excludeWord => (param = param.replace(excludeWord, ''))
+        (excludeWord: string) => (param = param.replace(excludeWord, ''))
       );
       params.push(param);
     }

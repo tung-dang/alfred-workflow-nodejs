@@ -3,7 +3,7 @@ export const ICON_ROOT =
   '/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/';
 
 export const SUB_ACTION_DIVIDER_SYMBOL = '➤';
-export const WF_DATA_KEY =  'wfData';
+export const WF_DATA_KEY = 'wfData';
 
 export const ICONS = {
   ACCOUNT: `${ICON_ROOT}Accounts.icns`,

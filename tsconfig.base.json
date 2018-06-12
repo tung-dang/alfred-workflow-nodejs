@@ -4,10 +4,21 @@
     "module": "commonjs",
     "rootDir": "src",
     "outDir": "dist",
+    "moduleResolution": "node",
     "sourceMap": false,
+    "removeComments": true,
+    // "strict": true,
+    // "noImplicitReturns": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
     "pretty": false,
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true
   },
   "include": [
     "**/*.ts",

@@ -111,7 +111,11 @@ describe('#Item', function() {
         }
       });
 
-      assert.propertyVal(item.getAlfredItemData().mods.alt, 'arg', '{ a: 1, b: 2 }');
+      assert.propertyVal(
+        item.getAlfredItemData().mods.alt,
+        'arg',
+        '{ a: 1, b: 2 }'
+      );
     });
   });
 

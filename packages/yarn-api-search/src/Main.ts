@@ -1,7 +1,7 @@
-import { Workflow, Item as AfItem, storage, utils } from '@alfred-wf-node/core';
+import { Workflow, Item as AfItem, storage } from '@alfred-wf-node/core';
 import { openLinkExecutor } from './executors.js';
 import * as github from 'octonode';
-import { FileItem } from "./types";
+import { FileItem } from './types';
 
 const YARN_REPO = 'yarnpkg/website';
 const YARN_API_PATH = 'lang/en/docs/cli';
@@ -21,7 +21,7 @@ const commands = {
   OPEN_LINK: 'open_link',
   CLEAR_CACHE: 'clear_cache'
 };
-const pkg = require("../package.json");
+const pkg = require('../package.json');
 
 export default class MainApp {
   workflow: Workflow;
@@ -44,11 +44,11 @@ export default class MainApp {
     });
   }
 
-  _loadAllLinks = (query) => {
+  _loadAllLinks = (/*query*/) => {
     const dataFromCache = storage.get('cache_links');
     if (dataFromCache) {
       console.warn('Get data from cache...');
-      this._generateFeedback(dataFromCache, query);
+      this._generateFeedback(dataFromCache /*, query*/);
       return;
     }
 
@@ -60,12 +60,12 @@ export default class MainApp {
       }
 
       storage.set('cache_links', res, ONE_WEEK);
-      this._generateFeedback(res, query);
+      this._generateFeedback(res /*, query*/);
     });
   };
 
-  _generateFeedback(response: FileItem[], query: string) {
-    const items = [];
+  _generateFeedback(response: FileItem[] /*, query: string*/) {
+    const items: AfItem[] = [];
 
     response.forEach(item => {
       if (item.type === 'file') {

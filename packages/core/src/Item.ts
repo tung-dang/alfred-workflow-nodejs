@@ -1,7 +1,6 @@
 import * as path from 'path';
 import { SUB_ACTION_DIVIDER_SYMBOL } from './constants';
-import { AlfredItem } from "./types";
-
+import { AlfredItem } from './types';
 
 /**
  * Each item describes a result row displayed in Alfred.
@@ -12,7 +11,7 @@ export default class Item {
 
   constructor(options: AlfredItem) {
     if (!options.title) {
-      throw new Error("Title is required!");
+      throw new Error('Title is required!');
     }
 
     const tempData: AlfredItem = {
@@ -21,12 +20,12 @@ export default class Item {
       autocomplete: options.autocomplete,
       title: options.title,
       subtitle: options.subtitle || '',
-      type: options.type || "default",
+      type: options.type || 'default',
       icon:
         typeof options.icon === 'string'
           ? {
               path: options.icon
-          }
+            }
           : options.icon,
       quicklookurl: options.quicklookurl,
       text: options.text,
@@ -40,9 +39,7 @@ export default class Item {
     }
 
     if (tempData.hasSubItems) {
-      tempData.autocomplete = `${tempData.title} ${
-        SUB_ACTION_DIVIDER_SYMBOL
-      } `;
+      tempData.autocomplete = `${tempData.title} ${SUB_ACTION_DIVIDER_SYMBOL} `;
     }
 
     if (tempData.mods) {
@@ -63,7 +60,7 @@ export default class Item {
 
   _getDefaultIcon() {
     return {
-      path: path.resolve(__dirname, "../alfred-icon.png")
+      path: path.resolve(__dirname, '../alfred-icon.png')
     };
   }
 
@@ -99,4 +96,4 @@ export default class Item {
 
     return '';
   }
-};
+}

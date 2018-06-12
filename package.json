@@ -23,7 +23,8 @@
     "tsc": "tsc",
     "wsrun": "wsrun",
     "build": "yarn wsrun build",
-    "test": "yarn wsrun test"
+    "test": "yarn wsrun test",
+    "format": "yarn wsrun format"
   },
   "license": "MIT"
 }

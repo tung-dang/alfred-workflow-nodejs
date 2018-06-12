@@ -6,11 +6,10 @@ import storage from './storage';
 import { ICONS, WF_DATA_KEY } from './constants';
 import Item from './Item';
 import { debug } from './utilities';
-import { AlfredItem, AlfredResult } from "./types";
+import { AlfredItem, AlfredResult } from './types';
 
 const ACTION_NAMESPACE_EVENT = 'action';
 const SUB_ACTION_NAMESPACE_EVENT = 'subActionSelected';
-
 
 export default class Workflow {
   _items: AlfredItem[];
@@ -267,10 +266,7 @@ export default class Workflow {
       (typeof tempQuery === 'string' &&
         tempQuery.indexOf(SUB_ACTION_DIVIDER_SYMBOL) === -1)
     ) {
-      this._eventEmitter.emit(
-        Workflow._getActionName(actionName),
-        tempQuery
-      );
+      this._eventEmitter.emit(Workflow._getActionName(actionName), tempQuery);
       return;
     }
 

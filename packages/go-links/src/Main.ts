@@ -2,7 +2,6 @@ import { Workflow, storage } from '@alfred-wf-node/core';
 import { openLinkExecutor, openInFinderAction } from './executors';
 import CommandHandler from './command-handler';
 import { Executor } from './types';
-import { POINT_CONVERSION_HYBRID } from 'constants';
 
 const executors = [openLinkExecutor, openInFinderAction];
 const commands = {
@@ -10,7 +9,7 @@ const commands = {
   OPEN_LINK: 'open_link',
   CLEAR_CACHE: 'clear_cache'
 };
-const pkg = require("../package.json");
+const pkg = require('../package.json');
 
 export default class MainApp {
   workflow: Workflow;

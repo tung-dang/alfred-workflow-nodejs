@@ -1,6 +1,6 @@
 import { Workflow, Item, storage, utils } from '@alfred-wf-node/core';
 import { openLinkExecutor } from './executors.js';
-import { FileItem } from "./types";
+import { FileItem } from './types';
 
 const REPO = 'airbnb/enzyme';
 const API_PATH = 'docs/api';
@@ -22,7 +22,7 @@ const commands = {
   OPEN_LINK: 'open_link',
   CLEAR_CACHE: 'clear_cache'
 };
-const pkg = require("../package.json");
+const pkg = require('../package.json');
 
 export default class MainApp {
   workflow: Workflow;
@@ -51,9 +51,13 @@ export default class MainApp {
 
   _fetchFolder(url = API_PATH) {
     const promise = new Promise(resolve => {
-      const fetchedItems = [];
+      const fetchedItems: FileItem[] = [];
 
       githubRepo.contents(url, BRANCH, (error, res) => {
+        if (error) {
+          throw new Error('can not get fetch folders');
+        }
+
         if (res && res.length > 0) {
           res.forEach(item => {
             if (item.type === 'file' && !item.name.includes('README')) {
@@ -86,8 +90,8 @@ export default class MainApp {
     const folder2ndPromise = this._fetchFolder(API_PATH + '/ShallowWrapper');
     Promise.all([rootFolderPromise, folder1stPromise, folder2ndPromise]).then(
       results => {
-        let files = [];
-        results.forEach(function(items) {
+        let files: any[] = [];
+        results.forEach((items: any) => {
           files = files.concat(items);
         });
 
@@ -98,16 +102,14 @@ export default class MainApp {
   }
 
   _generateFeedback(response: FileItem[], query: string) {
-    const items = [];
+    const items: Item[] = [];
 
     response.forEach(item => {
       let cliName = item.name;
       cliName = cliName.replace('.md', '');
       const url = item.html_url;
 
-      const path = item.path
-        .replace('docs/api/', '')
-        .replace('.md', '.html');
+      const path = item.path.replace('docs/api/', '').replace('.md', '.html');
       const urlWebsite = WEBSITE_CLI + path;
 
       items.push(

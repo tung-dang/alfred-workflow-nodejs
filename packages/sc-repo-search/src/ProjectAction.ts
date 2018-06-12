@@ -19,7 +19,8 @@ export default class ProjectAction implements Executor {
     this.icon = options.icon || DEFAULT_ICON;
   }
 
-  shouldDisplay(data) {
+  shouldDisplay(data?: any) {
+    console.debug('==================', data);
     return true;
   }
 

@@ -120,7 +120,7 @@ export const openInSourceTree = new ProjectGitAction({
     const command = `open -a SourceTree ${data.path}`;
     return exec(command);
   },
-  getIcon: data => {
+  getIcon: (/*data*/) => {
     return this.icon;
   }
 });
@@ -164,7 +164,7 @@ openPullRequests.getSubTitle = data => data.gitInfo.prsLink;
 export const openConfigFileAction: Executor = {
   key: 'open_config_file',
   name: 'Open Config File',
-  execute: arg => exec('open config.json')
+  execute: () => /*arg*/ exec('open config.json')
 };
 
 const executors = [

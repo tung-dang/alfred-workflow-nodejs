@@ -3,11 +3,11 @@ import * as path from 'path';
 import { storage } from '@alfred-wf-node/core';
 
 import * as git from './git-info.js';
-import { FolderInfo, ProjectInfo, GitInfo, ProjectType } from './types.js';
+import { ProjectInfo, GitInfo, ProjectType } from './types.js';
 
 const config = require('../config.json');
 // const sourceFolders = config['source-folders'];
-const sources = config['sources'];
+// const sources = config['sources'];
 const stashServer = config['stash-server'];
 
 export function getDirectories(folderPath: string): string[] {
@@ -93,7 +93,7 @@ export function getProjectType(path: string): ProjectType | null {
   return null;
 }
 
-export function getGitInfo(path): GitInfo {
+export function getGitInfo(path): GitInfo | null {
   return git.gitInfo(path, stashServer);
 }
 

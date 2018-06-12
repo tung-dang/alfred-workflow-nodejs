@@ -1,5 +1,5 @@
 export type AlfredIconType = {
-  type?: "filetype" | "fileicon";
+  type?: 'filetype' | 'fileicon';
   path: string;
 };
 
@@ -16,11 +16,11 @@ export type AlfredItem = {
   uid?: string;
   title: string;
   subtitle?: string;
-  type?: "default" | "file" | "file:skipcheck";
+  type?: 'default' | 'file' | 'file:skipcheck';
   arg?: string;
   autocomplete?: string;
   quicklookurl?: string;
-  icon: AlfredIconType | string,
+  icon: AlfredIconType | string;
   text?: string;
   mods?: {
     alt?: ModType;
@@ -34,4 +34,4 @@ export type AlfredResult = {
   rerun?: number;
   variables?: object;
   items: AlfredItem[];
-}
+};

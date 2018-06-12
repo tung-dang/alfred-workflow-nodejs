@@ -1,4 +1,4 @@
-import { ICONS, Item, utils as nodeJSUtils } from '@alfred-wf-node/core';
+import { Item, utils as nodeJSUtils } from '@alfred-wf-node/core';
 import executors from '../executors.js';
 import { CommandParams } from '../types';
 
@@ -24,10 +24,10 @@ export default class LoadProjectActions {
       return;
     }
 
-    const items = [];
+    const items: Item[] = [];
 
     filteredActions.forEach(projectAction => {
-      const item = projectAction.build ? projectAction.build(arg) : null;
+      const item: Item = projectAction.build ? projectAction.build(arg) : null;
 
       if (item) {
         items.push(item);

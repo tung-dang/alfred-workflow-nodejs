@@ -1,4 +1,8 @@
-import { Workflow, Item, ICONS, storage, settings } from '@alfred-wf-node/core';
+import {
+  Workflow,
+  /*Item, ICONS,*/ storage,
+  settings
+} from '@alfred-wf-node/core';
 import executors from './executors';
 
 const commands = {
@@ -37,6 +41,10 @@ export default class MainApp {
         previousSelectedTitle: string,
         previousSelectedArg: CommandParams
       ) => {
+        console.debug(
+          '==================previousSelectedTitle',
+          previousSelectedTitle
+        );
         loadProjectAction.run(query, previousSelectedArg);
       }
     );
@@ -44,7 +52,7 @@ export default class MainApp {
     // execute project action
     this.workflow.onAction(commands.EXECUTE, function(arg) {
       // Handle project actions
-      Array.from(executors as any).forEach((executor: Executor) => {
+      Array.from(executors).forEach((executor: Executor) => {
         executor.execute(arg);
       });
     });

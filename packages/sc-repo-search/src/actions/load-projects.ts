@@ -9,7 +9,7 @@ const config = require('../../config.json');
 const sourceFolders = config['source-folders'];
 
 import * as utils from '../utils';
-import { CommandParams, FolderInfo, ProjectInfo } from '../types';
+import { CommandParams, FolderInfo } from '../types';
 
 export default class LoadProjects {
   workflow: any;
@@ -82,7 +82,7 @@ export default class LoadProjects {
     filteredProjects.forEach((project: FolderInfo) => {
       const { name, path } = project;
 
-      const info: ProjectInfo = utils.getProjectInfo(path);
+      const info = utils.getProjectInfo(path);
       // cannot find project type
       if (!info) {
         return;

@@ -18,11 +18,10 @@ const commands = {
     OPEN_LINK: 'open_link',
     CLEAR_CACHE: 'clear_cache'
 };
-const pkg = require("../package.json");
+const pkg = require('../package.json');
 class MainApp {
     constructor() {
         this.workflow = new core_1.Workflow({
-            // change isDebug=true to prevent caching and show logs only
             isDebug: false
         });
         this.workflow.setName(pkg.name);
@@ -41,6 +40,9 @@ class MainApp {
         const promise = new Promise(resolve => {
             const fetchedItems = [];
             githubRepo.contents(url, BRANCH, (error, res) => {
+                if (error) {
+                    throw new Error('can not get fetch folders');
+                }
                 if (res && res.length > 0) {
                     res.forEach(item => {
                         if (item.type === 'file' && !item.name.includes('README')) {
@@ -68,7 +70,7 @@ class MainApp {
         const folder2ndPromise = this._fetchFolder(API_PATH + '/ShallowWrapper');
         Promise.all([rootFolderPromise, folder1stPromise, folder2ndPromise]).then(results => {
             let files = [];
-            results.forEach(function (items) {
+            results.forEach((items) => {
                 files = files.concat(items);
             });
             core_1.storage.set('cache_links', files, ONE_WEEK);
@@ -81,9 +83,7 @@ class MainApp {
             let cliName = item.name;
             cliName = cliName.replace('.md', '');
             const url = item.html_url;
-            const path = item.path
-                .replace('docs/api/', '')
-                .replace('.md', '.html');
+            const path = item.path.replace('docs/api/', '').replace('.md', '.html');
             const urlWebsite = WEBSITE_CLI + path;
             items.push(new core_1.Item({
                 uid: url,
@@ -92,12 +92,10 @@ class MainApp {
                 valid: true,
                 hasSubItems: false,
                 arg: {
-                    // Default: open Yarn website link
                     actionName: 'open_link',
                     link: urlWebsite
                 },
                 mods: {
-                    // if users press CMD, open GitHub link
                     cmd: {
                         valid: true,
                         arg: {

@@ -37,7 +37,7 @@ class Storage {
     let settings = this.get('settings');
     settings = settings || {};
     settings[key] = value;
-    this.set('settings', settings, );
+    this.set('settings', settings);
   }
 
   getSetting(key) {
