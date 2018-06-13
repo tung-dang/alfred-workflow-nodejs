@@ -117,7 +117,6 @@ export default class MainApp {
           uid: url,
           title: cliName,
           subtitle: urlWebsite,
-          valid: true,
           hasSubItems: false,
           arg: {
             // Default: open Yarn website link
@@ -127,7 +126,6 @@ export default class MainApp {
           mods: {
             // if users press CMD, open GitHub link
             cmd: {
-              valid: true,
               arg: {
                 actionName: 'open_link',
                 link: url

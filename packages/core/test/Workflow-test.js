@@ -65,7 +65,6 @@ describe('#WorkflowTest', function() {
               title: 'title',
               subtitle: '',
               quicklookurl: 'title',
-              valid: true,
               hasSubItems: false
             }
           ]
@@ -92,7 +91,6 @@ describe('#WorkflowTest', function() {
               title: 'title1',
               subtitle: '',
               quicklookurl: 'title1',
-              valid: true,
               hasSubItems: false
             },
 
@@ -101,7 +99,6 @@ describe('#WorkflowTest', function() {
               title: 'title2',
               subtitle: '',
               quicklookurl: 'title2',
-              valid: true,
               hasSubItems: false
             }
           ]
@@ -141,7 +138,6 @@ describe('#WorkflowTest', function() {
                   '/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/AlertStopIcon.icns'
               },
               quicklookurl: 'wf error',
-              valid: true,
               hasSubItems: false
             }
           ]
@@ -168,7 +164,6 @@ describe('#WorkflowTest', function() {
                   '/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/AlertCautionIcon.icns'
               },
               quicklookurl: 'wf warning',
-              valid: true,
               hasSubItems: false
             }
           ]
@@ -195,7 +190,6 @@ describe('#WorkflowTest', function() {
                   '/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/AlertCautionIcon.icns'
               },
               quicklookurl: 'wf info',
-              valid: true,
               hasSubItems: false
             }
           ]

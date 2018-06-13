@@ -24,7 +24,9 @@
     "format": "../../scripts/format_files.sh",
     "build": "../../scripts/build.sh",
     "build:live": "../../scripts/build-live.sh",
-    "start": "yarn build:live"
+    "start": "yarn build:live",
+    "postinstall": "alfy-init",
+    "preuninstall": "alfy-cleanup"
   },
   "bin": {
     "run-node": "../../scripts/run-node.sh"

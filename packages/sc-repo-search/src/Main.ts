@@ -1,6 +1,6 @@
 import {
   Workflow,
-  /*Item, ICONS,*/ storage,
+  storage,
   settings
 } from '@alfred-wf-node/core';
 import executors from './executors';

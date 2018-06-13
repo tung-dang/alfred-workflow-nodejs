@@ -1,5 +1,4 @@
-import * as path from 'path';
-import { SUB_ACTION_DIVIDER_SYMBOL } from './constants';
+import { ICON_DEFAULT, SUB_ACTION_DIVIDER_SYMBOL } from "./constants";
 import { AlfredItem } from './types';
 
 /**
@@ -30,7 +29,7 @@ export default class Item {
       quicklookurl: options.quicklookurl,
       text: options.text,
       mods: options.mods,
-      valid: options.valid || true,
+      valid: typeof options.valid === "undefined" ? true : options.valid,
       hasSubItems: !!options.hasSubItems // default: false
     };
 
@@ -60,7 +59,7 @@ export default class Item {
 
   _getDefaultIcon() {
     return {
-      path: path.resolve(__dirname, '../alfred-icon.png')
+      path: ICON_DEFAULT
     };
   }
 

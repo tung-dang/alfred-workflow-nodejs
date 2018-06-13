@@ -1,9 +1,8 @@
 import * as events from 'events';
 // import * as fs from 'fs';
 
-import { SUB_ACTION_DIVIDER_SYMBOL } from './constants';
+import { ICON_LOADING, ICON_ERROR, ICON_INFO, ICON_WARNING, SUB_ACTION_DIVIDER_SYMBOL, WF_DATA_KEY } from "./constants";
 import storage from './storage';
-import { ICONS, WF_DATA_KEY } from './constants';
 import Item from './Item';
 import { debug } from './utilities';
 import { AlfredItem, AlfredResult } from './types';
@@ -126,32 +125,33 @@ export default class Workflow {
    ```
    *
    */
-  feedback(strFeedback?: string) {
-    let strOutput = '';
+  feedback() {
+    let strOutput;
 
     try {
-      if (strFeedback) {
-        strOutput = strFeedback;
-      } else {
-        strOutput = JSON.stringify(
-          {
-            items: this._items
-            // rerun:
-            // variables:
-          } as AlfredResult,
-          null,
-          '  '
-        );
+      if (!this._items.length) {
+        this.log('no items in Workflow outputs');
+        return;
       }
 
-      debug('Workflow feedback: ');
-      // fs.writeFile('test-json-_output.json', strOutput);
+      strOutput = JSON.stringify(
+        {
+          items: this._items
+          // rerun:
+          // variables:
+        } as AlfredResult,
+        null,
+        '  '
+      );
+
+      this.log('Workflow feedback: ');
+      // fs.writeFileSync('test-json-_output.json', strOutput);
       this._output(strOutput);
       this.clearItems();
 
       return strOutput;
     } catch (e) {
-      debug('Can not generate JSON string', this._items);
+      this.log('Can not generate JSON string', this._items);
     }
 
     return strOutput;
@@ -166,9 +166,8 @@ export default class Workflow {
       new Item({
         title,
         subtitle,
-        valid: true,
         hasSubItems: false,
-        icon: ICONS.INFO
+        icon: ICON_INFO
       })
     );
 
@@ -184,9 +183,8 @@ export default class Workflow {
       new Item({
         title,
         subtitle,
-        valid: true,
         hasSubItems: false,
-        icon: ICONS.WARNING
+        icon: ICON_WARNING
       })
     );
 
@@ -196,21 +194,20 @@ export default class Workflow {
   /**
    * Generating error feedback
    */
-  error(title, subtitle = '') {
-    debug('Error: ', title, subtitle);
+  error = (title, subtitle = '') => {
+    this.log('Error: ', title, subtitle);
     this.clearItems();
     this.addItem(
       new Item({
         title,
         subtitle,
-        valid: true,
         hasSubItems: false,
-        icon: ICONS.ERROR
+        icon: ICON_ERROR
       })
     );
 
     return this.feedback();
-  }
+  };
 
   /**
    * Show loading data
@@ -222,7 +219,7 @@ export default class Workflow {
       new Item({
         title: 'Loading',
         subtitle: '...??',
-        icon: ICONS.CLOCK
+        icon: ICON_LOADING
       })
     );
 
@@ -285,7 +282,7 @@ export default class Workflow {
       try {
         previousArgActionSelected = JSON.parse(previousArgActionSelected);
       } catch (e) {
-        debug('Can not convert arg string into Object!');
+        this.log('Can not convert arg string into Object!');
       }
 
       this._eventEmitter.emit(
@@ -324,14 +321,18 @@ export default class Workflow {
   /* istanbul ignore next */
   _output(str) {
     try {
-      debug('Workflow feedback: ');
+      this.log('Workflow feedback: ');
       if (this.isDebug || process.env.NODE_ENV === 'testing') {
-        debug(str);
+        this.log(str);
       } else {
         console.log(str);
       }
     } catch (e) {
-      debug('Can not generate JSON string', this._items);
+      this.log('Can not generate JSON string', this._items);
     }
+  }
+
+  log(message, ...args) {
+    debug(message, ...args);
   }
 }

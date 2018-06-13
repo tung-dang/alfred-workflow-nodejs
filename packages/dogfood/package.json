@@ -1,19 +1,16 @@
 {
-  "name": "@alfred-wf-node/go-bookmarks",
+  "name": "@alfred-wf-node/dogfood",
   "main": "dist/index",
   "types": "lib/index",
-  "description": "Alfred workflow to search bookmarks in a simple formarted text file",
+  "description": "Testing Alfred workflow",
   "version": "0.0.0",
   "private": true,
-  "bugs": {
-    "url": "https://github.com/tung-dang/alfred-workflow-go-links/issues"
-  },
-  "homepage": "https://github.com/tung-dang/alfred-workflow-go-links",
   "dependencies": {
-    "@alfred-wf-node/core": "1.1.2"
+    "@alfred-wf-node/core": "^1.1.2"
   },
   "scripts": {
-    "export-wf": "tar -cv . | gzip > exported-workflow-file/Go.alfredworkflow",
+    "export-wf": "git archive --format zip --output ./exported-workflow-file/YarnApiSearch.alfredworkflow master",
+    "export-push": "yarn run export-wf && git add --all && git commit -m \"export workflow to file\" && git push --follow-tags",
     "cleanup": "../../scripts/cleanup.sh",
     "format": "../../scripts/format_files.sh",
     "build": "../../scripts/build.sh",

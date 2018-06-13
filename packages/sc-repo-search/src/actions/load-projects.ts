@@ -1,9 +1,11 @@
 import {
-  ICONS,
   Item,
   storage,
   utils as nodeJSUtils
 } from '@alfred-wf-node/core';
+import {
+  ICON_INFO
+} from '@alfred-wf-node/core/dist/constants';
 
 const config = require('../../config.json');
 const sourceFolders = config['source-folders'];
@@ -51,8 +53,7 @@ export default class LoadProjects {
     this.workflow.addItem(
       new Item({
         title: 'No project path configured. Enter to open config file.',
-        icon: ICONS.INFO,
-        valid: true
+        icon: ICON_INFO,
         // arg: JSON.stringify({
         //     action: OpenConfigFileAction.actionName
         // })
