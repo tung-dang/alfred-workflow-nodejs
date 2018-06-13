@@ -34,7 +34,6 @@ export default class MainApp {
         uid: 'test-uid',
         title: 'test-title' + query,
         subtitle: 'test-subtitle',
-        hasSubItems: false,
         arg: {
           // Default: open Yarn website link
           actionName: 'open_link',

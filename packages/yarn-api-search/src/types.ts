@@ -9,3 +9,8 @@ export interface FileItem {
   path: string;
   type?: 'file';
 }
+
+export type OPEN_LINK_ARG = {
+  actionName: string;
+  link: string;
+}

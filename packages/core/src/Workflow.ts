@@ -5,7 +5,7 @@ import { ICON_LOADING, ICON_ERROR, ICON_INFO, ICON_WARNING, SUB_ACTION_DIVIDER_S
 import storage from './storage';
 import Item from './Item';
 import { debug } from './utilities';
-import { AlfredItem, AlfredResult } from './types';
+import { AlfredItem, AlfredResult, FeedbackOptions } from './types';
 
 const ACTION_NAMESPACE_EVENT = 'action';
 const SUB_ACTION_NAMESPACE_EVENT = 'subActionSelected';
@@ -125,7 +125,7 @@ export default class Workflow {
    ```
    *
    */
-  feedback() {
+  feedback(options?: FeedbackOptions) {
     let strOutput;
 
     try {
@@ -136,8 +136,8 @@ export default class Workflow {
 
       strOutput = JSON.stringify(
         {
-          items: this._items
-          // rerun:
+          items: this._items,
+          rerun: options && options.rerun ? options.rerun : undefined,
           // variables:
         } as AlfredResult,
         null,
@@ -166,7 +166,6 @@ export default class Workflow {
       new Item({
         title,
         subtitle,
-        hasSubItems: false,
         icon: ICON_INFO
       })
     );
@@ -183,7 +182,6 @@ export default class Workflow {
       new Item({
         title,
         subtitle,
-        hasSubItems: false,
         icon: ICON_WARNING
       })
     );
@@ -201,7 +199,6 @@ export default class Workflow {
       new Item({
         title,
         subtitle,
-        hasSubItems: false,
         icon: ICON_ERROR
       })
     );
@@ -212,18 +209,20 @@ export default class Workflow {
   /**
    * Show loading data
    */
-  showLoading() {
+  showLoading(title?: string, subtitle?: string) {
     this.clearItems();
 
     this.addItem(
       new Item({
-        title: 'Loading',
-        subtitle: '...??',
+        title: title || 'Loading',
+        subtitle: subtitle || 'Fetching data...Please wait a little bit.',
         icon: ICON_LOADING
       })
     );
 
-    return this.feedback();
+    return this.feedback({
+      rerun: 0.1
+    });
   }
 
   /**

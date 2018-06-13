@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # From: https://github.com/sindresorhus/alfy/blob/master/package.json
-
 if [[ -z "$alfred_workflow_cache" ]]; then
 	echo "This script must be called from Alfred, \$alfred_workflow_cache is missing. Make sure a Bundle ID is set."
 	exit 1

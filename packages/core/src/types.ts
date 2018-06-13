@@ -35,3 +35,7 @@ export type AlfredResult = {
   variables?: object;
   items: AlfredItem[];
 };
+
+export type FeedbackOptions = {
+  rerun?: number;
+};

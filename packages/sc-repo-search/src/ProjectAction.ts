@@ -31,7 +31,6 @@ export default class ProjectAction implements Executor {
         title: this.name,
         subtitle: this.getSubTitle(data),
         icon: 'icons/' + this.icon,
-        hasSubItems: false,
 
         // arg will be passed to hanlder of `commands.EXECUTE`
         arg: JSON.stringify({

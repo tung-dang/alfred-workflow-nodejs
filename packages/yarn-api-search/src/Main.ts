@@ -1,7 +1,7 @@
 import { Workflow, Item as AfItem, storage } from '@alfred-wf-node/core';
 import { openLinkExecutor } from './executors.js';
 import * as github from 'octonode';
-import { FileItem } from './types';
+import { FileItem, OPEN_LINK_ARG } from './types';
 
 const YARN_REPO = 'yarnpkg/website';
 const YARN_API_PATH = 'lang/en/docs/cli';
@@ -24,18 +24,17 @@ const commands = {
 const pkg = require('../package.json');
 
 export default class MainApp {
-  workflow: Workflow;
+  wf: Workflow;
 
   constructor() {
-    this.workflow = new Workflow({
+    this.wf = new Workflow({
       isDebug: false
     });
-    this.workflow.setName(pkg.name);
+    this.wf.setName(pkg.name);
+    this.wf.onAction(commands.LOAD_ALL_LINKS, this._loadAllLinks);
+    this.wf.onAction(commands.CLEAR_CACHE, storage.clear);
 
-    this.workflow.onAction(commands.LOAD_ALL_LINKS, this._loadAllLinks);
-    this.workflow.onAction(commands.CLEAR_CACHE, storage.clear);
-
-    this.workflow.onAction(commands.OPEN_LINK, arg => {
+    this.wf.onAction(commands.OPEN_LINK, arg => {
       if (typeof arg === 'string') {
         openLinkExecutor.execute(JSON.parse(arg));
       } else {
@@ -47,15 +46,17 @@ export default class MainApp {
   _loadAllLinks = (/*query*/) => {
     const dataFromCache = storage.get('cache_links');
     if (dataFromCache) {
-      console.warn('Get data from cache...');
+      console.warn('Get data from cache...:)');
       this._generateFeedback(dataFromCache /*, query*/);
       return;
     }
 
-    console.warn('Start fetching...');
+    console.warn('Start fetching...:(');
+    // TODO: cannot show loading here
+    this.wf.showLoading();
     ghrepo.contents(YARN_API_PATH, BRANCH, (error, res) => {
       if (error) {
-        console.warn('Can not fetch file list', error);
+        this.wf.error('Can not fetch file list from: ', YARN_API_PATH, ' - Error: ', error);
         return;
       }
 
@@ -68,48 +69,47 @@ export default class MainApp {
     const items: AfItem[] = [];
 
     response.forEach(item => {
-      if (item.type === 'file') {
-        let cliName = item.name;
-        cliName = cliName.replace('.md', '');
-        const url = item.html_url;
-        const urlWebsite = YARN_WEBSITE_CLI + cliName;
-
-        items.push(
-          new AfItem({
-            uid: url,
-            title: cliName,
-            subtitle: urlWebsite,
-            hasSubItems: false,
-            arg: {
-              // Default: open Yarn website link
-              actionName: 'open_link',
-              link: urlWebsite
-            },
-            mods: {
-              // if users press CMD, open GitHub link
-              cmd: {
-                arg: {
-                  actionName: 'open_link',
-                  link: url
-                },
-                subtitle: url
-              }
-            }
-          })
-        );
+      if (item.type !== 'file') {
+        return;
       }
+
+      let cliName = item.name;
+      cliName = cliName.replace('.md', '');
+      const url = item.html_url;
+      const urlWebsite = YARN_WEBSITE_CLI + cliName;
+      const openLinkArg: OPEN_LINK_ARG =  {
+        // Default: open Yarn website link
+        actionName: 'open_link',
+        link: urlWebsite
+      };
+      const openLinkWithCmdKeyArg: OPEN_LINK_ARG =  {
+        // Default: open Yarn website link
+        actionName: 'open_link',
+        link: url
+      };
+
+      items.push(
+        new AfItem({
+          uid: url,
+          title: cliName,
+          subtitle: urlWebsite,
+          arg: openLinkArg,
+          mods: {
+            // if users press CMD, open GitHub link
+            cmd: {
+              arg: openLinkWithCmdKeyArg,
+              subtitle: url
+            }
+          }
+        })
+      );
     });
 
-    // const filteredItems = utils.filter(query, items, (item: AfItem) => {
-    //   return item.get('title');
-    // });
-
-    // this.workflow.addItems(filteredItems);
-    this.workflow.addItems(items);
-    this.workflow.feedback();
+    this.wf.addItems(items);
+    this.wf.feedback();
   }
 
   start() {
-    this.workflow.start();
+    this.wf.start();
   }
 }

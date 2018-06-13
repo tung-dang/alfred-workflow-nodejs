@@ -100,7 +100,6 @@ export default class CommandHandler {
       uid: address,
       title,
       subtitle,
-      hasSubItems: false,
       arg: {
         actionName: EXECUTOR_OPEN_LINK,
         link: finalLink,
@@ -117,7 +116,6 @@ export default class CommandHandler {
       uid: address,
       title,
       subtitle,
-      hasSubItems: false,
       arg: {
         actionName: EXECUTOR_OPEN_IN_FINDER,
         folderPath

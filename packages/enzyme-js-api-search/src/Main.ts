@@ -117,7 +117,6 @@ export default class MainApp {
           uid: url,
           title: cliName,
           subtitle: urlWebsite,
-          hasSubItems: false,
           arg: {
             // Default: open Yarn website link
             actionName: 'open_link',
