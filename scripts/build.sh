@@ -9,4 +9,5 @@ if ! has_typescript_compiler; then
   exit 1
 fi
 
+rm -rf ./dist
 tsc -p ./tsconfig.json

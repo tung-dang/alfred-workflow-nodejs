@@ -3,10 +3,10 @@ import executors from '../executors.js';
 import { CommandParams } from '../types';
 
 export default class LoadProjectActions {
-  workflow: any;
+  wf: any;
 
   constructor(options) {
-    this.workflow = options.workflow;
+    this.wf = options.wf;
   }
 
   run = (query, arg: CommandParams) => {
@@ -34,7 +34,7 @@ export default class LoadProjectActions {
       }
     });
 
-    this.workflow.addItems(items);
-    this.workflow.feedback();
+    this.wf.addItems(items);
+    this.wf.feedback();
   };
 }

@@ -14,11 +14,11 @@ import * as utils from '../utils';
 import { CommandParams, FolderInfo } from '../types';
 
 export default class LoadProjects {
-  workflow: any;
+  wf: any;
   projects: any;
 
   constructor(options) {
-    this.workflow = options.workflow;
+    this.wf = options.wf;
   }
 
   _loadProjectData() {
@@ -50,7 +50,7 @@ export default class LoadProjects {
   }
 
   _renderNoResult() {
-    this.workflow.addItem(
+    this.wf.addItem(
       new Item({
         title: 'No project path configured. Enter to open config file.',
         icon: ICON_INFO,
@@ -60,7 +60,7 @@ export default class LoadProjects {
       })
     );
 
-    this.workflow.feedback();
+    this.wf.feedback();
   }
 
   run = (query: string) => {
@@ -98,7 +98,7 @@ export default class LoadProjects {
         projectType
       };
 
-      this.workflow.addItem(
+      this.wf.addItem(
         new Item({
           uid: path,
           title: name,
@@ -107,12 +107,12 @@ export default class LoadProjects {
           hasSubItems: true,
           valid: false,
 
-          // arg is passed to as `selectedData` argument in handler `workflow.onMenuItemSelected(commands.LOAD_PROJECTS)`
+          // arg is passed to as `selectedData` argument in handler `wf.onMenuItemSelected(commands.LOAD_PROJECTS)`
           arg: JSON.stringify(commandParams)
         })
       );
     });
 
-    this.workflow.feedback();
+    this.wf.feedback();
   };
 }

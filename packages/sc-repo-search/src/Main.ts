@@ -11,30 +11,30 @@ const commands = {
   CLEAR_CACHE: 'clear_cache'
 };
 
-import LoadProjects from './actions/load-projects';
-import LoadProjectActions from './actions/load-project-actions';
+import LoadProjects from './actions/LoadProjects';
+import LoadProjectActions from './actions/LoadProjectActions';
 import { Executor, CommandParams } from './types';
 
 const pkg = require('../package.json');
 
 export default class MainApp {
-  workflow: Workflow;
+  wf: Workflow;
 
   constructor() {
-    this.workflow = new Workflow();
-    this.workflow.setName(pkg.name);
+    this.wf = new Workflow();
+    this.wf.setName(pkg.name);
 
     const loadProjects = new LoadProjects({
-      workflow: this.workflow
+      wf: this.wf
     });
     const loadProjectAction = new LoadProjectActions({
-      workflow: this.workflow
+      wf: this.wf
     });
 
     // load projects list
-    this.workflow.onAction(commands.LOAD_PROJECTS, loadProjects.run);
+    this.wf.onAction(commands.LOAD_PROJECTS, loadProjects.run);
     // load project's actions
-    this.workflow.onSubActionSelected(
+    this.wf.onSubActionSelected(
       commands.LOAD_PROJECTS,
       (
         query: string,
@@ -50,7 +50,7 @@ export default class MainApp {
     );
 
     // execute project action
-    this.workflow.onAction(commands.EXECUTE, function(arg) {
+    this.wf.onAction(commands.EXECUTE, function(arg) {
       // Handle project actions
       Array.from(executors).forEach((executor: Executor) => {
         executor.execute(arg);
@@ -62,13 +62,13 @@ export default class MainApp {
     //     OpenConfigFileAction.execute();
     // });
 
-    this.workflow.onAction(commands.CLEAR_CACHE, () => {
+    this.wf.onAction(commands.CLEAR_CACHE, () => {
       storage && storage.clear();
       settings && settings.clear();
     });
   }
 
   start() {
-    this.workflow.start();
+    this.wf.start();
   }
 }
