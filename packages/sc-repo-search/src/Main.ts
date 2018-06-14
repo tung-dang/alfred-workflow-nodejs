@@ -7,13 +7,13 @@ import executors from './executors';
 
 const commands = {
   LOAD_PROJECTS: 'loadProjects',
-  EXECUTE: 'execute',
+  EXECUTE_AN_ACTION: 'execute',
   CLEAR_CACHE: 'clear_cache'
 };
 
 import LoadProjects from './actions/LoadProjects';
 import LoadProjectActions from './actions/LoadProjectActions';
-import { Executor, CommandParams } from './types';
+import { Executor } from './types';
 
 const pkg = require('../package.json');
 
@@ -32,25 +32,12 @@ export default class MainApp {
     });
 
     // load projects list
-    this.wf.onAction(commands.LOAD_PROJECTS, loadProjects.run);
+    this.wf.onAction(commands.LOAD_PROJECTS, loadProjects.executeLoadProjects);
     // load project's actions
-    this.wf.onSubActionSelected(
-      commands.LOAD_PROJECTS,
-      (
-        query: string,
-        previousSelectedTitle: string,
-        previousSelectedArg: CommandParams
-      ) => {
-        console.debug(
-          '==================previousSelectedTitle',
-          previousSelectedTitle
-        );
-        loadProjectAction.run(query, previousSelectedArg);
-      }
-    );
+    this.wf.onSubActionSelected(commands.LOAD_PROJECTS,loadProjectAction.executeLoadActionsOfProject);
 
     // execute project action
-    this.wf.onAction(commands.EXECUTE, function(arg) {
+    this.wf.onAction(commands.EXECUTE_AN_ACTION, function(arg) {
       // Handle project actions
       Array.from(executors).forEach((executor: Executor) => {
         executor.execute(arg);

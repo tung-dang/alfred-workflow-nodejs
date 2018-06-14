@@ -1,0 +1,34 @@
+{
+  "name": "@alfred-wf-node/atlaskit-search",
+  "main": "dist/index",
+  "types": "lib/index",
+  "description": "Alfred workflow to search packaegs in AtlasKit",
+  "version": "0.0.0",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/tung-dang/alfred-workflow-yarn-api-search/issues"
+  },
+  "homepage": "https://github.com/tung-dang/alfred-workflow-yarn-api-search",
+  "dependencies": {
+    "@alfred-wf-node/core": "^1.1.2"
+  },
+  "scripts": {
+    "export-wf": "git archive --format zip --output ./exported-workflow-file/YarnApiSearch.alfredworkflow master",
+    "export-push": "yarn run export-wf && git add --all && git commit -m \"export workflow to file\" && git push --follow-tags",
+    "cleanup": "../../scripts/cleanup.sh",
+    "format": "../../scripts/format_files.sh",
+    "build": "../../scripts/build.sh",
+    "build:live": "../../scripts/build-live.sh",
+    "start": "yarn build:live",
+    "postinstall": "alfy-init",
+    "preuninstall": "alfy-cleanup"
+  },
+  "contributors": [
+    {
+      "name": "Tung Dang",
+      "email": "tung.dang.js@gmail.com",
+      "url": "https://github.com/tung-dang"
+    }
+  ],
+  "license": "MIT"
+}

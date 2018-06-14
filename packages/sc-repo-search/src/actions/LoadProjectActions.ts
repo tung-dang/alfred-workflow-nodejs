@@ -9,7 +9,12 @@ export default class LoadProjectActions {
     this.wf = options.wf;
   }
 
-  run = (query, arg: CommandParams) => {
+  executeLoadActionsOfProject = (query: string,
+                                 previousSelectedTitle: string,
+                                 previousSelectedArg: CommandParams) => {
+    this.wf.log('previousSelectedTitle: ', previousSelectedTitle);
+    this.wf.log('previousSelectedArg: ', previousSelectedArg);
+
     const projectActions = executors;
 
     const filteredActions = nodeJSUtils.filter(query, projectActions, function(
@@ -27,7 +32,7 @@ export default class LoadProjectActions {
     const items: Item[] = [];
 
     filteredActions.forEach(projectAction => {
-      const item: Item = projectAction.build ? projectAction.build(arg) : null;
+      const item: Item = projectAction.build ? projectAction.build(previousSelectedArg) : null;
 
       if (item) {
         items.push(item);

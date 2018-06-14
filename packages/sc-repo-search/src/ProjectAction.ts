@@ -13,7 +13,7 @@ export default class ProjectAction implements Executor {
   constructor(options) {
     this.key = options.key;
     this.name = options.name;
-    this.executor = options.executor;
+    this.executor = options.execute;
 
     this.shortcut = options.shortcut || '';
     this.icon = options.icon || DEFAULT_ICON;

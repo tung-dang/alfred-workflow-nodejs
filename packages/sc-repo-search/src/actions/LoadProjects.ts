@@ -63,7 +63,7 @@ export default class LoadProjects {
     this.wf.feedback();
   }
 
-  run = (query: string) => {
+  executeLoadProjects = (query: string) => {
     this.projects = this._loadProjectData();
 
     if (this.projects.length === 0) {
