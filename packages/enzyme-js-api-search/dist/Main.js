@@ -21,9 +21,7 @@ const commands = {
 const pkg = require('../package.json');
 class MainApp {
     constructor() {
-        this.workflow = new core_1.Workflow({
-            isDebug: false
-        });
+        this.workflow = new core_1.Workflow();
         this.workflow.setName(pkg.name);
         this.workflow.onAction(commands.LOAD_ALL_LINKS, query => this._loadAllLinks(query));
         this.workflow.onAction(commands.CLEAR_CACHE, () => core_1.storage.clear());
@@ -56,13 +54,11 @@ class MainApp {
         return promise;
     }
     _loadAllLinks(query) {
-        if (!this.workflow.isDebug) {
-            const dataFromCache = core_1.storage.get('cache_links');
-            if (dataFromCache) {
-                console.warn('Get data from cache...');
-                this._generateFeedback(dataFromCache, query);
-                return;
-            }
+        const dataFromCache = core_1.storage.get('cache_links');
+        if (dataFromCache) {
+            console.warn('Get data from cache...');
+            this._generateFeedback(dataFromCache, query);
+            return;
         }
         console.warn('Start fetching...');
         const rootFolderPromise = this._fetchFolder(API_PATH);
