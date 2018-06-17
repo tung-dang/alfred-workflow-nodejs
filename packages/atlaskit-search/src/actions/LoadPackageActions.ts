@@ -65,9 +65,9 @@ export default class LoadPackageActions {
     previousSelectedTitle: string,
     previousSelectedArg: PackageActionArg
   ) => {
-    this.wf.log('query: ', query);
-    this.wf.log('previousSelectedTitle: ', previousSelectedTitle);
-    this.wf.log('previousSelectedArg: ', previousSelectedArg);
+    this.wf.log('_executeLoadAllActionsOfPackage:query: ', query);
+    this.wf.log('_executeLoadAllActionsOfPackage:previousSelectedTitle: ', previousSelectedTitle);
+    this.wf.log('_executeLoadAllActionsOfPackage:previousSelectedArg: ', previousSelectedArg);
 
     const filteredActions: PackageAction[] = nodeJSUtils.filter(query, packageActions, (
       pkgAction: PackageAction

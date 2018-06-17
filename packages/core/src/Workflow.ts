@@ -1,6 +1,4 @@
 import * as events from 'events';
-// import * as fs from 'fs';
-
 import { ICON_LOADING, ICON_ERROR, ICON_INFO, ICON_WARNING, SUB_ACTION_DIVIDER_SYMBOL, WF_DATA_KEY } from "./constants";
 import storage from './storage';
 import Item from './Item';
@@ -16,15 +14,14 @@ export default class Workflow {
   _name: string;
   _eventEmitter: events.EventEmitter;
   _env: any;
+  // _wfData: any;
 
-  constructor(options) {
-    options = options || {};
-
+  constructor() {
     this._items = [];
     this._name = 'AlfredWfNodeJs';
     this._eventEmitter = new events.EventEmitter();
     this._env = process.env;
-    this.log('- config:', process.env);
+    // this._wfData = {};
   }
 
   static _saveItemArg(item) {
@@ -34,10 +31,19 @@ export default class Workflow {
     storage.set(WF_DATA_KEY, wfData);
   }
 
-  static _getItemArg(itemTitle) {
+  static _getItemArg(itemTitle: string) {
     const wfData = storage.get(WF_DATA_KEY);
     return wfData ? wfData[itemTitle] : undefined;
   }
+
+  // _saveItemArg(item) {
+  //   const data = item.getAlfredItemData();
+  //   this._wfData[data.title] = data.arg;
+  // }
+  //
+  // _getItemArg(itemTitle: string) {
+  //   return this._wfData[itemTitle];
+  // }
 
   static _getActionName(action) {
     return `${ACTION_NAMESPACE_EVENT}-${action}`;
@@ -65,7 +71,7 @@ export default class Workflow {
 
     process.on('uncaughtException', this.error);
 
-    this._trigger(actionName, query);
+    this._trigger(actionName, this._sanitizeQuery(query));
   }
 
   /**
@@ -246,34 +252,32 @@ export default class Workflow {
   /**
    * Handle action by delegate to registered action/subAction handlers
    */
-  _trigger(actionName, query) {
-    const tempQuery = this._sanitizeQuery(query);
-
+  _trigger(actionName: string, query: string) {
     // handle first level action
     if (
-      !tempQuery ||
-      typeof tempQuery === 'object' ||
-      (typeof tempQuery === 'string' &&
-        tempQuery.indexOf(SUB_ACTION_DIVIDER_SYMBOL) === -1)
+      !query ||
+      query.indexOf(SUB_ACTION_DIVIDER_SYMBOL) === -1
     ) {
-      this._eventEmitter.emit(Workflow._getActionName(actionName), tempQuery);
-      return;
+      return this._eventEmitter.emit(
+        Workflow._getActionName(actionName),
+        query
+      );
     }
 
     // handle sub action
-    const arrays = tempQuery.split(SUB_ACTION_DIVIDER_SYMBOL);
-
+    const arrays = query.split(SUB_ACTION_DIVIDER_SYMBOL);
     if (arrays.length >= 2) {
-      const previousActionTitleSelected = this._sanitizeQuery(
-        arrays[arrays.length - 2]
-      );
-      query = this._sanitizeQuery(arrays[arrays.length - 1]); // last string is query
+      query = this._sanitizeQuery(arrays[arrays.length - 1]);
+      const preLastItem = arrays[arrays.length - 2];
+      const previousTitleSelected = this._sanitizeQuery(preLastItem);
 
-      let previousArgActionSelected = Workflow._getItemArg(
-        previousActionTitleSelected
+      let previousArgSelected = Workflow._getItemArg(
+        previousTitleSelected
       );
       try {
-        previousArgActionSelected = JSON.parse(previousArgActionSelected);
+        if (previousArgSelected) {
+          previousArgSelected = JSON.parse(previousArgSelected);
+        }
       } catch (e) {
         this.log('Can not convert arg string into Object!');
       }
@@ -281,8 +285,8 @@ export default class Workflow {
       this._eventEmitter.emit(
         Workflow._getSubActionName(actionName),
         query,
-        previousActionTitleSelected,
-        previousArgActionSelected
+        previousTitleSelected,
+        previousArgSelected
       );
     }
   }
@@ -297,18 +301,8 @@ export default class Workflow {
     storage.clear();
   }
 
-  _sanitizeQuery(rawQuery) {
-    let finalQuery = rawQuery;
-
-    try {
-      finalQuery = JSON.parse(rawQuery);
-    } catch (e) {
-      // can not parse to object, we keep it as string
-      finalQuery = rawQuery;
-    }
-
-    finalQuery = finalQuery && finalQuery.trim ? finalQuery.trim() : finalQuery;
-    return finalQuery;
+  _sanitizeQuery(raw: string): string {
+    return raw.trim();
   }
 
   /* istanbul ignore next */

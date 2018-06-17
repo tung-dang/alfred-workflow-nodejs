@@ -1,9 +1,6 @@
 import * as fuzzy from 'fuzzy';
 import * as appleScript from 'node-osascript';
-// const exec = require('child_process').exec;
-// const utilLib = require("util");
-
-const storage = require('./storage');
+import storage from './storage';
 
 export function debug(message, ...args) {
   // do not log message in test environment

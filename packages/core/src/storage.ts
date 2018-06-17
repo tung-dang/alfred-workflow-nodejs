@@ -1,4 +1,3 @@
-import * as keychain from 'keychain';
 import * as storage from 'node-persist';
 
 class Storage {
@@ -56,56 +55,6 @@ class Storage {
 
   clearSetting() {
     this.remove('settings');
-  }
-
-  setPassword(username, password, workflow) {
-    if (!username || !password || !workflow) {
-      console.error('Invalid arguments: userName, password or workflow!');
-      return;
-    }
-
-    keychain.setPassword(
-      {
-        account: username,
-        service: workflow.getName(),
-        password: password
-      },
-      function(err) {
-        console.warn('Can not set password: ', err);
-      }
-    );
-  }
-
-  /**
-   * @param {String} username
-   * @param {Workflow} workflow - on object of Workflow object
-   */
-  getPassword(username, workflow) {
-    const p = new Promise((resolve, reject) => {
-      if (!username || !workflow) {
-        console.error('Invalid arguments: userName or workflow!');
-        reject();
-        return;
-      }
-
-      keychain.getPassword(
-        {
-          account: username,
-          service: workflow.getName()
-        },
-        (error, password) => {
-          if (error) {
-            workflow.error('ERROR', 'Can not get password data');
-            reject();
-            return;
-          }
-
-          resolve(password);
-        }
-      );
-    });
-
-    return p;
   }
 }
 
