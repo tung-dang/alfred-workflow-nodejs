@@ -19,9 +19,7 @@ export default class MainApp {
   wf: Workflow;
 
   constructor() {
-    this.wf = new Workflow({
-      isDebug: false
-    });
+    this.wf = new Workflow();
     this.wf.setName(pkg.name);
     this.wf.onAction(commands.FIRST_COMMAND, this._testError);
   }

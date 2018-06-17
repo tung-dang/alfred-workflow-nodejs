@@ -28,10 +28,7 @@ export default class MainApp {
   workflow: Workflow;
 
   constructor() {
-    this.workflow = new Workflow({
-      // change isDebug=true to prevent caching and show logs only
-      isDebug: false
-    });
+    this.workflow = new Workflow();
 
     this.workflow.setName(pkg.name);
 
@@ -74,13 +71,11 @@ export default class MainApp {
   }
 
   _loadAllLinks(query) {
-    if (!this.workflow.isDebug) {
-      const dataFromCache = storage.get('cache_links');
-      if (dataFromCache) {
-        console.warn('Get data from cache...');
-        this._generateFeedback(dataFromCache, query);
-        return;
-      }
+    const dataFromCache = storage.get('cache_links');
+    if (dataFromCache) {
+      console.warn('Get data from cache...');
+      this._generateFeedback(dataFromCache, query);
+      return;
     }
 
     console.warn('Start fetching...');

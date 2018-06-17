@@ -1,24 +1,26 @@
 import {
   Item,
   storage,
-  utils as nodeJSUtils
+  utils as nodeJSUtils,
+  Workflow
 } from '@alfred-wf-node/core';
 import {
   ICON_INFO
 } from '@alfred-wf-node/core/dist/constants';
 
-const config = require('../../config.json');
-const sourceFolders = config['source-folders'];
-
 import * as utils from '../utils';
 import { CommandParams, FolderInfo } from '../types';
 
 export default class LoadProjects {
-  wf: any;
+  wf: Workflow;
   projects: any;
+  STASH_SERVER_URL: string;
+  SOURCE_FOLDERS: string[];
 
   constructor(options) {
     this.wf = options.wf;
+    this.SOURCE_FOLDERS = this.wf.getConfig('source-folders').split(',');
+    this.STASH_SERVER_URL = this.wf.getConfig('stash-server');
   }
 
   _loadProjectData() {
@@ -33,7 +35,8 @@ export default class LoadProjects {
 
     const folders: FolderInfo[] = [];
     console.warn('Load all projects from hard disk! :(');
-    sourceFolders.forEach(path => {
+    this.SOURCE_FOLDERS.forEach((path: string) => {
+      path = path.trim();
       const childFolders = utils.getDirectories(path);
       childFolders.forEach((folder: string) => {
         folders.push({
@@ -83,7 +86,7 @@ export default class LoadProjects {
     filteredProjects.forEach((project: FolderInfo) => {
       const { name, path } = project;
 
-      const info = utils.getProjectInfo(path);
+      const info = utils.getProjectInfo(path, this.STASH_SERVER_URL);
       // cannot find project type
       if (!info) {
         return;

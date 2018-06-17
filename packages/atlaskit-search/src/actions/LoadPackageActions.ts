@@ -40,8 +40,7 @@ export default class LoadPackageActions {
     const items: AfItem[] = [];
     this._eachPackage((pkg: Package) => {
       if (
-        pkg.name.includes(query) &&
-        pkg.groupName &&
+        pkg.name.includes(query) ||
         pkg.groupName.includes(query)
       ) {
         items.push(
@@ -70,12 +69,11 @@ export default class LoadPackageActions {
     this.wf.log('previousSelectedTitle: ', previousSelectedTitle);
     this.wf.log('previousSelectedArg: ', previousSelectedArg);
 
-    const filteredActions = nodeJSUtils.filter(query, packageActions, function(
-      projectAction
-    ) {
-      return projectAction.filterKey
-        ? projectAction.filterKey().toLowerCase()
-        : '';
+    const filteredActions: PackageAction[] = nodeJSUtils.filter(query, packageActions, (
+      pkgAction: PackageAction
+    ) => {
+      return pkgAction.name.toLowerCase() + ' '
+      + (pkgAction.getDesc ? pkgAction.getDesc(previousSelectedArg) : '')
     });
 
     if (filteredActions.length === 0) {

@@ -1,8 +1,3 @@
-import * as fs from 'fs';
-
-const config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
-const SEPARATOR = config['separator'];
-
 export const EXECUTOR_OPEN_IN_FINDER = 'open_in_finder';
 export const EXECUTOR_OPEN_LINK = 'open_link';
 
@@ -23,8 +18,8 @@ export function isCommentLine(str: string) {
   return str.trim().startsWith('#');
 }
 
-export function getAddressAndTitle(str: string) {
-  const temp = str.split(SEPARATOR);
+export function getAddressAndTitle(str: string, separator: string = ' | ') {
+  const temp = str.split(separator);
 
   return {
     address: temp[0],

@@ -9,12 +9,13 @@ import { AlfredItem, AlfredResult, FeedbackOptions } from './types';
 
 const ACTION_NAMESPACE_EVENT = 'action';
 const SUB_ACTION_NAMESPACE_EVENT = 'subActionSelected';
+const MAXIMUM_ITEMS_TO_SHOW = 20;
 
 export default class Workflow {
   _items: AlfredItem[];
   _name: string;
   _eventEmitter: events.EventEmitter;
-  isDebug: boolean;
+  _env: any;
 
   constructor(options) {
     options = options || {};
@@ -22,7 +23,8 @@ export default class Workflow {
     this._items = [];
     this._name = 'AlfredWfNodeJs';
     this._eventEmitter = new events.EventEmitter();
-    this.isDebug = options.isDebug;
+    this._env = process.env;
+    this.log('- config:', process.env);
   }
 
   static _saveItemArg(item) {
@@ -57,6 +59,9 @@ export default class Workflow {
       actionName = args[0];
       query = args[1];
     }
+
+    this.log('- action name:', actionName);
+    this.log('- query:', query);
 
     process.on('uncaughtException', this.error);
 
@@ -103,28 +108,6 @@ export default class Workflow {
     return this._name;
   }
 
-  /**
-   * Generate feedback as this structure
-   * ```
-   * {
-   *    "items": [
-            {
-                "uid": "desktop",
-                "type": "file",
-                "title": "Desktop",
-                "subtitle": "~/Desktop",
-                "arg": "~/Desktop",
-                "autocomplete": "Desktop",
-                "icon": {
-                    "type": "fileicon",
-                    "path": "~/Desktop"
-                }
-            }
-        ]
-    }
-   ```
-   *
-   */
   feedback(options?: FeedbackOptions) {
     let strOutput;
 
@@ -134,9 +117,20 @@ export default class Workflow {
         return;
       }
 
+      // for optimizing performance, we just shows first 20 items
+      const first20Items: AlfredItem[] = this._items.splice(0, MAXIMUM_ITEMS_TO_SHOW - 1);
+      if (this._items.length > MAXIMUM_ITEMS_TO_SHOW) {
+        const hasMoreItem = new Item({
+          title: "Has more...",
+          subtitle: "Please type something to filter.",
+          icon: ICON_INFO
+        });
+        first20Items.push(hasMoreItem.getAlfredItemData())
+      }
+
       strOutput = JSON.stringify(
         {
-          items: this._items,
+          items: first20Items,
           rerun: options && options.rerun ? options.rerun : undefined,
           // variables:
         } as AlfredResult,
@@ -147,7 +141,7 @@ export default class Workflow {
       this.log('Workflow feedback: ');
       // fs.writeFileSync('test-json-_output.json', strOutput);
       this._output(strOutput);
-      this.clearItems();
+      // this.clearItems();
 
       return strOutput;
     } catch (e) {
@@ -321,17 +315,30 @@ export default class Workflow {
   _output(str) {
     try {
       this.log('Workflow feedback: ');
-      if (this.isDebug || process.env.NODE_ENV === 'testing') {
+      if (this.isDebug() || process.env.NODE_ENV === 'testing') {
         this.log(str);
-      } else {
-        console.log(str);
       }
+      console.log(str);
     } catch (e) {
       this.log('Can not generate JSON string', this._items);
     }
   }
 
   log(message, ...args) {
-    debug(message, ...args);
+    if (this.isDebug()) {
+      debug(message, ...args);
+    }
+  }
+
+  isDebug(): boolean {
+    return !!this._env['alfred_debug'];
+  }
+
+  getConfig(key: string): any{
+    const value = this._env[key];
+    if (value) {
+      this.log('Maybe you forget to set config for key=', key);
+    }
+    return value;
   }
 }

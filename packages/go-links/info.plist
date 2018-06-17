@@ -292,6 +292,17 @@
 			<integer>140</integer>
 		</dict>
 	</dict>
+	<key>variables</key>
+	<dict>
+		<key>exclude_words</key>
+		<string>issue-,issue/</string>
+		<key>go_link_file_name</key>
+		<string>go_list.txt</string>
+		<key>separator</key>
+		<string> | </string>
+	</dict>
+	<key>version</key>
+	<string>1.0</string>
 	<key>webaddress</key>
 	<string></string>
 </dict>

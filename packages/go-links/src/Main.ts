@@ -12,20 +12,20 @@ const commands = {
 const pkg = require('../package.json');
 
 export default class MainApp {
-  workflow: Workflow;
+  wf: Workflow;
 
   constructor() {
-    this.workflow = new Workflow();
-    this.workflow.setName(pkg.name);
+    this.wf = new Workflow();
+    this.wf.setName(pkg.name);
 
     const handler = new CommandHandler({
-      workflow: this.workflow
+      wf: this.wf
     });
 
-    this.workflow.onAction(commands.LOAD_ALL_LINKS, handler.loadAllLinks);
-    this.workflow.onAction(commands.CLEAR_CACHE, () => storage.clear());
+    this.wf.onAction(commands.LOAD_ALL_LINKS, handler.loadAllLinks);
+    this.wf.onAction(commands.CLEAR_CACHE, () => storage.clear());
 
-    this.workflow.onAction(commands.OPEN_LINK, arg => {
+    this.wf.onAction(commands.OPEN_LINK, arg => {
       try {
         executors.forEach((executor: Executor) => {
           if (executor.actionName === arg.actionName) {
@@ -44,6 +44,6 @@ export default class MainApp {
   }
 
   start() {
-    this.workflow.start();
+    this.wf.start();
   }
 }

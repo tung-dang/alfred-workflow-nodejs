@@ -27,5 +27,5 @@ export type PackageAction = {
   name: string;
   getDesc?: (arg: PackageActionArg) => void;
   icon: string;
-  execute: (arg: any) => void;
+  execute: (arg: PackageActionArg | string) => void;
 };

@@ -58,7 +58,7 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>./run-node.sh . "scan_ak_folder" "{query}"</string>
+				<string>./run-node.sh . "scan_ak_folder"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -66,7 +66,7 @@
 				<key>subtext</key>
 				<string></string>
 				<key>title</key>
-				<string>Scan AtlasKit source code</string>
+				<string>Scan AtlasKit source code to build up atlaskit_pkgs.json file</string>
 				<key>type</key>
 				<integer>5</integer>
 				<key>withspace</key>
@@ -151,11 +151,69 @@
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>keyword</key>
+				<string>ak_open_root_folder</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>./run-node.sh . "open_root_sc_folder"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Open Atlaskit root folder in Visual Studio Code</string>
+				<key>type</key>
+				<integer>5</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>33D837F5-6785-4752-A181-203A2FFF1234</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>Search Atlassian AtlasKit components, each selected AtlasKit component, you can choose one of following actions:
+
+- Open the selected component in Finder
+- Open the selected component in Visual Studio Code
+- Open document link of the selected component in browser</string>
 	<key>uidata</key>
 	<dict>
+		<key>33D837F5-6785-4752-A181-203A2FFF1234</key>
+		<dict>
+			<key>xpos</key>
+			<integer>180</integer>
+			<key>ypos</key>
+			<integer>300</integer>
+		</dict>
 		<key>583091BE-A341-44B8-83E7-03D518ADC39A</key>
 		<dict>
 			<key>xpos</key>
@@ -178,6 +236,13 @@
 			<integer>20</integer>
 		</dict>
 	</dict>
+	<key>variables</key>
+	<dict>
+		<key>akFolder</key>
+		<string>/Users/tthanhdang/src/_atlassian/atlaskit-mk-2</string>
+	</dict>
+	<key>version</key>
+	<string>1.0</string>
 	<key>webaddress</key>
 	<string></string>
 </dict>

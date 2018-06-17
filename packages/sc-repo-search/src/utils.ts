@@ -5,9 +5,6 @@ import { storage } from '@alfred-wf-node/core';
 import * as git from './git-info.js';
 import { ProjectInfo, GitInfo, ProjectType } from './types.js';
 
-const config = require('../config.json');
-// const sourceFolders = config['source-folders'];
-// const sources = config['sources'];
 const stashServer = config['stash-server'];
 
 export function getDirectories(folderPath: string): string[] {
@@ -53,11 +50,11 @@ export function getDirectories(folderPath: string): string[] {
  *          }
  * }
  */
-export function getProjectInfo(path: string) {
+export function getProjectInfo(path: string, stashServerURL: string) {
   const keyCache = 'projectsInfo';
 
   // get from cache
-  const projects: { [path: string]: ProjectInfo } = storage.get(keyCache) || {};
+  const projects: { [path: string]: ProjectInfo} = storage.get(keyCache) || {};
   if (projects[path]) {
     return projects[path];
   }
@@ -70,7 +67,7 @@ export function getProjectInfo(path: string) {
 
   const pInfo: ProjectInfo = {
     projectType,
-    gitInfo: getGitInfo(path) as GitInfo
+    gitInfo: getGitInfo(path, stashServerURL) as GitInfo
   };
 
   projects[path] = pInfo;
@@ -93,7 +90,7 @@ export function getProjectType(path: string): ProjectType | null {
   return null;
 }
 
-export function getGitInfo(path): GitInfo | null {
+export function getGitInfo(path, stashServer = 'stash.atlassian.com'): GitInfo | null {
   return git.gitInfo(path, stashServer);
 }
 

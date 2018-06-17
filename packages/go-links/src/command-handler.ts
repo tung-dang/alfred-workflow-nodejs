@@ -11,22 +11,18 @@ import {
   EXECUTOR_OPEN_LINK
 } from './helpers';
 
-const config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
-// const ONE_MINUTE = 1000 * 60;
-// const ONE_HOUR = ONE_MINUTE * 60;
-// const ONE_DAY = ONE_HOUR * 24;
-
-const GO_LIST_FILE = config['go_link_file_name'];
-// some words will be excluded in parameter of search
-const EXCLUDED_WORDS = config['exclude_words'];
-
 export default class CommandHandler {
-  workflow: any;
+  wf: any;
   rawData: string;
   query: any;
+  GO_LIST_FILE: string;
+  EXCLUDED_WORDS: string[];
 
   constructor(options) {
-    this.workflow = options.workflow;
+    this.wf = options.wf;
+    this.GO_LIST_FILE = this.wf.getConfig('go_link_file_name');
+    // some words will be excluded in parameter of search
+    this.EXCLUDED_WORDS = this.wf.getConfig('exclude_words').split(',');
     this.rawData = '';
   }
 
@@ -35,13 +31,13 @@ export default class CommandHandler {
 
     // if (!this.rawData) {
     // console.warn('INFO: read go_list.txt file');
-    this.rawData = fs.readFileSync(GO_LIST_FILE, 'utf8');
+    this.rawData = fs.readFileSync(this.GO_LIST_FILE, 'utf8');
     // } else {
     //     console.warn('INFO: get data from cache');
     // }
 
     if (!this.rawData) {
-      this.workflow.error('Error', 'Can not load go_list.txt file');
+      this.wf.error('Error', 'Can not load go_list.txt file');
       return '';
     }
 
@@ -57,7 +53,7 @@ export default class CommandHandler {
     const lines = rawData.split('\n');
     lines.forEach(this._processLine);
 
-    this.workflow.feedback();
+    this.wf.feedback();
   };
 
   _processLine = line => {
@@ -66,7 +62,7 @@ export default class CommandHandler {
       return;
     }
 
-    const { address, title } = getAddressAndTitle(line);
+    const { address, title } = getAddressAndTitle(line, this.wf.getConfig('separator'));
 
     const subtitle = this._getSubTitleFromAddress(address);
     const searchStr = this._getSearchStr(line);
@@ -91,7 +87,7 @@ export default class CommandHandler {
         item = this._createNewLinkItem({ address, title, subtitle, finalLink });
       }
 
-      this.workflow.addItem(item);
+      this.wf.addItem(item);
     }
   };
 
@@ -167,7 +163,7 @@ export default class CommandHandler {
     const lastWord = words.pop();
     if (lastWord) {
       let param = lastWord.trim();
-      EXCLUDED_WORDS.forEach(
+      this.EXCLUDED_WORDS.forEach(
         (excludeWord: string) => (param = param.replace(excludeWord, ''))
       );
       params.push(param);

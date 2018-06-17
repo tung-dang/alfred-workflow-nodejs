@@ -1,8 +1,0 @@
-{
-    "exclude_words":  [
-        "issue-",
-        "issue/"
-    ],
-    "go_link_file_name": "go_list.txt",
-    "separator": " | "
-}

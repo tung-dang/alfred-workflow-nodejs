@@ -159,14 +159,6 @@ export const openPullRequests = new ProjectGitAction({
 openPullRequests.getSubTitle = data => data.gitInfo.prsLink;
 
 // end of git actions
-
-// Open config file action
-export const openConfigFileAction: Executor = {
-  key: 'open_config_file',
-  name: 'Open Config File',
-  execute: () => /*arg*/ exec('open config.json')
-};
-
 const executors = [
   openInFinderAction,
   openInVSCode,
@@ -179,8 +171,7 @@ const executors = [
   openInSourceTree,
   openRepoLink,
   createPullRequest,
-  openPullRequests,
-  openConfigFileAction
+  openPullRequests
 ];
 
 export default executors;

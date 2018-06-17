@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import { getDirs, isFileExists } from './utils/fs';
-import { GroupPackage, Package } from './types';
+import { Folder, GroupPackage, Package } from "./types";
 
 export default class MainScan {
   atlasKitPath: string;
@@ -33,7 +33,7 @@ export default class MainScan {
   start() {
     // each 1st folder is a group of packages
     const dirs = getDirs(this.packagesPath);
-    dirs.forEach(dir => {
+    dirs.forEach((dir: Folder) => {
       this.groups.push({
         ...dir,
         children: []

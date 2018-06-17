@@ -89,15 +89,12 @@ class MainApp {
                 uid: url,
                 title: cliName,
                 subtitle: urlWebsite,
-                valid: true,
-                hasSubItems: false,
                 arg: {
                     actionName: 'open_link',
                     link: urlWebsite
                 },
                 mods: {
                     cmd: {
-                        valid: true,
                         arg: {
                             actionName: 'open_link',
                             link: url
