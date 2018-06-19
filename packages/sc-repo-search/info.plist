@@ -201,18 +201,13 @@
 	</dict>
 	<key>variables</key>
 	<dict>
-		<key>source-folders</key>
+		<key>sourceFolders</key>
 		<string>~/src, ~/cloud, ~/src/_atlassian, ~/src/_my-src, ~/src/-shipit, ~/src/_lab</string>
-		<key>stash-server</key>
+		<key>stashServer</key>
 		<string>stash.atlassian.com</string>
 	</dict>
-	<key>variablesdontexport</key>
-	<array>
-		<string>stash-server</string>
-		<string>source-folders</string>
-	</array>
 	<key>version</key>
-	<string></string>
+	<string>1.0</string>
 	<key>webaddress</key>
 	<string></string>
 </dict>

@@ -1,9 +1,12 @@
+import { utils, /*OpenInFinderAction*/ /*IAction*/ } from '@alfred-wf-node/core';
 import { exec } from 'child_process';
-import { utils } from '@alfred-wf-node/core';
 
 import ProjectAction from './ProjectAction';
 import ProjectGitAction from './project-git-action';
-import { Executor } from './types';
+
+// export const openInFinderAction = new OpenInFinderAction({
+//   propertyName: "path"
+// });
 
 export const openInFinderAction = new ProjectAction({
   key: 'open_in_finder',
@@ -159,7 +162,7 @@ export const openPullRequests = new ProjectGitAction({
 openPullRequests.getSubTitle = data => data.gitInfo.prsLink;
 
 // end of git actions
-const executors = [
+export const projectActions = [
   openInFinderAction,
   openInVSCode,
   openInItermAction,
@@ -174,4 +177,11 @@ const executors = [
   openPullRequests
 ];
 
-export default executors;
+export const executeActionByKey = (key: string, arg: any) => {
+  projectActions.forEach((action: any) => {
+    if (action.key === key) {
+      action.execute(arg);
+    }
+  });
+};
+

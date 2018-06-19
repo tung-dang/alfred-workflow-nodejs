@@ -15,7 +15,7 @@ export default class Item {
 
     const tempData: AlfredItem = {
       uid: options.uid || options.title,
-      arg: this._hygieneArg(options.arg),
+      arg: options.arg ? this._hygieneArg(options.arg) : undefined,
       autocomplete: options.autocomplete,
       title: options.title,
       subtitle: options.subtitle || '',
@@ -31,6 +31,7 @@ export default class Item {
       mods: options.mods,
       valid: typeof options.valid === "undefined" ? true : options.valid,
       hasSubItems: !!options.hasSubItems // default: false
+      match: options.match || options.title + ' | ' + options.subtitle;
     };
 
     if (tempData.hasSubItems) {
@@ -84,7 +85,7 @@ export default class Item {
    * @returns {String}
    * @private
    */
-  _hygieneArg(arg) {
+  _hygieneArg(arg: object | string): string {
     if (typeof arg === 'object') {
       return JSON.stringify(arg);
     }

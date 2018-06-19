@@ -10,17 +10,21 @@ import {
 
 import * as utils from '../utils';
 import { CommandParams, FolderInfo } from '../types';
+import { projectActions } from "./project-actions";
 
 export default class LoadProjects {
   wf: Workflow;
   projects: any;
   STASH_SERVER_URL: string;
   SOURCE_FOLDERS: string[];
+  HOME_PATH: string;
 
   constructor(options) {
     this.wf = options.wf;
-    this.SOURCE_FOLDERS = this.wf.getConfig('source-folders').split(',');
-    this.STASH_SERVER_URL = this.wf.getConfig('stash-server');
+
+    this.SOURCE_FOLDERS = this.wf.getConfig('sourceFolders').split(',');
+    this.STASH_SERVER_URL = this.wf.getConfig('stashServer');
+    this.HOME_PATH = this.wf.getConfig('HOME');
   }
 
   _loadProjectData() {
@@ -36,7 +40,9 @@ export default class LoadProjects {
     const folders: FolderInfo[] = [];
     console.warn('Load all projects from hard disk! :(');
     this.SOURCE_FOLDERS.forEach((path: string) => {
+      // replace ~ with HOME_PATH
       path = path.trim();
+      path = path.replace('~', this.HOME_PATH);
       const childFolders = utils.getDirectories(path);
       childFolders.forEach((folder: string) => {
         folders.push({
@@ -53,21 +59,13 @@ export default class LoadProjects {
   }
 
   _renderNoResult() {
-    this.wf.addItem(
-      new Item({
-        title: 'No project path configured. Enter to open config file.',
-        icon: ICON_INFO,
-        // arg: JSON.stringify({
-        //     action: OpenConfigFileAction.actionName
-        // })
-      })
-    );
-
-    this.wf.feedback();
+    this.wf.info('No project path configured. Enter to open config file.');
   }
 
   executeLoadProjects = (query: string) => {
     this.projects = this._loadProjectData();
+
+    this.wf.log('this.projects', this.projects);
 
     if (this.projects.length === 0) {
       this._renderNoResult();
@@ -116,6 +114,42 @@ export default class LoadProjects {
       );
     });
 
+    this.wf.feedback();
+  };
+
+  executeLoadActionsOfProject = (query: string,
+                                 previousSelectedTitle: string,
+                                 previousSelectedArg: CommandParams) => {
+
+    this.wf.log('executeLoadActionsOfProject:previousSelectedTitle: ', previousSelectedTitle);
+    this.wf.log('executeLoadActionsOfProject:previousSelectedArg: ', previousSelectedArg);
+
+    const filteredActions = nodeJSUtils.filter(query, projectActions, function(
+      projectAction
+    ) {
+      return projectAction.filterKey
+        ? projectAction.filterKey().toLowerCase()
+        : projectAction.name
+          ? projectAction.name
+          : '';
+    });
+
+    if (filteredActions.length === 0) {
+      this.wf.info('Can not found any actions for this project');
+      return;
+    }
+
+    const items: Item[] = [];
+
+    filteredActions.forEach(projectAction => {
+      const item: Item = projectAction.build ? projectAction.build(previousSelectedArg) : null;
+
+      if (item) {
+        items.push(item);
+      }
+    });
+
+    this.wf.addItems(items);
     this.wf.feedback();
   };
 }

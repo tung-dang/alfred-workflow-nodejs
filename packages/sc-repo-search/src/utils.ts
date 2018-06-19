@@ -5,8 +5,6 @@ import { storage } from '@alfred-wf-node/core';
 import * as git from './git-info.js';
 import { ProjectInfo, GitInfo, ProjectType } from './types.js';
 
-const stashServer = config['stash-server'];
-
 export function getDirectories(folderPath: string): string[] {
   let rootFolder;
 
@@ -90,7 +88,7 @@ export function getProjectType(path: string): ProjectType | null {
   return null;
 }
 
-export function getGitInfo(path, stashServer = 'stash.atlassian.com'): GitInfo | null {
+export function getGitInfo(path, stashServer): GitInfo | null {
   return git.gitInfo(path, stashServer);
 }
 

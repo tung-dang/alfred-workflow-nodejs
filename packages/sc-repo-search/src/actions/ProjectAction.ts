@@ -1,5 +1,5 @@
 import { Item } from '@alfred-wf-node/core';
-import { CommandParams, Executor } from './types';
+import { CommandParams, Executor } from '../types';
 
 const DEFAULT_ICON = 'code.png';
 
@@ -13,7 +13,7 @@ export default class ProjectAction implements Executor {
   constructor(options) {
     this.key = options.key;
     this.name = options.name;
-    this.executor = options.execute;
+    this.executor = options.execute ? options.execute.bind(this) : undefined;
 
     this.shortcut = options.shortcut || '';
     this.icon = options.icon || DEFAULT_ICON;
@@ -25,24 +25,22 @@ export default class ProjectAction implements Executor {
   }
 
   build(data) {
-    if (this.shouldDisplay(data)) {
-      const item = new Item({
-        uid: this.name,
-        title: this.name,
-        subtitle: this.getSubTitle(data),
-        icon: 'icons/' + this.icon,
+    return new Item({
+      uid: this.name,
+      title: this.name,
+      subtitle: this.getSubTitle(data),
+      icon: 'icons/' + this.icon,
 
-        // arg will be passed to hanlder of `commands.EXECUTE`
-        arg: JSON.stringify({
-          actionName: this.name,
-          actionKey: this.key,
-          path: data.path,
-          gitInfo: data.gitInfo
-        })
-      });
+      // arg will be passed to hanlder of `commands.EXECUTE`
+      arg: JSON.stringify({
+        actionName: this.name,
+        actionKey: this.key,
+        path: data.path,
+        gitInfo: data.gitInfo
+      }),
 
-      return item;
-    }
+      valid: this.shouldDisplay(data)
+    })
   }
 
   /**
@@ -61,7 +59,7 @@ export default class ProjectAction implements Executor {
   execute(arg: CommandParams) {
     arg = typeof arg === 'string' ? JSON.parse(arg) : arg;
 
-    if (
+    if (this.executor &&
       (this.name !== undefined && this.name === arg.actionName) ||
       (this.key !== undefined && this.key === arg.actionKey)
     ) {

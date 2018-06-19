@@ -28,9 +28,8 @@ export default class MainApp {
       commands.LOAD_ACTIONS_OF_PKG,
       loadPkgActon._executeLoadAllActionsOfPackage
     );
-    this.wf.onAction(commands.SCAN_AK_FOLDER, this._executeScanAkFolder);
-
     this.wf.onAction(commands.EXECUTE_AN_ACTION, this._executeAnAction);
+    this.wf.onAction(commands.SCAN_AK_FOLDER, this._executeScanAkFolder);
     this.wf.onAction(commands.OPEN_ROOT_FOLDER, this._executeOpenRootSourceFolder);
   }
 
@@ -44,8 +43,16 @@ export default class MainApp {
     });
   };
 
-  _executeAnAction = (arg: ExecuteActionArg) => {
-    executeActionByKey(arg.actionKey, arg.actionArg as PackageActionArg);
+  _executeAnAction = (query: ExecuteActionArg | string) => {
+    // TODO: remove this check
+    this.wf.log('_executeAnAction:query', query);
+    this.wf.log('_executeAnAction:query', typeof query);
+
+    if (typeof query === 'string') {
+      query = JSON.parse(query) as ExecuteActionArg;
+    }
+
+    executeActionByKey(query.actionKey, query.actionArg as PackageActionArg);
   };
 
   _executeOpenRootSourceFolder = () => {

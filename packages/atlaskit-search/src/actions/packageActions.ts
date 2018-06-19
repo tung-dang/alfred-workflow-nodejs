@@ -1,24 +1,10 @@
+import { OpenInFinderAction, IAction } from "@alfred-wf-node/core";
 import { exec } from 'child_process';
 import { PackageAction, PackageActionArg } from '../types';
 
-export const openInFinderAction: PackageAction = {
-  key: 'open_in_finder',
-  name: 'Open in Finder',
-  icon: 'finder.png',
-  execute: (arg: PackageActionArg | string) => {
-    let command;
-    if (typeof arg === 'string') {
-      command = `open ${arg}`;
-    } else {
-      command = `open ${arg.localFullPage}`;
-    }
-
-    return exec(command);
-  },
-  getDesc: (arg: PackageActionArg) => {
-    return arg.localFullPage;
-  }
-};
+export const openInFinderAction = new OpenInFinderAction({
+  propertyName: "localFullPage"
+});
 
 export const openDocLink: PackageAction = {
   key: 'open_doc_link',
@@ -59,7 +45,7 @@ export const packageActions = [
 ];
 
 export const executeActionByKey = (key: string, arg: PackageActionArg) => {
-  packageActions.forEach((action: PackageAction) => {
+  packageActions.forEach((action: PackageAction | IAction) => {
     if (action.key === key) {
       action.execute(arg);
     }

@@ -3,7 +3,7 @@ import { ICON_LOADING, ICON_ERROR, ICON_INFO, ICON_WARNING, SUB_ACTION_DIVIDER_S
 import storage from './storage';
 import Item from './Item';
 import { debug } from './utilities';
-import { AlfredItem, AlfredResult, FeedbackOptions } from './types';
+import { SubActionHandlerArg, AlfredItem, AlfredResult, FeedbackOptions } from './types';
 
 const ACTION_NAMESPACE_EVENT = 'action';
 const SUB_ACTION_NAMESPACE_EVENT = 'subActionSelected';
@@ -14,36 +14,15 @@ export default class Workflow {
   _name: string;
   _eventEmitter: events.EventEmitter;
   _env: any;
-  // _wfData: any;
+  _wfData: {[title: string]: any};
 
   constructor() {
     this._items = [];
     this._name = 'AlfredWfNodeJs';
     this._eventEmitter = new events.EventEmitter();
     this._env = process.env;
-    // this._wfData = {};
+    this._wfData = storage.get(WF_DATA_KEY) || {};
   }
-
-  static _saveItemArg(item) {
-    let wfData = storage.get(WF_DATA_KEY) || {};
-    const data = item.getAlfredItemData();
-    wfData[data.title] = data.arg;
-    storage.set(WF_DATA_KEY, wfData);
-  }
-
-  static _getItemArg(itemTitle: string) {
-    const wfData = storage.get(WF_DATA_KEY);
-    return wfData ? wfData[itemTitle] : undefined;
-  }
-
-  // _saveItemArg(item) {
-  //   const data = item.getAlfredItemData();
-  //   this._wfData[data.title] = data.arg;
-  // }
-  //
-  // _getItemArg(itemTitle: string) {
-  //   return this._wfData[itemTitle];
-  // }
 
   static _getActionName(action) {
     return `${ACTION_NAMESPACE_EVENT}-${action}`;
@@ -66,8 +45,8 @@ export default class Workflow {
       query = args[1];
     }
 
-    this.log('- action name:', actionName);
-    this.log('- query:', query);
+    this.log('- action name:"', actionName, '"');
+    this.log('- query:"', query, '"');
 
     process.on('uncaughtException', this.error);
 
@@ -78,12 +57,8 @@ export default class Workflow {
    * Add one feedback item
    */
   addItem = (item: Item) => {
-    if (item instanceof Item) {
-      Workflow._saveItemArg(item);
-      this._items.push(item.getAlfredItemData());
-    } else {
-      this.error('ERROR: item is not an instance of Item class!');
-    }
+    this._saveItemArg(item);
+    this._items.push(item.getAlfredItemData());
   };
 
   /**
@@ -152,6 +127,8 @@ export default class Workflow {
       return strOutput;
     } catch (e) {
       this.log('Can not generate JSON string', this._items);
+    } finally {
+      storage.set(WF_DATA_KEY, this._wfData);
     }
 
     return strOutput;
@@ -240,13 +217,40 @@ export default class Workflow {
   /**
    * Register menu item selected handler
    */
-  onSubActionSelected(actioName, handler) {
-    if (!actioName || !handler) {
+  onSubActionSelected(actionName: string, handler: SubActionHandlerArg) {
+    if (!actionName || !handler) {
       console.error('ERROR - action and handler should be defined!');
       return;
     }
 
-    this._eventEmitter.on(Workflow._getSubActionName(actioName), handler);
+    this._eventEmitter.on(Workflow._getSubActionName(actionName), handler);
+  }
+
+  log(message, ...args) {
+    if (this.isDebug()) {
+      debug(message, ...args);
+    }
+  }
+
+  isDebug(): boolean {
+    return !!this._env['alfred_debug'];
+  }
+
+  getConfig(key: string): any{
+    const value = this._env[key];
+    if (!value) {
+      this.log('Maybe you forget to set config for key=', key);
+    }
+    return value;
+  }
+
+  _saveItemArg(item) {
+    const data = item.getAlfredItemData();
+    this._wfData[data.title] = data.arg;
+  }
+
+  _getItemArg(itemTitle: string) {
+    return this._wfData[itemTitle];
   }
 
   /**
@@ -254,10 +258,8 @@ export default class Workflow {
    */
   _trigger(actionName: string, query: string) {
     // handle first level action
-    if (
-      !query ||
-      query.indexOf(SUB_ACTION_DIVIDER_SYMBOL) === -1
-    ) {
+    const isFirstLevelQuery = !query || query.indexOf(SUB_ACTION_DIVIDER_SYMBOL) === -1;
+    if (isFirstLevelQuery) {
       return this._eventEmitter.emit(
         Workflow._getActionName(actionName),
         query
@@ -268,19 +270,9 @@ export default class Workflow {
     const arrays = query.split(SUB_ACTION_DIVIDER_SYMBOL);
     if (arrays.length >= 2) {
       query = this._sanitizeQuery(arrays[arrays.length - 1]);
-      const preLastItem = arrays[arrays.length - 2];
-      const previousTitleSelected = this._sanitizeQuery(preLastItem);
-
-      let previousArgSelected = Workflow._getItemArg(
-        previousTitleSelected
-      );
-      try {
-        if (previousArgSelected) {
-          previousArgSelected = JSON.parse(previousArgSelected);
-        }
-      } catch (e) {
-        this.log('Can not convert arg string into Object!');
-      }
+      const previousTitleSelected = this._sanitizeQuery(arrays[arrays.length - 2]);
+      let previousArgSelected = this._getItemArg(previousTitleSelected);
+      previousArgSelected = this._convertToObjectIfPossible(previousArgSelected);
 
       this._eventEmitter.emit(
         Workflow._getSubActionName(actionName),
@@ -291,18 +283,21 @@ export default class Workflow {
     }
   }
 
-  /**
-   * Clear everything.
-   */
-  destroy() {
-    this._items = [];
-    this._name = '';
-    this._eventEmitter.removeAllListeners();
-    storage.clear();
+  _sanitizeQuery(raw?: string): string {
+    return typeof raw === 'string' ? raw.trim() : '';
   }
 
-  _sanitizeQuery(raw: string): string {
-    return raw.trim();
+  _convertToObjectIfPossible(str: string) {
+    let result = str;
+    try {
+      if (typeof str === 'string') {
+        result = JSON.parse(str);
+      }
+
+      return result;
+    } catch(e) {
+      this.log('Can not convert "', str, '" to object ');
+    }
   }
 
   /* istanbul ignore next */
@@ -318,21 +313,4 @@ export default class Workflow {
     }
   }
 
-  log(message, ...args) {
-    if (this.isDebug()) {
-      debug(message, ...args);
-    }
-  }
-
-  isDebug(): boolean {
-    return !!this._env['alfred_debug'];
-  }
-
-  getConfig(key: string): any{
-    const value = this._env[key];
-    if (value) {
-      this.log('Maybe you forget to set config for key=', key);
-    }
-    return value;
-  }
 }

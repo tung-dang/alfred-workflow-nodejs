@@ -17,7 +17,7 @@ export type AlfredItem = {
   title: string;
   subtitle?: string;
   type?: 'default' | 'file' | 'file:skipcheck';
-  arg?: string;
+  arg?: object | string;
   autocomplete?: string;
   quicklookurl?: string;
   icon: AlfredIconType | string;
@@ -27,6 +27,7 @@ export type AlfredItem = {
     cmd?: ModType;
   };
   valid?: boolean;
+  match?: string;
   hasSubItems?: boolean;
 };
 
@@ -38,4 +39,20 @@ export type AlfredResult = {
 
 export type FeedbackOptions = {
   rerun?: number;
+};
+
+export type SubActionArg = {
+  query: string;
+  previousTitleSelected: string;
+  previousArgSelected: any;
+};
+
+export type SubActionHandlerArg = (query: string, previousTitleSelected: string, previousArgSelected: any) => void;
+
+export interface IAction {
+  key: string;
+  name: string;
+  getDesc?: (arg) => string;
+  icon: string;
+  execute: (arg) => void;
 };

@@ -26,6 +26,11 @@ export default class MainApp {
     this.wf.onAction(commands.CLEAR_CACHE, () => storage.clear());
 
     this.wf.onAction(commands.OPEN_LINK, arg => {
+      // TODO: remove this check
+      if (typeof arg === 'string') {
+        arg = JSON.parse(arg);
+      }
+
       try {
         executors.forEach((executor: Executor) => {
           if (executor.actionName === arg.actionName) {

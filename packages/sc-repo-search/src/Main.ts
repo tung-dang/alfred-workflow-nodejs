@@ -3,7 +3,7 @@ import {
   storage,
   settings
 } from '@alfred-wf-node/core';
-import executors from './executors';
+import { projectActions, /*executeActionByKey*/ } from './actions/project-actions';
 
 const commands = {
   LOAD_PROJECTS: 'loadProjects',
@@ -12,7 +12,6 @@ const commands = {
 };
 
 import LoadProjects from './actions/LoadProjects';
-import LoadProjectActions from './actions/LoadProjectActions';
 import { Executor } from './types';
 
 const pkg = require('../package.json');
@@ -27,33 +26,28 @@ export default class MainApp {
     const loadProjects = new LoadProjects({
       wf: this.wf
     });
-    const loadProjectAction = new LoadProjectActions({
-      wf: this.wf
-    });
 
     // load projects list
     this.wf.onAction(commands.LOAD_PROJECTS, loadProjects.executeLoadProjects);
     // load project's actions
-    this.wf.onSubActionSelected(commands.LOAD_PROJECTS,loadProjectAction.executeLoadActionsOfProject);
+    this.wf.onSubActionSelected(commands.LOAD_PROJECTS,loadProjects.executeLoadActionsOfProject);
 
     // execute project action
-    this.wf.onAction(commands.EXECUTE_AN_ACTION, function(arg) {
-      // Handle project actions
-      Array.from(executors).forEach((executor: Executor) => {
-        executor.execute(arg);
-      });
-    });
-
-    // open config file
-    // actionHandler.onAction('config', function(query) {
-    //     OpenConfigFileAction.execute();
-    // });
+    this.wf.onAction(commands.EXECUTE_AN_ACTION, this._executeSelectedAction);
 
     this.wf.onAction(commands.CLEAR_CACHE, () => {
       storage && storage.clear();
       settings && settings.clear();
     });
   }
+
+  _executeSelectedAction = (arg) => {
+    // Handle project actions
+    this.wf.log('arg: ', arg);
+    Array.from(projectActions).forEach((executor: Executor) => {
+      executor.execute(arg);
+    });
+  };
 
   start() {
     this.wf.start();

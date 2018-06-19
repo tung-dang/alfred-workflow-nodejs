@@ -97,7 +97,7 @@ export default class LoadPackageActions {
             ? pkAction.getDesc(previousSelectedArg)
             : pkAction.name,
           hasSubItems: false,
-          arg: JSON.stringify(arg)
+          arg
         })
       );
     });
