@@ -1,19 +1,19 @@
-import { Item } from '@alfred-wf-node/core';
-import { CommandParams, Executor } from '../types';
+import { Item, IAction } from '@alfred-wf-node/core';
+import { CommandParams, ProjectActionArg } from '../types';
 
 const DEFAULT_ICON = 'code.png';
 
-export default class ProjectAction implements Executor {
+export default class ProjectAction implements IAction {
   shortcut: any;
   icon: any;
   key: string;
   name: string;
-  executor: (args: any) => void;
+  execute: (arg: any) => void;
 
   constructor(options) {
     this.key = options.key;
     this.name = options.name;
-    this.executor = options.execute ? options.execute.bind(this) : undefined;
+    this.execute = options.execute ? options.execute.bind(this) : undefined;
 
     this.shortcut = options.shortcut || '';
     this.icon = options.icon || DEFAULT_ICON;
@@ -24,23 +24,22 @@ export default class ProjectAction implements Executor {
     return true;
   }
 
-  build(data) {
+  build(argItem: CommandParams) {
+    const arg: ProjectActionArg = {
+      actionKey: this.key,
+      actionArg: argItem
+    };
+
     return new Item({
       uid: this.name,
       title: this.name,
-      subtitle: this.getSubTitle(data),
+      subtitle: this.getSubTitle(argItem),
       icon: 'icons/' + this.icon,
-
       // arg will be passed to hanlder of `commands.EXECUTE`
-      arg: JSON.stringify({
-        actionName: this.name,
-        actionKey: this.key,
-        path: data.path,
-        gitInfo: data.gitInfo
-      }),
+      arg,
 
-      valid: this.shouldDisplay(data)
-    })
+      valid: this.shouldDisplay(argItem)
+    });
   }
 
   /**
@@ -54,16 +53,5 @@ export default class ProjectAction implements Executor {
 
   filterKey() {
     return `${this.name}${this.shortcut ? ' ' + this.shortcut : ''}`;
-  }
-
-  execute(arg: CommandParams) {
-    arg = typeof arg === 'string' ? JSON.parse(arg) : arg;
-
-    if (this.executor &&
-      (this.name !== undefined && this.name === arg.actionName) ||
-      (this.key !== undefined && this.key === arg.actionKey)
-    ) {
-      this.executor(arg);
-    }
   }
 }

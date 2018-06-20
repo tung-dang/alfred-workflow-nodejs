@@ -1,17 +1,17 @@
-import { Workflow } from "@alfred-wf-node/core";
-import ScanAkFolder from "./ScanAkFolder";
-import LoadPackageActions from "./actions/LoadPackageActions";
-import { executeActionByKey, openInVSCode } from "./actions/packageActions";
-import { PackageActionArg, ExecuteActionArg } from "./types";
+import { Workflow } from '@alfred-wf-node/core';
+import ScanAkFolder from './ScanAkFolder';
+import LoadPackageActions from './actions/LoadPackageActions';
+import { executeActionByKey, openInVSCode } from './actions/packageActions';
+import { PackageActionArg, ExecuteActionArg } from './types';
 
 const commands = {
-  LOAD_PKG: "load_all_packages",
-  LOAD_ACTIONS_OF_PKG: "load_all_packages",
-  SCAN_AK_FOLDER: "scan_ak_folder",
-  EXECUTE_AN_ACTION: "execute_action",
-  OPEN_ROOT_FOLDER: "open_root_sc_folder"
+  LOAD_PKG: 'load_all_packages',
+  LOAD_ACTIONS_OF_PKG: 'load_all_packages',
+  SCAN_AK_FOLDER: 'scan_ak_folder',
+  EXECUTE_AN_ACTION: 'execute_action',
+  OPEN_ROOT_FOLDER: 'open_root_sc_folder'
 };
-const pkg = require("../package.json");
+const pkg = require('../package.json');
 
 export default class MainApp {
   wf: Workflow;
@@ -30,7 +30,10 @@ export default class MainApp {
     );
     this.wf.onAction(commands.EXECUTE_AN_ACTION, this._executeAnAction);
     this.wf.onAction(commands.SCAN_AK_FOLDER, this._executeScanAkFolder);
-    this.wf.onAction(commands.OPEN_ROOT_FOLDER, this._executeOpenRootSourceFolder);
+    this.wf.onAction(
+      commands.OPEN_ROOT_FOLDER,
+      this._executeOpenRootSourceFolder
+    );
   }
 
   // no argument in EXECUTE_AN_ACTION
@@ -39,20 +42,24 @@ export default class MainApp {
       atlasKitPath: this._getAkFolderPath()
     });
     mainScan.start().then(() => {
-      this.wf.info("Finish scanning Ak packages");
+      this.wf.info('Finish scanning Ak packages');
     });
   };
 
-  _executeAnAction = (query: ExecuteActionArg | string) => {
-    // TODO: remove this check
-    this.wf.log('_executeAnAction:query', query);
-    this.wf.log('_executeAnAction:query', typeof query);
+  _executeAnAction = (query: string) => {
+    // this.wf.log('_executeAnAction:query', query);
+    // this.wf.log('_executeAnAction:query', typeof query);
 
+    let arg: ExecuteActionArg | null = null;
     if (typeof query === 'string') {
-      query = JSON.parse(query) as ExecuteActionArg;
+      arg = JSON.parse(query) as ExecuteActionArg;
     }
 
-    executeActionByKey(query.actionKey, query.actionArg as PackageActionArg);
+    if (arg) {
+      executeActionByKey(arg.actionKey, arg.actionArg as PackageActionArg);
+    } else {
+      this.wf.error('Expect query is a string!');
+    }
   };
 
   _executeOpenRootSourceFolder = () => {
@@ -62,7 +69,9 @@ export default class MainApp {
   _getAkFolderPath(): string {
     const path = this.wf.getConfig('akFolder');
     if (!path) {
-      this.wf.error('Can not find "akFolder" in Workflow Configuration. Please follow this guide to add the configuration https://www.alfredapp.com/help/workflows/advanced/variables/#Setting%20Workflow%20Environment%20Variables');
+      this.wf.error(
+        'Can not find "akFolder" in Workflow Configuration. Please follow this guide to add the configuration https://www.alfredapp.com/help/workflows/advanced/variables/#Setting%20Workflow%20Environment%20Variables'
+      );
     }
     return path;
   }

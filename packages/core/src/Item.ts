@@ -1,4 +1,4 @@
-import { ICON_DEFAULT, SUB_ACTION_DIVIDER_SYMBOL } from "./constants";
+import { ICON_DEFAULT, SUB_ACTION_DIVIDER_SYMBOL } from './constants';
 import { AlfredItem } from './types';
 
 /**
@@ -29,13 +29,15 @@ export default class Item {
       quicklookurl: options.quicklookurl,
       text: options.text,
       mods: options.mods,
-      valid: typeof options.valid === "undefined" ? true : options.valid,
-      hasSubItems: !!options.hasSubItems // default: false
-      match: options.match || options.title + ' | ' + options.subtitle;
+      hasSubItems: !!options.hasSubItems, // default: false
+      match: options.match || options.title + ' | ' + options.subtitle
     };
 
     if (tempData.hasSubItems) {
       tempData.valid = false;
+    } else {
+      tempData.valid =
+        typeof options.valid === 'undefined' ? true : options.valid;
     }
 
     if (tempData.hasSubItems) {
@@ -68,14 +70,14 @@ export default class Item {
    * Get value of an item by key
    * @param key
    */
-  get(key) {
+  get(key: string) {
     return this._data[key];
   }
 
   /**
    * Get internal data object
    */
-  getAlfredItemData() {
+  getAlfredItemData(): AlfredItem {
     return this._data;
   }
 

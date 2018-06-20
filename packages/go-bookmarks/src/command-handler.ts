@@ -62,7 +62,10 @@ export default class CommandHandler {
       return;
     }
 
-    const { address, title } = getAddressAndTitle(line, this.wf.getConfig('separator'));
+    const { address, title } = getAddressAndTitle(
+      line,
+      this.wf.getConfig('separator')
+    );
 
     const subtitle = this._getSubTitleFromAddress(address);
     const searchStr = this._getSearchStr(line);

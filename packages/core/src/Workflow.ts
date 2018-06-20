@@ -1,9 +1,21 @@
 import * as events from 'events';
-import { ICON_LOADING, ICON_ERROR, ICON_INFO, ICON_WARNING, SUB_ACTION_DIVIDER_SYMBOL, WF_DATA_KEY } from "./constants";
+import {
+  ICON_LOADING,
+  ICON_ERROR,
+  ICON_INFO,
+  ICON_WARNING,
+  SUB_ACTION_DIVIDER_SYMBOL,
+  WF_DATA_KEY
+} from './constants';
 import storage from './storage';
 import Item from './Item';
 import { debug } from './utilities';
-import { SubActionHandlerArg, AlfredItem, AlfredResult, FeedbackOptions } from './types';
+import {
+  SubActionHandlerArg,
+  AlfredItem,
+  AlfredResult,
+  FeedbackOptions
+} from './types';
 
 const ACTION_NAMESPACE_EVENT = 'action';
 const SUB_ACTION_NAMESPACE_EVENT = 'subActionSelected';
@@ -14,7 +26,7 @@ export default class Workflow {
   _name: string;
   _eventEmitter: events.EventEmitter;
   _env: any;
-  _wfData: {[title: string]: any};
+  _wfData: { [title: string]: any };
 
   constructor() {
     this._items = [];
@@ -99,20 +111,23 @@ export default class Workflow {
       }
 
       // for optimizing performance, we just shows first 20 items
-      const first20Items: AlfredItem[] = this._items.splice(0, MAXIMUM_ITEMS_TO_SHOW - 1);
+      const first20Items: AlfredItem[] = this._items.splice(
+        0,
+        MAXIMUM_ITEMS_TO_SHOW - 1
+      );
       if (this._items.length > MAXIMUM_ITEMS_TO_SHOW) {
         const hasMoreItem = new Item({
-          title: "Has more...",
-          subtitle: "Please type something to filter.",
+          title: 'Has more...',
+          subtitle: 'Please type something to filter.',
           icon: ICON_INFO
         });
-        first20Items.push(hasMoreItem.getAlfredItemData())
+        first20Items.push(hasMoreItem.getAlfredItemData());
       }
 
       strOutput = JSON.stringify(
         {
           items: first20Items,
-          rerun: options && options.rerun ? options.rerun : undefined,
+          rerun: options && options.rerun ? options.rerun : undefined
           // variables:
         } as AlfredResult,
         null,
@@ -236,7 +251,7 @@ export default class Workflow {
     return !!this._env['alfred_debug'];
   }
 
-  getConfig(key: string): any{
+  getConfig(key: string): any {
     const value = this._env[key];
     if (!value) {
       this.log('Maybe you forget to set config for key=', key);
@@ -258,7 +273,8 @@ export default class Workflow {
    */
   _trigger(actionName: string, query: string) {
     // handle first level action
-    const isFirstLevelQuery = !query || query.indexOf(SUB_ACTION_DIVIDER_SYMBOL) === -1;
+    const isFirstLevelQuery =
+      !query || query.indexOf(SUB_ACTION_DIVIDER_SYMBOL) === -1;
     if (isFirstLevelQuery) {
       return this._eventEmitter.emit(
         Workflow._getActionName(actionName),
@@ -270,9 +286,13 @@ export default class Workflow {
     const arrays = query.split(SUB_ACTION_DIVIDER_SYMBOL);
     if (arrays.length >= 2) {
       query = this._sanitizeQuery(arrays[arrays.length - 1]);
-      const previousTitleSelected = this._sanitizeQuery(arrays[arrays.length - 2]);
+      const previousTitleSelected = this._sanitizeQuery(
+        arrays[arrays.length - 2]
+      );
       let previousArgSelected = this._getItemArg(previousTitleSelected);
-      previousArgSelected = this._convertToObjectIfPossible(previousArgSelected);
+      previousArgSelected = this._convertToObjectIfPossible(
+        previousArgSelected
+      );
 
       this._eventEmitter.emit(
         Workflow._getSubActionName(actionName),
@@ -295,7 +315,7 @@ export default class Workflow {
       }
 
       return result;
-    } catch(e) {
+    } catch (e) {
       this.log('Can not convert "', str, '" to object ');
     }
   }
@@ -312,5 +332,4 @@ export default class Workflow {
       this.log('Can not generate JSON string', this._items);
     }
   }
-
 }

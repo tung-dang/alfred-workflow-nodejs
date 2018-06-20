@@ -1,9 +1,12 @@
-import { Item as AfItem, utils as nodeJSUtils } from '@alfred-wf-node/core';
+import {
+  Item as AfItem,
+  IAction,
+  utils as nodeJSUtils
+} from '@alfred-wf-node/core';
 import { packageActions } from './packageActions';
 import {
   GroupPackage,
   PackageActionArg,
-  PackageAction,
   ExecuteActionArg,
   Package
 } from '../types';
@@ -17,8 +20,10 @@ export default class LoadPackageActions {
     this.akGroups = [];
     try {
       this.akGroups = require('../../atlaskit_pkgs.json');
-    } catch(e) {
-      this.wf.error("Can not read atlaskit_pkgs.json file. Please run ak_scan keyword first.");
+    } catch (e) {
+      this.wf.error(
+        'Can not read atlaskit_pkgs.json file. Please run ak_scan keyword first.'
+      );
     }
   }
 
@@ -39,10 +44,7 @@ export default class LoadPackageActions {
   _executeLoadAllPackages = (query: string) => {
     const items: AfItem[] = [];
     this._eachPackage((pkg: Package) => {
-      if (
-        pkg.name.includes(query) ||
-        pkg.groupName.includes(query)
-      ) {
+      if (pkg.name.includes(query) || pkg.groupName.includes(query)) {
         items.push(
           new AfItem({
             uid: pkg.name,
@@ -66,15 +68,26 @@ export default class LoadPackageActions {
     previousSelectedArg: PackageActionArg
   ) => {
     this.wf.log('_executeLoadAllActionsOfPackage:query: ', query);
-    this.wf.log('_executeLoadAllActionsOfPackage:previousSelectedTitle: ', previousSelectedTitle);
-    this.wf.log('_executeLoadAllActionsOfPackage:previousSelectedArg: ', previousSelectedArg);
+    this.wf.log(
+      '_executeLoadAllActionsOfPackage:previousSelectedTitle: ',
+      previousSelectedTitle
+    );
+    this.wf.log(
+      '_executeLoadAllActionsOfPackage:previousSelectedArg: ',
+      previousSelectedArg
+    );
 
-    const filteredActions: PackageAction[] = nodeJSUtils.filter(query, packageActions, (
-      pkgAction: PackageAction
-    ) => {
-      return pkgAction.name.toLowerCase() + ' '
-      + (pkgAction.getDesc ? pkgAction.getDesc(previousSelectedArg) : '')
-    });
+    const filteredActions: IAction[] = nodeJSUtils.filter(
+      query,
+      packageActions,
+      (pkgAction: IAction) => {
+        return (
+          pkgAction.name.toLowerCase() +
+          ' ' +
+          (pkgAction.getDesc ? pkgAction.getDesc(previousSelectedArg) : '')
+        );
+      }
+    );
 
     if (filteredActions.length === 0) {
       this.wf.info('Can not find any actions for this package!');
@@ -83,7 +96,7 @@ export default class LoadPackageActions {
 
     // build Alfred items
     const items: AfItem[] = [];
-    filteredActions.forEach((pkAction: PackageAction) => {
+    filteredActions.forEach((pkAction: IAction) => {
       const arg: ExecuteActionArg = {
         actionKey: pkAction.key,
         actionArg: previousSelectedArg
@@ -97,6 +110,7 @@ export default class LoadPackageActions {
             ? pkAction.getDesc(previousSelectedArg)
             : pkAction.name,
           hasSubItems: false,
+          icon: pkAction.icon ? pkAction.icon : undefined,
           arg
         })
       );

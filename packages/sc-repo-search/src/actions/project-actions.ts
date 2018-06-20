@@ -1,27 +1,41 @@
-import { utils, /*OpenInFinderAction*/ /*IAction*/ } from '@alfred-wf-node/core';
+import {
+  utils,
+  OpenInFinderAction,
+  OpenBrowserLink,
+  OpenInVSCode
+} from '@alfred-wf-node/core';
 import { exec } from 'child_process';
 
 import ProjectAction from './ProjectAction';
-import ProjectGitAction from './project-git-action';
+// import ProjectGitAction from './project-git-action';
+import { CommandParams } from '../types';
 
-// export const openInFinderAction = new OpenInFinderAction({
-//   propertyName: "path"
-// });
+export const openInFinderAction = new OpenInFinderAction({
+  propertyName: 'path'
+});
 
-export const openInFinderAction = new ProjectAction({
-  key: 'open_in_finder',
-  name: 'Open in Finder',
-  icon: 'finder.png',
-  executor: data => {
-    const command = `open ${data.path}`;
-    return exec(command);
-  }
+export const openRepoLink = new OpenBrowserLink({
+  key: 'open_repo_link',
+  name: 'Open Repo Link',
+  propertyName: 'gitInfo.link'
+});
+
+export const openPullRequests = new OpenBrowserLink({
+  key: 'open_pull_request',
+  name: 'Open Pull Requests',
+  propertyName: 'gitInfo.prsLink'
+});
+
+export const createPullRequest = new OpenBrowserLink({
+  key: 'create_pull_request',
+  name: 'Create Pull Request',
+  propertyName: 'gitInfo.createPrLink'
 });
 
 export const openInItermAction = new ProjectAction({
   name: 'Open in Iterm',
   icon: 'iterm.png',
-  executor: data => {
+  execute: (data: CommandParams) => {
     const OPEN_IN_ITERM_AS =
       'tell application "iTerm"\n' +
       'activate\n' +
@@ -40,7 +54,7 @@ export const openInItermAction = new ProjectAction({
 export const openInNewItermSplitPanelAction = new ProjectAction({
   name: 'Open in Iterm in new split panel',
   icon: 'iterm.png',
-  executor: data => {
+  execute: (data: CommandParams) => {
     const OPEN_IN_ITERM_NEW_SPLIT_PANEL_AS =
       'tell application "iTerm"\n' +
       'activate\n' +
@@ -62,7 +76,7 @@ export const openInNewItermSplitPanelAction = new ProjectAction({
 export const openInItermCurrentSessionAction = new ProjectAction({
   name: 'Open in Iterm at current tab',
   icon: 'iterm.png',
-  executor: data => {
+  execute: (data: CommandParams) => {
     const OPEN_IN_ITERM_CURRENT_SESSION_AS =
       'tell application "iTerm"\n' +
       'activate\n' +
@@ -82,7 +96,7 @@ export const openInSublimeAction = new ProjectAction({
   key: 'open_in_sublime',
   name: 'Open in Sublime',
   icon: 'sublime.png',
-  executor: arg => {
+  execute: (arg: CommandParams) => {
     const command = `/usr/local/bin/subl --stay ${arg.path}`;
     return exec(command);
   }
@@ -92,7 +106,7 @@ export const openInIDEA = new ProjectAction({
   key: 'open_in_idea',
   name: 'Open in IntelliJ IDEA',
   icon: 'idea.png',
-  executor: data => {
+  execute: (data: CommandParams) => {
     const command = `/usr/local/bin/idea ${data.path}`;
     return exec(command);
   }
@@ -101,25 +115,17 @@ export const openInIDEA = new ProjectAction({
 export const openInWebStorm = new ProjectAction({
   name: 'Open in WebStorm',
   icon: 'wstorm.icns',
-  executor: data => exec(`./bin/wstorm ${data.path}`)
+  execute: (data: CommandParams) => exec(`./bin/wstorm ${data.path}`)
 });
 
-export const openInVSCode = new ProjectAction({
-  key: 'open_in_vscode',
-  name: 'Open in Visual Studio Code',
-  icon: 'vscode.jpg',
-  executor: data => {
-    const command = `/usr/local/bin/code ${data.path}`;
-    return exec(command);
-  }
-});
+export const openInVSCode = new OpenInVSCode({});
 
-export const openInSourceTree = new ProjectGitAction({
+export const openInSourceTree = new ProjectAction({
   key: 'open_in_source_tree',
   name: 'Open in Source Tree',
   shortcut: 'st',
   icon: 'sourcetree.png',
-  executor: data => {
+  execute: (data: CommandParams) => {
     const command = `open -a SourceTree ${data.path}`;
     return exec(command);
   },
@@ -128,60 +134,30 @@ export const openInSourceTree = new ProjectGitAction({
   }
 });
 
-export const openRepoLink = new ProjectGitAction({
-  key: 'open_repo_link',
-  name: 'Open Repo Link',
-  shortcut: 'repo',
-  executor: data => {
-    const command = `open ${data.gitInfo.link}`;
-    return exec(command);
-  },
-  getSubTitle: data => data.gitInfo.link
-});
-
-export const createPullRequest = new ProjectGitAction({
-  name: 'Create Pull Request',
-  shortcut: 'cpr',
-  executor: data => {
-    const info = data.gitInfo;
-    exec(`open ${info.createPrLink}`);
-  }
-});
-
-createPullRequest.getSubTitle = data => data.gitInfo.createPrLink;
-
-export const openPullRequests = new ProjectGitAction({
-  name: 'Open Pull Requests',
-  shortcut: 'prs',
-  executor: data => {
-    const info = data.gitInfo;
-    exec(`open ${info.prsLink}`);
-  }
-});
-
-openPullRequests.getSubTitle = data => data.gitInfo.prsLink;
-
 // end of git actions
 export const projectActions = [
   openInFinderAction,
+  openPullRequests,
+  openRepoLink,
+  createPullRequest,
   openInVSCode,
+
   openInItermAction,
   openInItermCurrentSessionAction,
   openInNewItermSplitPanelAction,
   openInSublimeAction,
   openInIDEA,
   openInWebStorm,
-  openInSourceTree,
-  openRepoLink,
-  createPullRequest,
-  openPullRequests
+  openInSourceTree
 ];
 
-export const executeActionByKey = (key: string, arg: any) => {
-  projectActions.forEach((action: any) => {
-    if (action.key === key) {
-      action.execute(arg);
+export const executeActionByKey = (
+  actionKey: string,
+  actionArg: CommandParams
+) => {
+  projectActions.forEach((action: ProjectAction) => {
+    if (action.key === actionKey) {
+      action.execute(actionArg);
     }
   });
 };
-

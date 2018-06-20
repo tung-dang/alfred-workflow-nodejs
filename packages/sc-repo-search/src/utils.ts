@@ -52,7 +52,7 @@ export function getProjectInfo(path: string, stashServerURL: string) {
   const keyCache = 'projectsInfo';
 
   // get from cache
-  const projects: { [path: string]: ProjectInfo} = storage.get(keyCache) || {};
+  const projects: { [path: string]: ProjectInfo } = storage.get(keyCache) || {};
   if (projects[path]) {
     return projects[path];
   }

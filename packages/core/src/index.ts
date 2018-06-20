@@ -1,6 +1,8 @@
 export { default as Item } from './Item';
 export { default as Workflow } from './Workflow';
-export * from './actions';
+export { default as OpenInFinderAction } from './actions/OpenInFinderAction';
+export { default as OpenBrowserLink } from './actions/OpenBrowserLink';
+export { default as OpenInVSCode } from './actions/OpenInVSCode';
 export * from './types';
 import * as utilities from './utilities';
 export const utils = utilities;

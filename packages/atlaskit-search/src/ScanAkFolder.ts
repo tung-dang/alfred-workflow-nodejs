@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import { getDirs, isFileExists } from './utils/fs';
-import { Folder, GroupPackage, Package } from "./types";
+import { Folder, GroupPackage, Package } from './types';
 
 export default class MainScan {
   atlasKitPath: string;

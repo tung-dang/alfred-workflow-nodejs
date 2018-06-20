@@ -54,7 +54,12 @@ export default class MainApp {
     this.wf.showLoading();
     ghrepo.contents(YARN_API_PATH, BRANCH, (error, res) => {
       if (error) {
-        this.wf.error('Can not fetch file list from: ', YARN_API_PATH, ' - Error: ', error);
+        this.wf.error(
+          'Can not fetch file list from: ',
+          YARN_API_PATH,
+          ' - Error: ',
+          error
+        );
         return;
       }
 
@@ -75,12 +80,12 @@ export default class MainApp {
       cliName = cliName.replace('.md', '');
       const url = item.html_url;
       const urlWebsite = YARN_WEBSITE_CLI + cliName;
-      const openLinkArg: OPEN_LINK_ARG =  {
+      const openLinkArg: OPEN_LINK_ARG = {
         // Default: open Yarn website link
         actionName: 'open_link',
         link: urlWebsite
       };
-      const openLinkWithCmdKeyArg: OPEN_LINK_ARG =  {
+      const openLinkWithCmdKeyArg: OPEN_LINK_ARG = {
         // Default: open Yarn website link
         actionName: 'open_link',
         link: url

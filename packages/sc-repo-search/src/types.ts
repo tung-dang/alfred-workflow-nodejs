@@ -1,9 +1,3 @@
-export interface Executor {
-  key: string;
-  name: string;
-  execute: (args: any) => void;
-}
-
 export type FolderInfo = {
   name: string;
   path: string;
@@ -30,10 +24,14 @@ export type GitInfo = {
 };
 
 export type CommandParams = {
+  // key: string;
   name: string;
   path: string;
-  actionName?: string;
-  actionKey?: string;
   gitInfo?: GitInfo;
   projectType: ProjectType;
+};
+
+export type ProjectActionArg = {
+  actionKey: string;
+  actionArg: CommandParams;
 };

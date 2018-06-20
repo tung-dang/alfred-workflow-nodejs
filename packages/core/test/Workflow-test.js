@@ -64,7 +64,7 @@ describe('#WorkflowTest', function() {
               arg: '',
               title: 'title',
               subtitle: '',
-              quicklookurl: 'title',
+              quicklookurl: 'title'
             }
           ]
         })
@@ -89,14 +89,14 @@ describe('#WorkflowTest', function() {
               arg: '',
               title: 'title1',
               subtitle: '',
-              quicklookurl: 'title1',
+              quicklookurl: 'title1'
             },
 
             {
               arg: '',
               title: 'title2',
               subtitle: '',
-              quicklookurl: 'title2',
+              quicklookurl: 'title2'
             }
           ]
         })
@@ -134,7 +134,7 @@ describe('#WorkflowTest', function() {
                 path:
                   '/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/AlertStopIcon.icns'
               },
-              quicklookurl: 'wf error',
+              quicklookurl: 'wf error'
             }
           ]
         })

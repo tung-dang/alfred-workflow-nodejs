@@ -21,11 +21,3 @@ export type ExecuteActionArg = {
   actionKey: string;
   actionArg?: PackageActionArg | string;
 };
-
-export type PackageAction = {
-  key: string;
-  name: string;
-  getDesc?: (arg: PackageActionArg) => string;
-  icon: string;
-  execute: (arg: PackageActionArg | string) => void;
-};

@@ -13,4 +13,4 @@ export interface FileItem {
 export type OPEN_LINK_ARG = {
   actionName: string;
   link: string;
-}
+};

@@ -4,13 +4,11 @@ import {
   utils as nodeJSUtils,
   Workflow
 } from '@alfred-wf-node/core';
-import {
-  ICON_INFO
-} from '@alfred-wf-node/core/dist/constants';
 
 import * as utils from '../utils';
-import { CommandParams, FolderInfo } from '../types';
-import { projectActions } from "./project-actions";
+import { CommandParams, FolderInfo, ProjectActionArg } from '../types';
+import { projectActions } from './project-actions';
+import ProjectAction from './ProjectAction';
 
 export default class LoadProjects {
   wf: Workflow;
@@ -117,12 +115,19 @@ export default class LoadProjects {
     this.wf.feedback();
   };
 
-  executeLoadActionsOfProject = (query: string,
-                                 previousSelectedTitle: string,
-                                 previousSelectedArg: CommandParams) => {
-
-    this.wf.log('executeLoadActionsOfProject:previousSelectedTitle: ', previousSelectedTitle);
-    this.wf.log('executeLoadActionsOfProject:previousSelectedArg: ', previousSelectedArg);
+  executeLoadActionsOfProject = (
+    query: string,
+    previousSelectedTitle: string,
+    previousSelectedArg: CommandParams
+  ) => {
+    this.wf.log(
+      'executeLoadActionsOfProject:previousSelectedTitle: ',
+      previousSelectedTitle
+    );
+    this.wf.log(
+      'executeLoadActionsOfProject:previousSelectedArg: ',
+      previousSelectedArg
+    );
 
     const filteredActions = nodeJSUtils.filter(query, projectActions, function(
       projectAction
@@ -141,11 +146,29 @@ export default class LoadProjects {
 
     const items: Item[] = [];
 
-    filteredActions.forEach(projectAction => {
-      const item: Item = projectAction.build ? projectAction.build(previousSelectedArg) : null;
-
-      if (item) {
+    filteredActions.forEach((projectAction: ProjectAction) => {
+      if (projectAction.build) {
+        const item: Item = projectAction.build
+          ? projectAction.build(previousSelectedArg)
+          : null;
         items.push(item);
+      } else {
+        const arg: ProjectActionArg = {
+          actionKey: projectAction.key,
+          actionArg: previousSelectedArg
+        };
+
+        items.push(
+          new Item({
+            uid: projectAction.key,
+            title: projectAction.name,
+            subtitle: projectAction.getSubTitle
+              ? projectAction.getSubTitle(previousSelectedArg)
+              : projectAction.name,
+            icon: projectAction.icon,
+            arg
+          })
+        );
       }
     });
 

@@ -47,12 +47,17 @@ export type SubActionArg = {
   previousArgSelected: any;
 };
 
-export type SubActionHandlerArg = (query: string, previousTitleSelected: string, previousArgSelected: any) => void;
+export type SubActionHandlerArg = (
+  query: string,
+  previousTitleSelected: string,
+  previousArgSelected: any
+) => void;
 
 export interface IAction {
   key: string;
   name: string;
-  getDesc?: (arg) => string;
+  getDesc?: (arg: any) => string;
   icon: string;
-  execute: (arg) => void;
-};
+  execute: (arg?: any) => void;
+  isValid: (arg: any) => boolean;
+}
