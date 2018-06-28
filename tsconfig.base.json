@@ -18,13 +18,16 @@
     "pretty": false,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "types": ["mocha", "node"]
   },
   "include": [
     "**/*.ts",
     "**/*.json"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "test",
+    "*-test.ts"
   ]
 }

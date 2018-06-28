@@ -2,7 +2,8 @@ import {
   OpenInFinderAction,
   OpenBrowserLink,
   IAction,
-  OpenInVSCode
+  OpenInVSCode,
+  OpenInSublimeText
 } from '@alfred-wf-node/core';
 import { PackageActionArg } from '../types';
 
@@ -16,9 +17,15 @@ export const openDocLink = new OpenBrowserLink({
   name: 'Open document link'
 });
 
-export const openInVSCode = new OpenInVSCode({});
+export const openInVSCode = new OpenInVSCode({
+  propertyName: 'localFullPage'
+});
 
-export const packageActions = [openDocLink, openInVSCode, openInFinderAction];
+export const openInSublimeAction = new OpenInSublimeText({
+  propertyName: 'localFullPage'
+});
+
+export const packageActions = [openDocLink, openInVSCode, openInFinderAction, openInSublimeAction];
 
 export const executeActionByKey = (key: string, arg: PackageActionArg) => {
   packageActions.forEach((action: IAction) => {

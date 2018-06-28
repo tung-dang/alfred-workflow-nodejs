@@ -1,4 +1,5 @@
-import { IAction } from '../types';
+import Item from '../Item';
+import { IAction, AlfredItemType } from '../types';
 
 export default class AbstractAction implements IAction {
   icon: string;
@@ -11,7 +12,7 @@ export default class AbstractAction implements IAction {
   }
 
   getDesc(arg: any): string {
-    return this._getPropValueByPropName(arg);
+    return this._getPropValueByPropName(arg) || this.name;
   }
 
   isValid(arg: any) {
@@ -19,6 +20,10 @@ export default class AbstractAction implements IAction {
   }
 
   _getPropValueByPropName(obj: any) {
+    if (!this.propertyName) {
+      return '';
+    }
+
     const arr = this.propertyName.split('.');
 
     let prop = obj;
@@ -34,5 +39,20 @@ export default class AbstractAction implements IAction {
     throw new Error(
       'Should not call execute function of AbstractAction!' + arg
     );
+  }
+
+  toAlfredItem(arg: any, extraOptions: Partial<AlfredItemType> = {}) {
+    return new Item({
+      uid: this.key,
+      title: this.name,
+      subtitle: this.getDesc(arg),
+      hasSubItems: false,
+      icon: this.icon,
+      arg: {
+        actionKey: this.key,
+        actionArg: arg
+      },
+      ...extraOptions
+    })
   }
 }

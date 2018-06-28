@@ -1,21 +1,21 @@
-const { assert } = require('chai');
-const sinon = require('sinon');
-const proxyquire = require('proxyquire');
+import { assert } from 'chai';
+import * as sinon from 'sinon';
+import * as proxyquire from "proxyquire";
 
-const { Item, storage } = require('../src/main');
-const { SUB_ACTION_DIVIDER_SYMBOL } = require('../src/constants');
+import Item from '../src/Item';
+import storage  from '../src/storage';
+import { SUB_ACTION_DIVIDER_SYMBOL } from '../src/constants';
 
-const convertJSObjectToString = obj => JSON.stringify(obj, null, '\t');
+const convertJSObjectToString = obj => JSON.stringify(obj, null, '  ');
 
-describe('#WorkflowTest', function() {
+describe('Test Workflow', function() {
   const sandbox = sinon.sandbox.create();
 
   let workflow;
   let Workflow;
 
   beforeEach(() => {
-    Workflow = proxyquire.noCallThru().load('../src/Workflow', {});
-
+    Workflow = proxyquire.noCallThru().load('../src/Workflow.ts', {}).default;
     workflow = new Workflow();
   });
 
@@ -30,24 +30,11 @@ describe('#WorkflowTest', function() {
     assert.equal(workflow.getName('test name'), 'test name');
   });
 
-  it('#reset', () => {
-    const item = new Item({
-      title: 'title'
-    });
-    workflow.addItem(item);
-
-    workflow.reset();
-
-    assert.deepEqual(workflow._items, []);
-    assert.deepEqual(workflow._name, '');
-  });
-
   describe('Generate feedback', () => {
-    it('With empty item list', () => {
-      assert.strictEqual(
-        workflow.feedback(),
-        convertJSObjectToString({ items: [] })
-      );
+    it('With empty item list, should show error', () => {
+      sandbox.spy(workflow, "error");
+      workflow.feedback();
+      assert.equal(workflow.error.callCount, 1);
     });
 
     it('#addItem: Add an item', function() {
@@ -61,10 +48,16 @@ describe('#WorkflowTest', function() {
         convertJSObjectToString({
           items: [
             {
-              arg: '',
+              uid: "title",
               title: 'title',
               subtitle: '',
-              quicklookurl: 'title'
+              type: 'default',
+              icon: {
+                "path": "ICON_DEFAULT"
+              },
+              hasSubItems: false,
+              match: "title | undefined",
+              valid: true,
             }
           ]
         })
@@ -86,17 +79,29 @@ describe('#WorkflowTest', function() {
         convertJSObjectToString({
           items: [
             {
-              arg: '',
+              uid: "title1",
               title: 'title1',
               subtitle: '',
-              quicklookurl: 'title1'
+              type: "default",
+              icon: {
+                "path": "ICON_DEFAULT"
+              },
+              hasSubItems: false,
+              match: "title1 | undefined",
+              valid: true
             },
 
             {
-              arg: '',
+              uid: "title2",
               title: 'title2',
               subtitle: '',
-              quicklookurl: 'title2'
+              type: "default",
+              icon: {
+                "path": "ICON_DEFAULT"
+              },
+              hasSubItems: false,
+              match: "title2 | undefined",
+              valid: true
             }
           ]
         })
@@ -112,7 +117,7 @@ describe('#WorkflowTest', function() {
 
       assert.strictEqual(
         workflow.feedback(),
-        convertJSObjectToString({ items: [] })
+        undefined
       );
     });
 
@@ -127,66 +132,16 @@ describe('#WorkflowTest', function() {
         convertJSObjectToString({
           items: [
             {
-              arg: '',
+              uid: 'wf error',
               title: 'wf error',
               subtitle: '',
+              type: "default",
               icon: {
-                path:
-                  '/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/AlertStopIcon.icns'
+                path: 'ICON_ERROR'
               },
-              quicklookurl: 'wf error'
-            }
-          ]
-        })
-      );
-    });
-
-    it('Should clear all items when generating warning feedback', function() {
-      const item = new Item({
-        title: 'title'
-      });
-      workflow.addItem(item);
-
-      assert.strictEqual(
-        workflow.warning('wf warning'),
-        convertJSObjectToString({
-          items: [
-            {
-              arg: '',
-              title: 'wf warning',
-              subtitle: '',
-              icon: {
-                path:
-                  '/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/AlertCautionIcon.icns'
-              },
-              quicklookurl: 'wf warning',
-              hasSubItems: false
-            }
-          ]
-        })
-      );
-    });
-
-    it('Should clear all items when generating info feedback', function() {
-      const item = new Item({
-        title: 'title'
-      });
-      workflow.addItem(item);
-
-      assert.strictEqual(
-        workflow.warning('wf info'),
-        convertJSObjectToString({
-          items: [
-            {
-              arg: '',
-              title: 'wf info',
-              subtitle: '',
-              icon: {
-                path:
-                  '/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/AlertCautionIcon.icns'
-              },
-              quicklookurl: 'wf info',
-              hasSubItems: false
+              hasSubItems: false,
+              match: "wf error | ",
+              valid: true
             }
           ]
         })

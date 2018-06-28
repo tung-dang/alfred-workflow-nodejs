@@ -1,7 +1,6 @@
-import { Workflow } from '@alfred-wf-node/core';
-import ScanAkFolder from './ScanAkFolder';
+import { Workflow, storage } from '@alfred-wf-node/core';
 import LoadPackageActions from './actions/LoadPackageActions';
-import { executeActionByKey, openInVSCode } from './actions/packageActions';
+import { executeActionByKey } from './actions/packageActions';
 import { PackageActionArg, ExecuteActionArg } from './types';
 
 const commands = {
@@ -9,7 +8,8 @@ const commands = {
   LOAD_ACTIONS_OF_PKG: 'load_all_packages',
   SCAN_AK_FOLDER: 'scan_ak_folder',
   EXECUTE_AN_ACTION: 'execute_action',
-  OPEN_ROOT_FOLDER: 'open_root_sc_folder'
+  OPEN_ROOT_FOLDER: 'open_root_sc_folder',
+  CLEAR_CACHE: 'clear_cache'
 };
 const pkg = require('../package.json');
 
@@ -29,21 +29,16 @@ export default class MainApp {
       loadPkgActon._executeLoadAllActionsOfPackage
     );
     this.wf.onAction(commands.EXECUTE_AN_ACTION, this._executeAnAction);
-    this.wf.onAction(commands.SCAN_AK_FOLDER, this._executeScanAkFolder);
+    this.wf.onAction(commands.SCAN_AK_FOLDER, loadPkgActon._scanAkFolder);
+    this.wf.onAction(commands.CLEAR_CACHE, this._clearCache);
     this.wf.onAction(
       commands.OPEN_ROOT_FOLDER,
-      this._executeOpenRootSourceFolder
+      loadPkgActon._executeOpenRootSourceFolder
     );
   }
 
-  // no argument in EXECUTE_AN_ACTION
-  _executeScanAkFolder = () => {
-    const mainScan = new ScanAkFolder({
-      atlasKitPath: this._getAkFolderPath()
-    });
-    mainScan.start().then(() => {
-      this.wf.info('Finish scanning Ak packages');
-    });
+  _clearCache = () => {
+    storage.clear();
   };
 
   _executeAnAction = (query: string) => {
@@ -61,20 +56,6 @@ export default class MainApp {
       this.wf.error('Expect query is a string!');
     }
   };
-
-  _executeOpenRootSourceFolder = () => {
-    openInVSCode.execute(this._getAkFolderPath());
-  };
-
-  _getAkFolderPath(): string {
-    const path = this.wf.getConfig('akFolder');
-    if (!path) {
-      this.wf.error(
-        'Can not find "akFolder" in Workflow Configuration. Please follow this guide to add the configuration https://www.alfredapp.com/help/workflows/advanced/variables/#Setting%20Workflow%20Environment%20Variables'
-      );
-    }
-    return path;
-  }
 
   start() {
     this.wf.start();

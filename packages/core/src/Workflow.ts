@@ -12,9 +12,10 @@ import Item from './Item';
 import { debug } from './utilities';
 import {
   SubActionHandlerArg,
-  AlfredItem,
+  AlfredItemType,
   AlfredResult,
-  FeedbackOptions
+  FeedbackOptions,
+  WorkflowOptions
 } from './types';
 
 const ACTION_NAMESPACE_EVENT = 'action';
@@ -22,13 +23,15 @@ const SUB_ACTION_NAMESPACE_EVENT = 'subActionSelected';
 const MAXIMUM_ITEMS_TO_SHOW = 20;
 
 export default class Workflow {
-  _items: AlfredItem[];
+  _items: AlfredItemType[];
   _name: string;
   _eventEmitter: events.EventEmitter;
   _env: any;
   _wfData: { [title: string]: any };
+  _maxItemsToShow: number;
 
-  constructor() {
+  constructor(options: WorkflowOptions) {
+    this._maxItemsToShow = options && options.maxItemsToShow || MAXIMUM_ITEMS_TO_SHOW;
     this._items = [];
     this._name = 'AlfredWfNodeJs';
     this._eventEmitter = new events.EventEmitter();
@@ -106,16 +109,16 @@ export default class Workflow {
 
     try {
       if (!this._items.length) {
-        this.log('no items in Workflow outputs');
+        this.error('No items in Workflow outputs!');
         return;
       }
 
       // for optimizing performance, we just shows first 20 items
-      const first20Items: AlfredItem[] = this._items.splice(
+      const first20Items: AlfredItemType[] = this._items.splice(
         0,
-        MAXIMUM_ITEMS_TO_SHOW - 1
+        this._maxItemsToShow - 1
       );
-      if (this._items.length > MAXIMUM_ITEMS_TO_SHOW) {
+      if (this._items.length > this._maxItemsToShow) {
         const hasMoreItem = new Item({
           title: 'Has more...',
           subtitle: 'Please type something to filter.',
@@ -134,7 +137,7 @@ export default class Workflow {
         '  '
       );
 
-      this.log('Workflow feedback: ');
+      // this.log('Workflow feedback: ');
       // fs.writeFileSync('test-json-_output.json', strOutput);
       this._output(strOutput);
       // this.clearItems();

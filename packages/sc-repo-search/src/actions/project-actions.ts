@@ -2,7 +2,8 @@ import {
   utils,
   OpenInFinderAction,
   OpenBrowserLink,
-  OpenInVSCode
+  OpenInVSCode,
+  OpenInSublimeText
 } from '@alfred-wf-node/core';
 import { exec } from 'child_process';
 
@@ -30,6 +31,14 @@ export const createPullRequest = new OpenBrowserLink({
   key: 'create_pull_request',
   name: 'Create Pull Request',
   propertyName: 'gitInfo.createPrLink'
+});
+
+export const openInVSCode = new OpenInVSCode({
+  propertyName: 'path'
+});
+
+export const openInSublimeAction = new OpenInSublimeText({
+  propertyName: 'path'
 });
 
 export const openInItermAction = new ProjectAction({
@@ -92,16 +101,6 @@ export const openInItermCurrentSessionAction = new ProjectAction({
   }
 });
 
-export const openInSublimeAction = new ProjectAction({
-  key: 'open_in_sublime',
-  name: 'Open in Sublime',
-  icon: 'sublime.png',
-  execute: (arg: CommandParams) => {
-    const command = `/usr/local/bin/subl --stay ${arg.path}`;
-    return exec(command);
-  }
-});
-
 export const openInIDEA = new ProjectAction({
   key: 'open_in_idea',
   name: 'Open in IntelliJ IDEA',
@@ -117,8 +116,6 @@ export const openInWebStorm = new ProjectAction({
   icon: 'wstorm.icns',
   execute: (data: CommandParams) => exec(`./bin/wstorm ${data.path}`)
 });
-
-export const openInVSCode = new OpenInVSCode({});
 
 export const openInSourceTree = new ProjectAction({
   key: 'open_in_source_tree',

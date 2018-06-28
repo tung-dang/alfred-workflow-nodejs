@@ -1,15 +1,22 @@
 import {
   Item as AfItem,
   IAction,
-  utils as nodeJSUtils
+  utils as nodeJSUtils,
+  storage
 } from '@alfred-wf-node/core';
 import { packageActions } from './packageActions';
 import {
   GroupPackage,
   PackageActionArg,
-  ExecuteActionArg,
   Package
 } from '../types';
+import ScanAkFolder from '../ScanAkFolder';
+import { openInVSCode } from "./packageActions";
+
+
+const ONE_MINUTE = 1000 * 60;
+const ONE_HOUR = ONE_MINUTE * 60;
+const ONE_DAY = ONE_HOUR * 24;
 
 export default class LoadPackageActions {
   wf: any;
@@ -18,8 +25,21 @@ export default class LoadPackageActions {
   constructor(options) {
     this.wf = options.wf;
     this.akGroups = [];
+
+    const keyCache = 'ak_groups';
     try {
-      this.akGroups = require('../../atlaskit_pkgs.json');
+      const dataFromCache = storage.get(keyCache);
+      if (dataFromCache) {
+        console.warn('Get data from cache...:)');
+        this.akGroups = dataFromCache;
+      } else {
+        console.warn('Get data from file...:)');
+        this._scanAkFolder().then(() => {
+          this.akGroups = require('../../atlaskit_pkgs.json');
+          // cache in 24h
+          storage.set(keyCache, this.akGroups, ONE_DAY);
+        });
+      }
     } catch (e) {
       this.wf.error(
         'Can not read atlaskit_pkgs.json file. Please run ak_scan keyword first.'
@@ -97,26 +117,34 @@ export default class LoadPackageActions {
     // build Alfred items
     const items: AfItem[] = [];
     filteredActions.forEach((pkAction: IAction) => {
-      const arg: ExecuteActionArg = {
-        actionKey: pkAction.key,
-        actionArg: previousSelectedArg
-      };
-
-      items.push(
-        new AfItem({
-          uid: pkAction.key,
-          title: pkAction.name,
-          subtitle: pkAction.getDesc
-            ? pkAction.getDesc(previousSelectedArg)
-            : pkAction.name,
-          hasSubItems: false,
-          icon: pkAction.icon ? pkAction.icon : undefined,
-          arg
-        })
-      );
+      items.push(pkAction.toAlfredItem(previousSelectedArg));
     });
 
     this.wf.addItems(items);
     this.wf.feedback();
   };
+
+  _scanAkFolder = () => {
+    const mainScan = new ScanAkFolder({
+      atlasKitPath: this._getAkFolderPath()
+    });
+
+    return mainScan.start().then(() => {
+      this.wf.info('Finish scanning Ak packages');
+    });
+  };
+
+  _executeOpenRootSourceFolder = () => {
+    openInVSCode.execute(this._getAkFolderPath());
+  };
+
+  _getAkFolderPath(): string {
+    const path = this.wf.getConfig('akFolder');
+    if (!path) {
+      this.wf.error(
+        'Can not find "akFolder" in Workflow Configuration. Please follow this guide to add the configuration https://www.alfredapp.com/help/workflows/advanced/variables/#Setting%20Workflow%20Environment%20Variables'
+      );
+    }
+    return path;
+  }
 }

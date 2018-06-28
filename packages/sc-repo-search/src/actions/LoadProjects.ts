@@ -2,11 +2,12 @@ import {
   Item,
   storage,
   utils as nodeJSUtils,
+  IAction,
   Workflow
 } from '@alfred-wf-node/core';
 
 import * as utils from '../utils';
-import { CommandParams, FolderInfo, ProjectActionArg } from '../types';
+import { CommandParams, FolderInfo } from '../types';
 import { projectActions } from './project-actions';
 import ProjectAction from './ProjectAction';
 
@@ -146,30 +147,15 @@ export default class LoadProjects {
 
     const items: Item[] = [];
 
-    filteredActions.forEach((projectAction: ProjectAction) => {
-      if (projectAction.build) {
-        const item: Item = projectAction.build
-          ? projectAction.build(previousSelectedArg)
-          : null;
-        items.push(item);
+    filteredActions.forEach((projectAction: ProjectAction | IAction) => {
+      let item;
+      if ('build' in projectAction) {
+        item = projectAction.build(previousSelectedArg);
       } else {
-        const arg: ProjectActionArg = {
-          actionKey: projectAction.key,
-          actionArg: previousSelectedArg
-        };
-
-        items.push(
-          new Item({
-            uid: projectAction.key,
-            title: projectAction.name,
-            subtitle: projectAction.getSubTitle
-              ? projectAction.getSubTitle(previousSelectedArg)
-              : projectAction.name,
-            icon: projectAction.icon,
-            arg
-          })
-        );
+        item = projectAction.toAlfredItem(previousSelectedArg);
       }
+
+      item && items.push(item);
     });
 
     this.wf.addItems(items);

@@ -1,0 +1,5 @@
+--require test/null-compiler
+--require ts-node/register
+--slow 10
+--timeout 10000
+--watch-extensions js,ts

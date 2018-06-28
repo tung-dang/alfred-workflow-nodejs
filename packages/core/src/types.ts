@@ -1,3 +1,5 @@
+import Item from './Item';
+
 export type AlfredIconType = {
   type?: 'filetype' | 'fileicon';
   path: string;
@@ -12,7 +14,7 @@ export type ModType = {
 };
 
 // Reference from: https://www.alfredapp.com/help/workflows/inputs/script-filter/json/
-export type AlfredItem = {
+export type AlfredItemType = {
   uid?: string;
   title: string;
   subtitle?: string;
@@ -20,7 +22,7 @@ export type AlfredItem = {
   arg?: object | string;
   autocomplete?: string;
   quicklookurl?: string;
-  icon: AlfredIconType | string;
+  icon?: AlfredIconType | string;
   text?: string;
   mods?: {
     alt?: ModType;
@@ -34,7 +36,7 @@ export type AlfredItem = {
 export type AlfredResult = {
   rerun?: number;
   variables?: object;
-  items: AlfredItem[];
+  items: AlfredItemType[];
 };
 
 export type FeedbackOptions = {
@@ -60,4 +62,9 @@ export interface IAction {
   icon: string;
   execute: (arg?: any) => void;
   isValid: (arg: any) => boolean;
+  toAlfredItem: (arg: any) => Item;
 }
+
+export type WorkflowOptions = {
+  maxItemsToShow: number;
+};

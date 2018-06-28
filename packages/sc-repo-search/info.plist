@@ -202,7 +202,7 @@
 	<key>variables</key>
 	<dict>
 		<key>sourceFolders</key>
-		<string>~/src, ~/cloud, ~/src/_atlassian, ~/src/_my-src, ~/src/-shipit, ~/src/_lab</string>
+		<string>~/src, ~/src/cloud, ~/src/_atlassian, ~/src/_my-src, ~/src/-shipit, ~/src/_lab</string>
 		<key>stashServer</key>
 		<string>stash.atlassian.com</string>
 	</dict>

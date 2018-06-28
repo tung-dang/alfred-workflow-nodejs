@@ -1,19 +1,19 @@
 import { ICON_DEFAULT, SUB_ACTION_DIVIDER_SYMBOL } from './constants';
-import { AlfredItem } from './types';
+import { AlfredItemType } from './types';
 
 /**
  * Each item describes a result row displayed in Alfred.
  * All props of an item are described here: https://www.alfredapp.com/help/workflows/inputs/script-filter/json/
  */
 export default class Item {
-  _data: AlfredItem;
+  _data: AlfredItemType;
 
-  constructor(options: AlfredItem) {
+  constructor(options: AlfredItemType) {
     if (!options.title) {
       throw new Error('Title is required!');
     }
 
-    const tempData: AlfredItem = {
+    const tempData: AlfredItemType = {
       uid: options.uid || options.title,
       arg: options.arg ? this._hygieneArg(options.arg) : undefined,
       autocomplete: options.autocomplete,
@@ -77,7 +77,7 @@ export default class Item {
   /**
    * Get internal data object
    */
-  getAlfredItemData(): AlfredItem {
+  getAlfredItemData(): AlfredItemType {
     return this._data;
   }
 

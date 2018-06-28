@@ -1,9 +1,18 @@
-const { assert } = require('chai');
+import { assert } from "chai";
+import * as proxyquire from "proxyquire";
 
-const { Item } = require('../src/main');
-const { SUB_ACTION_DIVIDER_SYMBOL } = require('../src/constants');
+const SUB_ACTION_DIVIDER_SYMBOL = '➤';
 
-describe('#Item', function() {
+describe.only('Test Item', () => {
+  let Item;
+
+    beforeEach(() => {
+      Item = proxyquire.noCallThru().load("../src/Item.ts", {}).default;
+    });
+
+    afterEach(() => {
+    });
+
   it('check `title` prop', function() {
     const item = new Item({
       title: 'this is a title'
