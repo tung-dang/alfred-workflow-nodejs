@@ -8,18 +8,18 @@
  * mocha --recursive --require ./tools/null-compiler --require babel-core/register",
  */
 /* istanbul ignore next */
-require.extensions[".scss"] = function() {
+require.extensions['.scss'] = function() {
   return null;
 };
 /* istanbul ignore next */
-require.extensions[".svg"] = function() {
+require.extensions['.svg'] = function() {
   return null;
 };
 /* istanbul ignore next */
-require.extensions[".png"] = function() {
+require.extensions['.png'] = function() {
   return null;
 };
 /* istanbul ignore next */
-require.extensions[".graphql"] = function() {
+require.extensions['.graphql'] = function() {
   return null;
 };

@@ -11,6 +11,11 @@ import { CommandParams, FolderInfo } from '../types';
 import { projectActions } from './project-actions';
 import ProjectAction from './ProjectAction';
 
+const ONE_MINUTE = 1000 * 60;
+const ONE_HOUR = ONE_MINUTE * 60;
+const ONE_DAY = ONE_HOUR * 24;
+const ONE_WEEK = ONE_DAY * 7;
+
 export default class LoadProjects {
   wf: Workflow;
   projects: any;
@@ -52,7 +57,7 @@ export default class LoadProjects {
     });
 
     // cache in 24h
-    storage.set(keyCache, folders);
+    storage.set(keyCache, folders, ONE_WEEK);
 
     return folders;
   }

@@ -195,13 +195,13 @@
 			<key>config</key>
 			<dict>
 				<key>alfredfiltersresults</key>
-				<false/>
+				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
-				<integer>1</integer>
+				<integer>2</integer>
 				<key>escaping</key>
 				<integer>4</integer>
 				<key>keyword</key>
@@ -215,7 +215,7 @@
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string></string>
+				<string>Go - edit bookmark store text file</string>
 				<key>script</key>
 				<string>open ./go_list.txt</string>
 				<key>scriptargtype</key>
@@ -223,13 +223,13 @@
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string></string>
+				<string>Go - edit bookmark store text file</string>
 				<key>title</key>
 				<string>Go - edit bookmark store text file</string>
 				<key>type</key>
 				<integer>5</integer>
 				<key>withspace</key>
-				<true/>
+				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>

@@ -25,7 +25,12 @@ export const openInSublimeAction = new OpenInSublimeText({
   propertyName: 'localFullPage'
 });
 
-export const packageActions = [openDocLink, openInVSCode, openInFinderAction, openInSublimeAction];
+export const packageActions = [
+  openDocLink,
+  openInVSCode,
+  openInFinderAction,
+  openInSublimeAction
+];
 
 export const executeActionByKey = (key: string, arg: PackageActionArg) => {
   packageActions.forEach((action: IAction) => {

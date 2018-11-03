@@ -53,6 +53,6 @@ export default class AbstractAction implements IAction {
         actionArg: arg
       },
       ...extraOptions
-    })
+    });
   }
 }

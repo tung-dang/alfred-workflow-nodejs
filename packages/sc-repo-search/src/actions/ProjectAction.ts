@@ -26,7 +26,7 @@ export default class ProjectAction implements IAction {
 
   build(argItem: CommandParams) {
     const arg: ProjectActionArg = {
-      actionKey: this.key,
+      actionKey: this.key || this.name,
       actionArg: argItem
     };
 

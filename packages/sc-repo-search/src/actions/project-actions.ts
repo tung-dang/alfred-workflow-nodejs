@@ -42,6 +42,7 @@ export const openInSublimeAction = new OpenInSublimeText({
 });
 
 export const openInItermAction = new ProjectAction({
+  key: 'open_in_iterm',
   name: 'Open in Iterm',
   icon: 'iterm.png',
   execute: (data: CommandParams) => {
@@ -61,6 +62,7 @@ export const openInItermAction = new ProjectAction({
 });
 
 export const openInNewItermSplitPanelAction = new ProjectAction({
+  key: 'open_in_iterm_at_new_split_panel',
   name: 'Open in Iterm in new split panel',
   icon: 'iterm.png',
   execute: (data: CommandParams) => {
@@ -83,6 +85,7 @@ export const openInNewItermSplitPanelAction = new ProjectAction({
 });
 
 export const openInItermCurrentSessionAction = new ProjectAction({
+  key: 'open_in_iterm_at_current_tab',
   name: 'Open in Iterm at current tab',
   icon: 'iterm.png',
   execute: (data: CommandParams) => {
@@ -112,9 +115,12 @@ export const openInIDEA = new ProjectAction({
 });
 
 export const openInWebStorm = new ProjectAction({
+  key: 'open_in_webstorm',
   name: 'Open in WebStorm',
   icon: 'wstorm.icns',
-  execute: (data: CommandParams) => exec(`./bin/wstorm ${data.path}`)
+  execute: (data: CommandParams) => {
+    return exec(`./bin/wstorm ${data.path}`);
+  }
 });
 
 export const openInSourceTree = new ProjectAction({
@@ -153,7 +159,7 @@ export const executeActionByKey = (
   actionArg: CommandParams
 ) => {
   projectActions.forEach((action: ProjectAction) => {
-    if (action.key === actionKey) {
+    if (action.key === actionKey || action.name === actionKey) {
       action.execute(actionArg);
     }
   });

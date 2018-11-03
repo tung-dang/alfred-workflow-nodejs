@@ -3,7 +3,7 @@ import { executeActionByKey } from './actions/project-actions';
 
 const commands = {
   LOAD_PROJECTS: 'loadProjects',
-  EXECUTE_AN_ACTION: 'execute',
+  EXECUTE_AN_ACTION: 'execute_an_action_for_a_project',
   CLEAR_CACHE: 'clear_cache'
 };
 

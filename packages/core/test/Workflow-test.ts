@@ -1,9 +1,9 @@
 import { assert } from 'chai';
 import * as sinon from 'sinon';
-import * as proxyquire from "proxyquire";
+import * as proxyquire from 'proxyquire';
 
 import Item from '../src/Item';
-import storage  from '../src/storage';
+import storage from '../src/storage';
 import { SUB_ACTION_DIVIDER_SYMBOL } from '../src/constants';
 
 const convertJSObjectToString = obj => JSON.stringify(obj, null, '  ');
@@ -32,7 +32,7 @@ describe('Test Workflow', function() {
 
   describe('Generate feedback', () => {
     it('With empty item list, should show error', () => {
-      sandbox.spy(workflow, "error");
+      sandbox.spy(workflow, 'error');
       workflow.feedback();
       assert.equal(workflow.error.callCount, 1);
     });
@@ -48,16 +48,16 @@ describe('Test Workflow', function() {
         convertJSObjectToString({
           items: [
             {
-              uid: "title",
+              uid: 'title',
               title: 'title',
               subtitle: '',
               type: 'default',
               icon: {
-                "path": "ICON_DEFAULT"
+                path: 'ICON_DEFAULT'
               },
               hasSubItems: false,
-              match: "title | undefined",
-              valid: true,
+              match: 'title | undefined',
+              valid: true
             }
           ]
         })
@@ -79,28 +79,28 @@ describe('Test Workflow', function() {
         convertJSObjectToString({
           items: [
             {
-              uid: "title1",
+              uid: 'title1',
               title: 'title1',
               subtitle: '',
-              type: "default",
+              type: 'default',
               icon: {
-                "path": "ICON_DEFAULT"
+                path: 'ICON_DEFAULT'
               },
               hasSubItems: false,
-              match: "title1 | undefined",
+              match: 'title1 | undefined',
               valid: true
             },
 
             {
-              uid: "title2",
+              uid: 'title2',
               title: 'title2',
               subtitle: '',
-              type: "default",
+              type: 'default',
               icon: {
-                "path": "ICON_DEFAULT"
+                path: 'ICON_DEFAULT'
               },
               hasSubItems: false,
-              match: "title2 | undefined",
+              match: 'title2 | undefined',
               valid: true
             }
           ]
@@ -115,10 +115,7 @@ describe('Test Workflow', function() {
       workflow.addItem(item);
       workflow.feedback();
 
-      assert.strictEqual(
-        workflow.feedback(),
-        undefined
-      );
+      assert.strictEqual(workflow.feedback(), undefined);
     });
 
     it('Should clear all items when generating error feedback', function() {
@@ -135,12 +132,12 @@ describe('Test Workflow', function() {
               uid: 'wf error',
               title: 'wf error',
               subtitle: '',
-              type: "default",
+              type: 'default',
               icon: {
                 path: 'ICON_ERROR'
               },
               hasSubItems: false,
-              match: "wf error | ",
+              match: 'wf error | ',
               valid: true
             }
           ]

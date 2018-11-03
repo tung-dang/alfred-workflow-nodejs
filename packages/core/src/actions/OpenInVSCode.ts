@@ -21,10 +21,11 @@ export default class OpenInVSCode extends AbstractAction {
   execute(arg) {
     let command;
     const vsCodePath = '/usr/local/bin/code';
+    const vsCodeOptions = '--new-window';
     if (typeof arg === 'string') {
-      command = `${vsCodePath} ${arg}`;
+      command = `${vsCodePath} ${vsCodeOptions} ${arg}`;
     } else {
-      command = `${vsCodePath} ${this._getPropValueByPropName(arg)}`;
+      command = `${vsCodePath} ${vsCodeOptions} ${this._getPropValueByPropName(arg)}`;
     }
 
     return exec(command);

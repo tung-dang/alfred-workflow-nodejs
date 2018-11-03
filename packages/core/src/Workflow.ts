@@ -31,7 +31,8 @@ export default class Workflow {
   _maxItemsToShow: number;
 
   constructor(options: WorkflowOptions) {
-    this._maxItemsToShow = options && options.maxItemsToShow || MAXIMUM_ITEMS_TO_SHOW;
+    this._maxItemsToShow =
+      (options && options.maxItemsToShow) || MAXIMUM_ITEMS_TO_SHOW;
     this._items = [];
     this._name = 'AlfredWfNodeJs';
     this._eventEmitter = new events.EventEmitter();

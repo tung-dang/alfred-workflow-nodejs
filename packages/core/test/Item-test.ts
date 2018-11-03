@@ -1,17 +1,16 @@
-import { assert } from "chai";
-import * as proxyquire from "proxyquire";
+import { assert } from 'chai';
+import * as proxyquire from 'proxyquire';
 
 const SUB_ACTION_DIVIDER_SYMBOL = '➤';
 
 describe.only('Test Item', () => {
   let Item;
 
-    beforeEach(() => {
-      Item = proxyquire.noCallThru().load("../src/Item.ts", {}).default;
-    });
+  beforeEach(() => {
+    Item = proxyquire.noCallThru().load('../src/Item.ts', {}).default;
+  });
 
-    afterEach(() => {
-    });
+  afterEach(() => {});
 
   it('check `title` prop', function() {
     const item = new Item({

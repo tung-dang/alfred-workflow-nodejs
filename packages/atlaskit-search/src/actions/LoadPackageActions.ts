@@ -5,14 +5,9 @@ import {
   storage
 } from '@alfred-wf-node/core';
 import { packageActions } from './packageActions';
-import {
-  GroupPackage,
-  PackageActionArg,
-  Package
-} from '../types';
+import { GroupPackage, PackageActionArg, Package } from '../types';
 import ScanAkFolder from '../ScanAkFolder';
-import { openInVSCode } from "./packageActions";
-
+import { openInVSCode } from './packageActions';
 
 const ONE_MINUTE = 1000 * 60;
 const ONE_HOUR = ONE_MINUTE * 60;
