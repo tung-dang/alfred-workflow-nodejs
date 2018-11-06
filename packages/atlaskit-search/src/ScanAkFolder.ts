@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import { getDirs, isFileExists } from './utils/fs';
 import { Folder, GroupPackage, Package } from './types';
 
-export default class MainScan {
+export default class ScanAkFolder {
   atlasKitPath: string;
   packagesPath: string;
   outputFile: string;

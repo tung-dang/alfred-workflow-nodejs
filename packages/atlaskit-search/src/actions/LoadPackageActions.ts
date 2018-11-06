@@ -12,14 +12,18 @@ import { openInVSCode } from './packageActions';
 const ONE_MINUTE = 1000 * 60;
 const ONE_HOUR = ONE_MINUTE * 60;
 const ONE_DAY = ONE_HOUR * 24;
+const AK_WEBSITE = 'https://atlaskit.atlassian.com/';
+const AK_PACKAGES_LINK = 'https://atlaskit.atlassian.com/packages';
 
 export default class LoadPackageActions {
   wf: any;
   akGroups: GroupPackage[];
+  akFolderPath: string;
 
   constructor(options) {
     this.wf = options.wf;
     this.akGroups = [];
+    this.akFolderPath = this._getAkFolderPath();
 
     const keyCache = 'ak_groups';
     try {
@@ -49,10 +53,11 @@ export default class LoadPackageActions {
   }
 
   _getProjectActionArg(pkg: Package): PackageActionArg {
-    const baseDocLink = 'https://atlaskit.atlassian.com/packages';
     return {
       localFullPage: pkg.path,
-      docLink: `${baseDocLink}/${pkg.groupName}/${pkg.name}`
+      docLink: pkg.groupName
+        ? `${AK_PACKAGES_LINK}/${pkg.groupName}/${pkg.name}`
+        : AK_WEBSITE
     };
   }
 
@@ -72,6 +77,24 @@ export default class LoadPackageActions {
         );
       }
     });
+
+
+    // open AK fodler
+    items.push(
+      new AfItem({
+        uid: 'ak-folder',
+        title: 'AK folder',
+        subtitle: 'Open AK folder',
+        hasSubItems: true,
+        arg: JSON.stringify(this._getProjectActionArg({
+          path: this.akFolderPath,
+          name: 'Ak Folder',
+          groupName: '',
+          version: '0.0.0'
+        })),
+        icon: 'icons/ak_icon.png'
+      })
+    );
 
     this.wf.addItems(items);
     this.wf.feedback();
@@ -121,7 +144,7 @@ export default class LoadPackageActions {
 
   _scanAkFolder = () => {
     const mainScan = new ScanAkFolder({
-      atlasKitPath: this._getAkFolderPath()
+      atlasKitPath: this.akFolderPath
     });
 
     return mainScan.start().then(() => {
@@ -130,7 +153,7 @@ export default class LoadPackageActions {
   };
 
   _executeOpenRootSourceFolder = () => {
-    openInVSCode.execute(this._getAkFolderPath());
+    openInVSCode.execute(this.akFolderPath);
   };
 
   _getAkFolderPath(): string {

@@ -15,12 +15,11 @@ import {
   AlfredItemType,
   AlfredResult,
   FeedbackOptions,
-  WorkflowOptions
+  // WorkflowOptions
 } from './types';
 
 const ACTION_NAMESPACE_EVENT = 'action';
 const SUB_ACTION_NAMESPACE_EVENT = 'subActionSelected';
-const MAXIMUM_ITEMS_TO_SHOW = 20;
 
 export default class Workflow {
   _items: AlfredItemType[];
@@ -28,11 +27,8 @@ export default class Workflow {
   _eventEmitter: events.EventEmitter;
   _env: any;
   _wfData: { [title: string]: any };
-  _maxItemsToShow: number;
 
-  constructor(options: WorkflowOptions) {
-    this._maxItemsToShow =
-      (options && options.maxItemsToShow) || MAXIMUM_ITEMS_TO_SHOW;
+  constructor(/* options: WorkflowOptions */) {
     this._items = [];
     this._name = 'AlfredWfNodeJs';
     this._eventEmitter = new events.EventEmitter();
@@ -114,23 +110,9 @@ export default class Workflow {
         return;
       }
 
-      // for optimizing performance, we just shows first 20 items
-      const first20Items: AlfredItemType[] = this._items.splice(
-        0,
-        this._maxItemsToShow - 1
-      );
-      if (this._items.length > this._maxItemsToShow) {
-        const hasMoreItem = new Item({
-          title: 'Has more...',
-          subtitle: 'Please type something to filter.',
-          icon: ICON_INFO
-        });
-        first20Items.push(hasMoreItem.getAlfredItemData());
-      }
-
       strOutput = JSON.stringify(
         {
-          items: first20Items,
+          items: this._items,
           rerun: options && options.rerun ? options.rerun : undefined
           // variables:
         } as AlfredResult,
@@ -263,19 +245,19 @@ export default class Workflow {
     return value;
   }
 
-  _saveItemArg(item) {
+  private _saveItemArg(item) {
     const data = item.getAlfredItemData();
     this._wfData[data.title] = data.arg;
   }
 
-  _getItemArg(itemTitle: string) {
+  private _getItemArg(itemTitle: string) {
     return this._wfData[itemTitle];
   }
 
   /**
    * Handle action by delegate to registered action/subAction handlers
    */
-  _trigger(actionName: string, query: string) {
+  private _trigger(actionName: string, query: string) {
     // handle first level action
     const isFirstLevelQuery =
       !query || query.indexOf(SUB_ACTION_DIVIDER_SYMBOL) === -1;
@@ -307,11 +289,11 @@ export default class Workflow {
     }
   }
 
-  _sanitizeQuery(raw?: string): string {
+  private _sanitizeQuery(raw?: string): string {
     return typeof raw === 'string' ? raw.trim() : '';
   }
 
-  _convertToObjectIfPossible(str: string) {
+  private _convertToObjectIfPossible(str: string) {
     let result = str;
     try {
       if (typeof str === 'string') {
@@ -325,7 +307,7 @@ export default class Workflow {
   }
 
   /* istanbul ignore next */
-  _output(str) {
+  private _output(str) {
     try {
       this.log('Workflow feedback: ');
       if (this.isDebug() || process.env.NODE_ENV === 'testing') {

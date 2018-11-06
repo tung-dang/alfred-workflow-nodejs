@@ -66,5 +66,4 @@ export interface IAction {
 }
 
 export type WorkflowOptions = {
-  maxItemsToShow: number;
 };
