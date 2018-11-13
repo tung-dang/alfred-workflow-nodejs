@@ -1,6 +1,9 @@
-import { Workflow, Item, storage, utils } from '@alfred-wf-node/core';
-import { openLinkExecutor } from './executors.js';
+import { Workflow, Item, storage, utils, OpenBrowserLink } from '@alfred-wf-node/core';
 import { FileItem } from './types';
+
+export const openLink = new OpenBrowserLink({
+  propertyName: 'link'
+});
 
 const REPO = 'airbnb/enzyme';
 const API_PATH = 'docs/api';
@@ -16,6 +19,7 @@ const ONE_MINUTE = 1000 * 60;
 const ONE_HOUR = ONE_MINUTE * 60;
 const ONE_DAY = ONE_HOUR * 24;
 const ONE_WEEK = ONE_DAY * 7;
+const ONE_MONTH = ONE_WEEK * 4;
 
 const commands = {
   LOAD_ALL_LINKS: 'load_all_links',
@@ -39,9 +43,9 @@ export default class MainApp {
 
     this.workflow.onAction(commands.OPEN_LINK, arg => {
       if (typeof arg === 'string') {
-        openLinkExecutor.execute(JSON.parse(arg));
+        openLink.execute(JSON.parse(arg));
       } else {
-        openLinkExecutor.execute(arg);
+        openLink.execute(arg);
       }
     });
   }
@@ -90,7 +94,7 @@ export default class MainApp {
           files = files.concat(items);
         });
 
-        storage.set('cache_links', files, ONE_WEEK);
+        storage.set('cache_links', files, ONE_MONTH);
         this._generateFeedback(files, query);
       }
     );

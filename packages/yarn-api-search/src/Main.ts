@@ -1,5 +1,4 @@
-import { Workflow, Item as AfItem, storage } from '@alfred-wf-node/core';
-import { openLinkExecutor } from './executors.js';
+import { Workflow, Item as AfItem, storage, utils, OpenBrowserLink } from '@alfred-wf-node/core';
 import * as github from 'octonode';
 import { FileItem, OPEN_LINK_ARG } from './types';
 
@@ -15,6 +14,7 @@ const ONE_MINUTE = 1000 * 60;
 const ONE_HOUR = ONE_MINUTE * 60;
 const ONE_DAY = ONE_HOUR * 24;
 const ONE_WEEK = ONE_DAY * 7;
+const ONE_MONTH = ONE_WEEK * 4;
 
 const commands = {
   LOAD_ALL_LINKS: 'load_all_links',
@@ -22,6 +22,11 @@ const commands = {
   CLEAR_CACHE: 'clear_cache'
 };
 const pkg = require('../package.json');
+
+export const openLink = new OpenBrowserLink({
+  propertyName: 'link'
+});
+
 
 export default class MainApp {
   wf: Workflow;
@@ -34,24 +39,24 @@ export default class MainApp {
 
     this.wf.onAction(commands.OPEN_LINK, arg => {
       if (typeof arg === 'string') {
-        openLinkExecutor.execute(JSON.parse(arg));
+        openLink.execute(JSON.parse(arg));
       } else {
-        openLinkExecutor.execute(arg);
+        openLink.execute(arg);
       }
     });
   }
 
-  _loadAllLinks = (/*query*/) => {
+  _loadAllLinks = (query) => {
     const dataFromCache = storage.get('cache_links');
     if (dataFromCache) {
       console.warn('Get data from cache...:)');
-      this._generateFeedback(dataFromCache /*, query*/);
+      this._generateFeedback(dataFromCache, query);
       return;
     }
 
     console.warn('Start fetching...:(');
     // TODO: cannot show loading here
-    this.wf.showLoading();
+    // this.wf.showLoading();
     ghrepo.contents(YARN_API_PATH, BRANCH, (error, res) => {
       if (error) {
         this.wf.error(
@@ -63,12 +68,12 @@ export default class MainApp {
         return;
       }
 
-      storage.set('cache_links', res, ONE_WEEK);
-      this._generateFeedback(res /*, query*/);
+      storage.set('cache_links', res, ONE_MONTH);
+      this._generateFeedback(res, query);
     });
   };
 
-  _generateFeedback(response: FileItem[] /*, query: string*/) {
+  _generateFeedback(response: FileItem[], query: string) {
     const items: AfItem[] = [];
 
     response.forEach(item => {
@@ -82,12 +87,12 @@ export default class MainApp {
       const urlWebsite = YARN_WEBSITE_CLI + cliName;
       const openLinkArg: OPEN_LINK_ARG = {
         // Default: open Yarn website link
-        actionName: 'open_link',
+        actionName: 'open_browser_link',
         link: urlWebsite
       };
       const openLinkWithCmdKeyArg: OPEN_LINK_ARG = {
         // Default: open Yarn website link
-        actionName: 'open_link',
+        actionName: 'open_browser_link',
         link: url
       };
 
@@ -108,7 +113,9 @@ export default class MainApp {
       );
     });
 
-    this.wf.addItems(items);
+    const filteredItems = utils.filter(query, items, item => item.get('title'));
+
+    this.wf.addItems(filteredItems);
     this.wf.feedback();
   }
 
