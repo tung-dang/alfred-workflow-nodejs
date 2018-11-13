@@ -1,4 +1,4 @@
-import { Item } from '@alfred-wf-node/core';
+import { AfItem } from '@alfred-wf-node/core';
 import * as fs from 'fs';
 
 import {
@@ -95,7 +95,7 @@ export default class CommandHandler {
   };
 
   _createNewLinkItem({ address, title, subtitle, finalLink }) {
-    const item = new Item({
+    const item = new AfItem({
       uid: address,
       title,
       subtitle,
@@ -111,7 +111,7 @@ export default class CommandHandler {
   }
 
   _createNewPathItem({ address, title, subtitle, folderPath }) {
-    const item = new Item({
+    const item = new AfItem({
       uid: address,
       title,
       subtitle,

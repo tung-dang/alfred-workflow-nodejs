@@ -10,7 +10,7 @@ Alfred 3 Workflow NodeJS Next library
 ## Overview
 A small library providing helpers to create [Alfred Workflow](https://www.alfredapp.com/workflows/).
 This is a forked version of [https://github.com/giangvo/alfred-workflow-nodejs](https://github.com/giangvo/alfred-workflow-nodejs).
-This forked one is converted to ES6 and is simplified some APIs so this forked one is not completely compatible with original one.   
+This forked one is converted to ES6 and is simplified some APIs so this forked one is not completely compatible with original one.
 Because `alfred-workflow-nodejs-next` returns JSON format to Alfred so this is compatible with Alfred 3 or above only.
 
 ## Installation
@@ -40,17 +40,17 @@ yarn test-coverage
 * [docs/Storage](docs/storage.md) - Helper to CRUD temporary / permanent(settings) data.
 
 
-## Sample workflow using this library. 
+## Sample workflow using this library.
 - [alfred-workflow-go-links](https://github.com/tung-dang/alfred-workflow-go-links)
 - [alfred-workflow-yarn-api-search](https://github.com/tung-dang/alfred-workflow-yarn-api-search)
 - [alfred-workflow-immutablejs-api-search](https://github.com/tung-dang/alfred-workflow-immutablejs-api-search)
-- TODO: add more 
+- TODO: add more
 
-Notice:  [docs/import-workflow-source-to-alfred.md](docs/import-workflow-source-to-alfred.md) - to show how to import workflow source code into Alfred. 
+Notice:  [docs/import-workflow-source-to-alfred.md](docs/import-workflow-source-to-alfred.md) - to show how to import workflow source code into Alfred.
 
 ## Notes/Tips
 
 - You can look at some tests in test folder in source code get more about usage.
-- You can use `console.trace('==========================', data)` or `console.warn('==========================', data)` to debug code. 
+- You can use `console.trace('==========================', data)` or `console.warn('==========================', data)` to debug code.
 **DO NOT** use `console.log` because it is used to return JSON string data to Alfred.
 - Open "Toggle Debugging Mode" of Alfred to see all logs when developing.

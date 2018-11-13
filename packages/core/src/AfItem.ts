@@ -5,7 +5,7 @@ import { AlfredItemType } from './types';
  * Each item describes a result row displayed in Alfred.
  * All props of an item are described here: https://www.alfredapp.com/help/workflows/inputs/script-filter/json/
  */
-export default class Item {
+export default class AfItem {
   _data: AlfredItemType;
 
   constructor(options: AlfredItemType) {

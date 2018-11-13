@@ -1,4 +1,4 @@
-import { Workflow, Item as AfItem, storage, utils, OpenBrowserLink } from '@alfred-wf-node/core';
+import { AfWorkflow, AfItem, storage, utils, OpenBrowserLink } from '@alfred-wf-node/core';
 import * as github from 'octonode';
 import { FileItem, OPEN_LINK_ARG } from './types';
 
@@ -29,10 +29,10 @@ export const openLink = new OpenBrowserLink({
 
 
 export default class MainApp {
-  wf: Workflow;
+  wf: AfWorkflow;
 
   constructor() {
-    this.wf = new Workflow();
+    this.wf = new AfWorkflow();
     this.wf.setName(pkg.name);
     this.wf.onAction(commands.LOAD_ALL_LINKS, this._loadAllLinks);
     this.wf.onAction(commands.CLEAR_CACHE, storage.clear);

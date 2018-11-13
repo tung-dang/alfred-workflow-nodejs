@@ -1,5 +1,5 @@
 import {
-  Item as AfItem,
+  AfItem,
   IAction,
   utils as nodeJSUtils,
   storage

@@ -1,4 +1,4 @@
-import { Workflow, Item, storage, utils, OpenBrowserLink } from '@alfred-wf-node/core';
+import { AfWorkflow, AfItem, storage, utils, OpenBrowserLink } from '@alfred-wf-node/core';
 import { FileItem } from './types';
 
 export const openLink = new OpenBrowserLink({
@@ -29,10 +29,10 @@ const commands = {
 const pkg = require('../package.json');
 
 export default class MainApp {
-  workflow: Workflow;
+  workflow: AfWorkflow;
 
   constructor() {
-    this.workflow = new Workflow();
+    this.workflow = new AfWorkflow();
 
     this.workflow.setName(pkg.name);
 
@@ -101,7 +101,7 @@ export default class MainApp {
   }
 
   _generateFeedback(response: FileItem[], query: string) {
-    const items: Item[] = [];
+    const items: AfItem[] = [];
 
     response.forEach(item => {
       let cliName = item.name;
@@ -112,7 +112,7 @@ export default class MainApp {
       const urlWebsite = WEBSITE_CLI + path;
 
       items.push(
-        new Item({
+        new AfItem({
           uid: url,
           title: cliName,
           subtitle: urlWebsite,

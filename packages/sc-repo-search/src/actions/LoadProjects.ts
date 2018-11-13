@@ -1,9 +1,9 @@
 import {
-  Item,
+  AfItem,
   storage,
   utils as nodeJSUtils,
   IAction,
-  Workflow
+  AfWorkflow
 } from '@alfred-wf-node/core';
 
 import * as utils from '../utils';
@@ -17,7 +17,7 @@ const ONE_DAY = ONE_HOUR * 24;
 const ONE_WEEK = ONE_DAY * 7;
 
 export default class LoadProjects {
-  wf: Workflow;
+  wf: AfWorkflow;
   projects: any;
   STASH_SERVER_URL: string;
   SOURCE_FOLDERS: string[];
@@ -104,7 +104,7 @@ export default class LoadProjects {
       };
 
       this.wf.addItem(
-        new Item({
+        new AfItem({
           uid: path,
           title: name,
           subtitle: path,
@@ -150,7 +150,7 @@ export default class LoadProjects {
       return;
     }
 
-    const items: Item[] = [];
+    const items: AfItem[] = [];
 
     filteredActions.forEach((projectAction: ProjectAction | IAction) => {
       let item;

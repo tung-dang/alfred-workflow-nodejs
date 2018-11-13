@@ -1,4 +1,4 @@
-import Item from './Item';
+import AfItem from './AfItem';
 
 export type AlfredIconType = {
   type?: 'filetype' | 'fileicon';
@@ -62,7 +62,7 @@ export interface IAction {
   icon: string;
   execute: (arg?: any) => void;
   isValid: (arg: any) => boolean;
-  toAlfredItem: (arg: any) => Item;
+  toAlfredItem: (arg: any) => AfItem;
 }
 
 export type WorkflowOptions = {

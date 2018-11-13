@@ -10,13 +10,13 @@
   "workspaces": [
     "packages/*"
   ],
-  "dependencies": {
-  },
+  "dependencies": {},
   "bugs": {
     "url": "https://github.com/tung-dang/alfred-workflow-nodejs-next/issues"
   },
   "homepage": "https://github.com/tung-dang/alfred-workflow-nodejs-next",
   "devDependencies": {
+    "wsrun": "3.3.5"
   },
   "scripts": {
     "clean": "./scripts/cleanup.sh",

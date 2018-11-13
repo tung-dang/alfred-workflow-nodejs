@@ -1,7 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@alfred-wf-node/core");
-const executors_js_1 = require("./executors.js");
+exports.openLink = new core_1.OpenBrowserLink({
+    propertyName: 'link'
+});
 const REPO = 'airbnb/enzyme';
 const API_PATH = 'docs/api';
 const BRANCH = 'master';
@@ -22,16 +24,16 @@ const commands = {
 const pkg = require('../package.json');
 class MainApp {
     constructor() {
-        this.workflow = new core_1.Workflow();
+        this.workflow = new core_1.AfWorkflow();
         this.workflow.setName(pkg.name);
         this.workflow.onAction(commands.LOAD_ALL_LINKS, query => this._loadAllLinks(query));
         this.workflow.onAction(commands.CLEAR_CACHE, () => core_1.storage.clear());
         this.workflow.onAction(commands.OPEN_LINK, arg => {
             if (typeof arg === 'string') {
-                executors_js_1.openLink.execute(JSON.parse(arg));
+                exports.openLink.execute(JSON.parse(arg));
             }
             else {
-                executors_js_1.openLink.execute(arg);
+                exports.openLink.execute(arg);
             }
         });
     }
@@ -82,7 +84,7 @@ class MainApp {
             const url = item.html_url;
             const path = item.path.replace('docs/api/', '').replace('.md', '.html');
             const urlWebsite = WEBSITE_CLI + path;
-            items.push(new core_1.Item({
+            items.push(new core_1.AfItem({
                 uid: url,
                 title: cliName,
                 subtitle: urlWebsite,

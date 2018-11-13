@@ -1,4 +1,4 @@
-import { Workflow, Item as AfItem } from '@alfred-wf-node/core';
+import { AfWorkflow, AfItem } from '@alfred-wf-node/core';
 // import * as github from 'octonode';
 // import { FileItem } from './types';
 
@@ -16,10 +16,10 @@ const commands = {
 const pkg = require('../package.json');
 
 export default class MainApp {
-  wf: Workflow;
+  wf: AfWorkflow;
 
   constructor() {
-    this.wf = new Workflow();
+    this.wf = new AfWorkflow();
     this.wf.setName(pkg.name);
     this.wf.onAction(commands.FIRST_COMMAND, this._testError);
   }

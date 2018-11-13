@@ -1,4 +1,4 @@
-import Item from '../Item';
+import AfItem from '../AfItem';
 import { IAction, AlfredItemType } from '../types';
 
 export default class AbstractAction implements IAction {
@@ -42,7 +42,7 @@ export default class AbstractAction implements IAction {
   }
 
   toAlfredItem(arg: any, extraOptions: Partial<AlfredItemType> = {}) {
-    return new Item({
+    return new AfItem({
       uid: this.key,
       title: this.name,
       subtitle: this.getDesc(arg),

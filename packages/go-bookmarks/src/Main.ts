@@ -1,4 +1,4 @@
-import { Workflow, storage } from '@alfred-wf-node/core';
+import { AfWorkflow, storage } from '@alfred-wf-node/core';
 import { openLinkExecutor, openInFinderAction } from './executors';
 import CommandHandler from './command-handler';
 import { Executor } from './types';
@@ -12,10 +12,10 @@ const commands = {
 const pkg = require('../package.json');
 
 export default class MainApp {
-  wf: Workflow;
+  wf: AfWorkflow;
 
   constructor() {
-    this.wf = new Workflow();
+    this.wf = new AfWorkflow();
     this.wf.setName(pkg.name);
 
     const handler = new CommandHandler({

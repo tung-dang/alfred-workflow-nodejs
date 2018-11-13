@@ -1,4 +1,4 @@
-import { Workflow, storage, settings } from '@alfred-wf-node/core';
+import { AfWorkflow, storage, settings } from '@alfred-wf-node/core';
 import { executeActionByKey } from './actions/project-actions';
 
 const commands = {
@@ -13,10 +13,10 @@ import { ProjectActionArg } from './types';
 const pkg = require('../package.json');
 
 export default class MainApp {
-  wf: Workflow;
+  wf: AfWorkflow;
 
   constructor() {
-    this.wf = new Workflow();
+    this.wf = new AfWorkflow();
     this.wf.setName(pkg.name);
 
     const loadProjects = new LoadProjects({

@@ -1,4 +1,4 @@
-import { Workflow, storage } from '@alfred-wf-node/core';
+import { AfWorkflow, storage } from '@alfred-wf-node/core';
 import LoadPackageActions from './actions/LoadPackageActions';
 import { executeActionByKey } from './actions/packageActions';
 import { PackageActionArg, ExecuteActionArg } from './types';
@@ -14,10 +14,10 @@ const commands = {
 const pkg = require('../package.json');
 
 export default class MainApp {
-  wf: Workflow;
+  wf: AfWorkflow;
 
   constructor() {
-    this.wf = new Workflow();
+    this.wf = new AfWorkflow();
     const loadPkgActon = new LoadPackageActions({
       wf: this.wf
     });

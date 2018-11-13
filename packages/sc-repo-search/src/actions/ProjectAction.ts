@@ -1,4 +1,4 @@
-import { Item, IAction } from '@alfred-wf-node/core';
+import { AfItem, IAction } from '@alfred-wf-node/core';
 import { CommandParams, ProjectActionArg } from '../types';
 
 const DEFAULT_ICON = 'code.png';
@@ -30,7 +30,7 @@ export default class ProjectAction implements IAction {
       actionArg: argItem
     };
 
-    return new Item({
+    return new AfItem({
       uid: this.name,
       title: this.name,
       subtitle: this.getSubTitle(argItem),

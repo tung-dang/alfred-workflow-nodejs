@@ -2,21 +2,21 @@ import { assert } from 'chai';
 import * as sinon from 'sinon';
 import * as proxyquire from 'proxyquire';
 
-import Item from '../src/Item';
+import AfItem from '../src/AfItem';
 import storage from '../src/storage';
 import { SUB_ACTION_DIVIDER_SYMBOL } from '../src/constants';
 
 const convertJSObjectToString = obj => JSON.stringify(obj, null, '  ');
 
-describe('Test Workflow', function() {
+describe('Test AfWorkflow', function() {
   const sandbox = sinon.sandbox.create();
 
   let workflow;
-  let Workflow;
+  let AfWorkflow;
 
   beforeEach(() => {
-    Workflow = proxyquire.noCallThru().load('../src/Workflow.ts', {}).default;
-    workflow = new Workflow();
+    AfWorkflow = proxyquire.noCallThru().load('../src/AfWorkflow.ts', {}).default;
+    workflow = new AfWorkflow();
   });
 
   afterEach(() => {
@@ -38,7 +38,7 @@ describe('Test Workflow', function() {
     });
 
     it('#addItem: Add an item', function() {
-      const item = new Item({
+      const item = new AfItem({
         title: 'title'
       });
       workflow.addItem(item);
@@ -66,10 +66,10 @@ describe('Test Workflow', function() {
 
     it('Add multiple items', function() {
       workflow.addItems([
-        new Item({
+        new AfItem({
           title: 'title1'
         }),
-        new Item({
+        new AfItem({
           title: 'title2'
         })
       ]);
@@ -109,7 +109,7 @@ describe('Test Workflow', function() {
     });
 
     it('Should clear items after generating feedback', function() {
-      const item = new Item({
+      const item = new AfItem({
         title: 'title'
       });
       workflow.addItem(item);
@@ -119,7 +119,7 @@ describe('Test Workflow', function() {
     });
 
     it('Should clear all items when generating error feedback', function() {
-      const item = new Item({
+      const item = new AfItem({
         title: 'title'
       });
       workflow.addItem(item);
@@ -187,7 +187,7 @@ describe('Test Workflow', function() {
     it('should handle non top level action and trimmed query', () => {
       const spy = sandbox.spy();
 
-      const item = new Item({
+      const item = new AfItem({
         title: 'top_action_name_1',
         arg: ''
       });
@@ -204,7 +204,7 @@ describe('Test Workflow', function() {
     it('should handle non top level action and arg', () => {
       const spy = sandbox.spy();
 
-      const item = new Item({
+      const item = new AfItem({
         title: 'top_action_name_1',
         arg: {
           a: 1,

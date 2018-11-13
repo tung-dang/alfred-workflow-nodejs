@@ -7,17 +7,17 @@ The bash command has 2 input: `action_name` and `query`:
 
 
 ```shell
-# Must use full path of `node`. I don't know how to use `node` global in Alfred Script Filter yet. 
+# Must use full path of `node`. I don't know how to use `node` global in Alfred Script Filter yet.
 # Please suggest me if you have a better solution
 /usr/local/bin/node main.js "action_name" "query"
 ```
 
 **main.js**
 ```js
-const { Workflow, Item } = require('alfred-workflow-nodejs-next');
+const { AfWorkflow, AfItem } = require('alfred-workflow-nodejs-next');
 
 (function initMyWorkflow() {
-    const workflow = new Workflow();
+    const workflow = new AfWorkflow();
     workflow.setName('example-alfred-workflow-using-nodejs');
 
     actionHandler.onAction('action_name_1', (query) => {
@@ -46,18 +46,18 @@ const { Workflow, Item } = require('alfred-workflow-nodejs-next');
     + => Execute a sub action item by using `TAB` or `ENTER` key
 
 - I tested with 2 action levels. I have not tested more than 2 action levels.
-  
-Here are some steps to implement above example scenario: 
+
+Here are some steps to implement above example scenario:
 
 ### Register listener for Workflow shortcut name `testworkflow`
 
 - The action name `load_top_level_actions` will generate 2 top level items: `Feedback A` and `Feeback B`
 - Top level action usually has arg data so that sub action can know what data of parent action passes to.
-  
+
 ```js
 workflow.onAction('load_top_level_actions', function(query) {
     // generate feedback A
-    const itemA = new Item({
+    const itemA = new AfItem({
         title: 'Feedback A',
         subtitle: 'Press tab/enter to get menu items',
         arg: { alias: 'X' }, // we can set data to top level item to use later to build sub items
@@ -66,7 +66,7 @@ workflow.onAction('load_top_level_actions', function(query) {
     workflow.addItem(itemA);
 
     // generate feedback B
-    const itemB = new Item({
+    const itemB = new AfItem({
         title: 'Feedback B',
         subtitle: 'Press tab/enter to get menu items',
         arg: { alias: 'Y' }, // we can set data to top level item to use later to build sub items
@@ -87,21 +87,21 @@ workflow.onAction('load_top_level_actions', function(query) {
 * selectedItemTitle: title of selected top level item
 * selectedItemArg: arg of selected top level item
 **/
-workflow.onSubActionSelected('testworkflow', (query, previousSelectedTitle, previousSelectedArg) => { 
+workflow.onSubActionSelected('testworkflow', (query, previousSelectedTitle, previousSelectedArg) => {
     // ...
 })
 ```
 
 ```js
 workflow.onSubActionSelected('testworkflow', (query, previousSelectedTitle, previousSelectedArg) => {
-    const item1 = new Item({
+    const item1 = new AfItem({
         title: 'Item 1 of ' + title,
         subtitle: previousSelectedArg.alias,
         valid: true,
         hasSubItems: false
     });
 
-    const item2 = new Item({
+    const item2 = new AfItem({
         title: 'Item 2 of ' + title,
         subtitle: previousSelectedArg.alias,
         valid: true,
@@ -131,15 +131,15 @@ workflow.onSubActionSelected('testworkflow', (query, previousSelectedTitle, prev
     * quicklookurl
     * text
     * mods: `arg` prop inside `mods[xxx]` is an object and is converted to string type when passing to Alfred eventually.
-    * hasSubItems: is a custom option of this `alfred-workflow-nodejs-next`. If `hasSubItems` is true, `valid` option is false.  
+    * hasSubItems: is a custom option of this `alfred-workflow-nodejs-next`. If `hasSubItems` is true, `valid` option is false.
 
 ```js
-const item1 = new Item({
+const item1 = new AfItem({
     title: 'item 1',
     subtitle: 'sub 1'
 });
 
-const item2 = new Item({
+const item2 = new AfItem({
     uid: 'uid',
     title: 'item 1',
     subtitle: 'sub 1',
@@ -151,11 +151,11 @@ const item2 = new Item({
     }
 });
 
-const item3 = new Item({
+const item3 = new AfItem({
     title: 'item 3',
     subtitle: 'sub 3',
     mods: {
-        // when users press CMD and enter to select a feedback, value of `arg` will be passed to next handler. 
+        // when users press CMD and enter to select a feedback, value of `arg` will be passed to next handler.
         cmd: {
             valid: true,
             arg: { a1: 'value1', a2: 'value2'},

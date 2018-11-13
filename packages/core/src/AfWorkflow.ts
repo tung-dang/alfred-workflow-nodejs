@@ -8,7 +8,7 @@ import {
   WF_DATA_KEY
 } from './constants';
 import storage from './storage';
-import Item from './Item';
+import AfItem from './AfItem';
 import { debug } from './utilities';
 import {
   SubActionHandlerArg,
@@ -21,7 +21,7 @@ import {
 const ACTION_NAMESPACE_EVENT = 'action';
 const SUB_ACTION_NAMESPACE_EVENT = 'subActionSelected';
 
-export default class Workflow {
+export default class AfWorkflow {
   _items: AlfredItemType[];
   _name: string;
   _eventEmitter: events.EventEmitter;
@@ -68,7 +68,7 @@ export default class Workflow {
   /**
    * Add one feedback item
    */
-  addItem = (item: Item) => {
+  addItem = (item: AfItem) => {
     this._saveItemArg(item);
     this._items.push(item.getAlfredItemData());
   };
@@ -141,7 +141,7 @@ export default class Workflow {
   info(title, subtitle = '') {
     this.clearItems();
     this.addItem(
-      new Item({
+      new AfItem({
         title,
         subtitle,
         icon: ICON_INFO
@@ -157,7 +157,7 @@ export default class Workflow {
   warning(title, subtitle) {
     this.clearItems();
     this.addItem(
-      new Item({
+      new AfItem({
         title,
         subtitle,
         icon: ICON_WARNING
@@ -174,7 +174,7 @@ export default class Workflow {
     this.log('Error: ', title, subtitle);
     this.clearItems();
     this.addItem(
-      new Item({
+      new AfItem({
         title,
         subtitle,
         icon: ICON_ERROR
@@ -191,7 +191,7 @@ export default class Workflow {
     this.clearItems();
 
     this.addItem(
-      new Item({
+      new AfItem({
         title: title || 'Loading',
         subtitle: subtitle || 'Fetching data...Please wait a little bit.',
         icon: ICON_LOADING
@@ -212,7 +212,7 @@ export default class Workflow {
       return;
     }
 
-    this._eventEmitter.on(Workflow._getActionName(actionName), handler);
+    this._eventEmitter.on(AfWorkflow._getActionName(actionName), handler);
   }
 
   /**
@@ -224,7 +224,7 @@ export default class Workflow {
       return;
     }
 
-    this._eventEmitter.on(Workflow._getSubActionName(actionName), handler);
+    this._eventEmitter.on(AfWorkflow._getSubActionName(actionName), handler);
   }
 
   log(message, ...args) {
@@ -263,7 +263,7 @@ export default class Workflow {
       !query || query.indexOf(SUB_ACTION_DIVIDER_SYMBOL) === -1;
     if (isFirstLevelQuery) {
       return this._eventEmitter.emit(
-        Workflow._getActionName(actionName),
+        AfWorkflow._getActionName(actionName),
         query
       );
     }
@@ -281,7 +281,7 @@ export default class Workflow {
       );
 
       this._eventEmitter.emit(
-        Workflow._getSubActionName(actionName),
+        AfWorkflow._getSubActionName(actionName),
         query,
         previousTitleSelected,
         previousArgSelected

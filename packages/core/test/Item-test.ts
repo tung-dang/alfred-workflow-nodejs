@@ -3,17 +3,17 @@ import * as proxyquire from 'proxyquire';
 
 const SUB_ACTION_DIVIDER_SYMBOL = '➤';
 
-describe.only('Test Item', () => {
-  let Item;
+describe.only('Test AfItem', () => {
+  let AfItem;
 
   beforeEach(() => {
-    Item = proxyquire.noCallThru().load('../src/Item.ts', {}).default;
+    AfItem = proxyquire.noCallThru().load('../src/AfItem.ts', {}).default;
   });
 
   afterEach(() => {});
 
   it('check `title` prop', function() {
-    const item = new Item({
+    const item = new AfItem({
       title: 'this is a title'
     });
 
@@ -21,7 +21,7 @@ describe.only('Test Item', () => {
   });
 
   it('default value of `subtitle` prop is empty string', function() {
-    const item = new Item({
+    const item = new AfItem({
       title: 'this is a title'
     });
 
@@ -29,13 +29,13 @@ describe.only('Test Item', () => {
   });
 
   it('default value of `valid` prop is true', function() {
-    let item = new Item({
+    let item = new AfItem({
       title: 'this is a title'
     });
 
     assert.propertyVal(item.getAlfredItemData(), 'valid', true);
 
-    item = new Item({
+    item = new AfItem({
       title: 'this is a title',
       valid: false
     });
@@ -44,7 +44,7 @@ describe.only('Test Item', () => {
   });
 
   it('`valid` prop should be false if `hasSubItems` is true', function() {
-    let item = new Item({
+    let item = new AfItem({
       title: 'this is a title',
       hasSubItems: true
     });
@@ -55,7 +55,7 @@ describe.only('Test Item', () => {
 
   describe('#arg', () => {
     it('`arg` prop should be string type if passing an object', function() {
-      const item = new Item({
+      const item = new AfItem({
         title: 'this is a title',
         arg: {
           a: 1,
@@ -74,7 +74,7 @@ describe.only('Test Item', () => {
     });
 
     it('`arg` prop should be string type if passing a string', function() {
-      const item = new Item({
+      const item = new AfItem({
         title: 'this is a title',
         arg: 'this is a arg'
       });
@@ -83,7 +83,7 @@ describe.only('Test Item', () => {
     });
 
     it('`arg` prop in `mods` prop should be string type if passing an object', function() {
-      const item = new Item({
+      const item = new AfItem({
         title: 'this is a title',
         mods: {
           alt: {
@@ -108,7 +108,7 @@ describe.only('Test Item', () => {
     });
 
     it('`arg` prop in `mods` prop should be string type if passing a string', function() {
-      const item = new Item({
+      const item = new AfItem({
         title: 'this is a title',
         mods: {
           alt: {
@@ -128,7 +128,7 @@ describe.only('Test Item', () => {
   });
 
   it('`icon` prop should be object type if passing a string type', function() {
-    const item = new Item({
+    const item = new AfItem({
       title: 'this is a title',
       icon: 'test.png'
     });
@@ -139,7 +139,7 @@ describe.only('Test Item', () => {
   });
 
   it('autocomplete prop should include previous title if has sub items', function() {
-    const item = new Item({
+    const item = new AfItem({
       title: 'this is a title',
       hasSubItems: true
     });
