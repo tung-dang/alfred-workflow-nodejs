@@ -1,9 +1,10 @@
+import { CopyToClipboardAction, OpenInFinderAction } from '@alfred-wf-node/core';
 import { exec } from 'child_process';
-import { EXECUTOR_OPEN_IN_FINDER, EXECUTOR_OPEN_LINK } from './helpers';
+import { EXECUTOR_OPEN_LINK } from './helpers';
 import { Executor } from './types';
 
-export const openLinkExecutor: Executor = {
-  actionName: EXECUTOR_OPEN_LINK,
+const openLinkExecutor: Executor = {
+  key: EXECUTOR_OPEN_LINK,
 
   /**
    * [description]
@@ -29,14 +30,13 @@ export const openLinkExecutor: Executor = {
   }
 };
 
-export const openInFinderAction: Executor = {
-  actionName: EXECUTOR_OPEN_IN_FINDER,
-  execute: arg => {
-    if (!arg) {
-      return;
-    }
+const copyToClipboardAction = new CopyToClipboardAction();
+const openInFinderAction = new OpenInFinderAction();
 
-    const command = `open "${arg.folderPath}"`;
-    return exec(command);
-  }
-};
+const executors = [
+  openLinkExecutor,
+  copyToClipboardAction,
+  openInFinderAction
+];
+
+export default executors;

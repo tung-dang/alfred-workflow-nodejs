@@ -1,21 +1,22 @@
 import { exec } from 'child_process';
 import * as path from 'path';
 import AbstractAction from './AbstractAction';
+import { IActionOption } from '../types';
 
-export default class OpenBrowserLink extends AbstractAction {
+export default class OpenBrowserLinkAction extends AbstractAction {
   icon: string;
   key: string;
   name: string;
   propertyName: string;
 
-  constructor(options) {
+  constructor(options: IActionOption = {}) {
     super(options);
 
     this.key = options.key || 'open_browser_link';
     this.name = options.name || 'Open link in browser';
     this.icon =
       options.icon || path.resolve(__dirname, '../../icons/chrome.png');
-    this.propertyName = options.propertyName;
+    this.propertyName = options.propertyName || 'link';
   }
 
   execute(arg: any) {

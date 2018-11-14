@@ -1,9 +1,8 @@
 import { AfWorkflow, storage } from '@alfred-wf-node/core';
-import { openLinkExecutor, openInFinderAction } from './executors';
+import executors from './executors';
 import CommandHandler from './command-handler';
 import { Executor } from './types';
 
-const executors = [openLinkExecutor, openInFinderAction];
 const commands = {
   LOAD_ALL_LINKS: 'load_all_links',
   OPEN_LINK: 'open_link',
@@ -33,13 +32,13 @@ export default class MainApp {
 
       try {
         executors.forEach((executor: Executor) => {
-          if (executor.actionName === arg.actionName) {
+          if (executor.key === arg.actionName) {
             executor.execute(arg);
           }
         });
       } catch (error) {
         console.error(
-          'ERROR: Can not parse JSON object: ',
+          'ERROR: arg: ',
           arg,
           'ERROR: ',
           error

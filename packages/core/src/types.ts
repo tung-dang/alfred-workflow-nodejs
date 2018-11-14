@@ -65,5 +65,12 @@ export interface IAction {
   toAlfredItem: (arg: any) => AfItem;
 }
 
+export interface IActionOption {
+  key?: string;
+  name?: string;
+  propertyName?: string;
+  icon?: string;
+}
+
 export type WorkflowOptions = {
 };

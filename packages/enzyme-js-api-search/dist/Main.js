@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@alfred-wf-node/core");
 const github = require("octonode");
-exports.openLink = new core_1.OpenBrowserLink({
+exports.openLink = new core_1.OpenBrowserLinkAction({
     propertyName: 'link'
 });
 const REPO = 'airbnb/enzyme';

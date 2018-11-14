@@ -1,5 +1,5 @@
 import AfItem from '../AfItem';
-import { IAction, AlfredItemType } from '../types';
+import { IAction, AlfredItemType, IActionOption } from '../types';
 
 export default class AbstractAction implements IAction {
   icon: string;
@@ -7,8 +7,8 @@ export default class AbstractAction implements IAction {
   name: string;
   propertyName: string;
 
-  constructor(options) {
-    this.propertyName = options.propertyName;
+  constructor(options: IActionOption = {}) {
+    this.propertyName = options.propertyName || '';
   }
 
   getDesc(arg: any): string {

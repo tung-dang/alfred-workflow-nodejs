@@ -1,9 +1,9 @@
 import {
   OpenInFinderAction,
-  OpenBrowserLink,
+  OpenBrowserLinkAction,
   IAction,
-  OpenInVSCode,
-  OpenInSublimeText
+  OpenInVSCodeAction,
+  OpenInSublimeTextAction
 } from '@alfred-wf-node/core';
 import { PackageActionArg } from '../types';
 
@@ -11,17 +11,17 @@ export const openInFinderAction = new OpenInFinderAction({
   propertyName: 'localFullPage'
 });
 
-export const openDocLink = new OpenBrowserLink({
+export const openDocLink = new OpenBrowserLinkAction({
   propertyName: 'docLink',
   icon: 'icons/bitbucket.jpg',
   name: 'Open document link'
 });
 
-export const openInVSCode = new OpenInVSCode({
+export const openInVSCode = new OpenInVSCodeAction({
   propertyName: 'localFullPage'
 });
 
-export const openInSublimeAction = new OpenInSublimeText({
+export const openInSublimeAction = new OpenInSublimeTextAction({
   propertyName: 'localFullPage'
 });
 

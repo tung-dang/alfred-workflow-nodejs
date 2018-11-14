@@ -104,7 +104,17 @@ export default class CommandHandler {
         link: finalLink,
         params: this._getParamFromQuery()
       },
-      icon: 'icon.png'
+      icon: 'icon.png',
+      mods: {
+        cmd: {
+          valid: true,
+          arg: {
+            actionName: 'copy_to_clipboard',
+            link: finalLink
+          },
+          subtitle: 'Copy link to clipboard'
+        }
+      }
     });
 
     return item;

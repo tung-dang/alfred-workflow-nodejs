@@ -1,4 +1,4 @@
-import { AfWorkflow, AfItem, storage, utils, OpenBrowserLink } from '@alfred-wf-node/core';
+import { AfWorkflow, AfItem, storage, utils, OpenBrowserLinkAction } from '@alfred-wf-node/core';
 import * as github from 'octonode';
 import { FileItem, OPEN_LINK_ARG } from './types';
 
@@ -23,7 +23,7 @@ const commands = {
 };
 const pkg = require('../package.json');
 
-export const openLink = new OpenBrowserLink({
+export const openLink = new OpenBrowserLinkAction({
   propertyName: 'link'
 });
 

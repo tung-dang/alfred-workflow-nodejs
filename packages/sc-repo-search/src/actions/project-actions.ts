@@ -1,9 +1,9 @@
 import {
   utils,
   OpenInFinderAction,
-  OpenBrowserLink,
-  OpenInVSCode,
-  OpenInSublimeText
+  OpenBrowserLinkAction,
+  OpenInVSCodeAction,
+  OpenInSublimeTextAction
 } from '@alfred-wf-node/core';
 import { exec } from 'child_process';
 
@@ -15,29 +15,29 @@ export const openInFinderAction = new OpenInFinderAction({
   propertyName: 'path'
 });
 
-export const openRepoLink = new OpenBrowserLink({
+export const openRepoLink = new OpenBrowserLinkAction({
   key: 'open_repo_link',
   name: 'Open Repo Link',
   propertyName: 'gitInfo.link'
 });
 
-export const openPullRequests = new OpenBrowserLink({
+export const openPullRequests = new OpenBrowserLinkAction({
   key: 'open_pull_request',
   name: 'Open Pull Requests',
   propertyName: 'gitInfo.prsLink'
 });
 
-export const createPullRequest = new OpenBrowserLink({
+export const createPullRequest = new OpenBrowserLinkAction({
   key: 'create_pull_request',
   name: 'Create Pull Request',
   propertyName: 'gitInfo.createPrLink'
 });
 
-export const openInVSCode = new OpenInVSCode({
+export const openInVSCode = new OpenInVSCodeAction({
   propertyName: 'path'
 });
 
-export const openInSublimeAction = new OpenInSublimeText({
+export const openInSublimeAction = new OpenInSublimeTextAction({
   propertyName: 'path'
 });
 
