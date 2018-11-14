@@ -10,19 +10,21 @@
   "workspaces": [
     "packages/*"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "git-utils": "5.4.0"
+  },
   "bugs": {
     "url": "https://github.com/tung-dang/alfred-workflow-nodejs-next/issues"
   },
   "homepage": "https://github.com/tung-dang/alfred-workflow-nodejs-next",
   "devDependencies": {
-    "wsrun": "3.3.5"
+    "wsrun": "3.4.0"
   },
   "scripts": {
-    "clean": "./scripts/cleanup.sh",
+    "cleanup": "./scripts/cleanup.sh",
     "tsc": "tsc",
     "wsrun": "wsrun",
-    "build": "yarn wsrun build",
+    "build": "yarn wsrun --fast-exit --stages build",
     "test": "yarn wsrun test",
     "format": "yarn wsrun format"
   },

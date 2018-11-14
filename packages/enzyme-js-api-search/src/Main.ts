@@ -1,5 +1,6 @@
 import { AfWorkflow, AfItem, storage, utils, OpenBrowserLink } from '@alfred-wf-node/core';
 import { FileItem } from './types';
+import * as github from 'octonode';
 
 export const openLink = new OpenBrowserLink({
   propertyName: 'link'
@@ -10,7 +11,6 @@ const API_PATH = 'docs/api';
 const BRANCH = 'master';
 const WEBSITE_CLI = 'http://airbnb.io/enzyme/docs/api/';
 
-import * as github from 'octonode';
 
 const client = github.client();
 const githubRepo = client.repo(REPO);

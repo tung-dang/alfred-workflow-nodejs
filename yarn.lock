@@ -782,9 +782,9 @@ getpass@^0.1.1:
   dependencies:
     assert-plus "^1.0.0"
 
-git-utils@5.4.0:
+git-utils@5.4.0, git-utils@^5.4.0:
   version "5.4.0"
-  resolved "https://packages.atlassian.com/api/npm/npm-remote/git-utils/-/git-utils-5.4.0.tgz?dl=https://registry.npmjs.org/git-utils/-/git-utils-5.4.0.tgz#de57acf5ce8fbfacd72a511a65e2bb7794cffc88"
+  resolved "https://packages.atlassian.com/api/npm/npm-remote/git-utils/-/git-utils-5.4.0.tgz#de57acf5ce8fbfacd72a511a65e2bb7794cffc88"
   dependencies:
     fs-plus "^3.0.0"
     nan "^2.0.0"
@@ -2069,9 +2069,9 @@ write-file-atomic@^2.0.0:
     imurmurhash "^0.1.4"
     signal-exit "^3.0.2"
 
-wsrun@3.3.5:
-  version "3.3.5"
-  resolved "https://packages.atlassian.com/api/npm/npm-remote/wsrun/-/wsrun-3.3.5.tgz#b7e2f6b7253b8ceacbc6284a06f25d85428b5298"
+wsrun@3.4.0:
+  version "3.4.0"
+  resolved "https://packages.atlassian.com/api/npm/npm-remote/wsrun/-/wsrun-3.4.0.tgz#d27135833ea0f451cad75ffb64d138b35f5a3c32"
   dependencies:
     bluebird "^3.5.1"
     chalk "^2.3.0"

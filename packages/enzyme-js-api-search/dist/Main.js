@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@alfred-wf-node/core");
+const github = require("octonode");
 exports.openLink = new core_1.OpenBrowserLink({
     propertyName: 'link'
 });
@@ -8,7 +9,6 @@ const REPO = 'airbnb/enzyme';
 const API_PATH = 'docs/api';
 const BRANCH = 'master';
 const WEBSITE_CLI = 'http://airbnb.io/enzyme/docs/api/';
-const github = require("octonode");
 const client = github.client();
 const githubRepo = client.repo(REPO);
 const ONE_MINUTE = 1000 * 60;
