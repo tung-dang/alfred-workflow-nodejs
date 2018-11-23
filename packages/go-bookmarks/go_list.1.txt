@@ -1,0 +1,88 @@
+# Go
+go/insights | Go to Insights
+go/atlassian.com | Create shorten link
+go/vmac | Go VMAC
+https://minion.atlassian.io/material | Go Minion
+go/featureflags | Feature flags
+go/spa-all-the-things | SPA all the things
+go/pirtraining | PIR Training
+go/map-syd | Go Map Sydney
+go/ffs-access | Request Feature Flag Access
+go.atlassian.com/contdent.py | all go links
+go/kss | knowledge sharing bot
+go/aws | AWS
+go/learningfair | Learning - Accelerate U
+https://analytics.amplitude.com/atlassian/team-spaces | Amplitude Data
+
+https://redash.data.internal.atlassian.com/queries/4665/source | Redash
+https://directory.atlassian.io | Di7.rectory
+https://aqg.internal.domain.dev.atlassian.io/ | QA tool to kick-off
+https://mash.internal.useast.atlassian.io | Mash - Search artifact
+https://translations.atlassian.com | Translation
+https://governator.internal.useast.staging.atlassian.io | Governator
+https://splunk.atlassian.io/en-US/app/jira_sre_app/cloudid_lookup | CloudId Lookup
+https://atlassian.hipchat.com/emoticons | Hipchat Icon
+https://docker-ui.internal.app.dev.atlassian.io/ | Docker UI
+https://hello.atlassian.net/pages/viewpage.action?pageId=1842676664 | Licence for testing
+https://snoopr.internal.atlassian.io/ | Snoopr - search instance
+
+https://product-fabric.atlassian.net/browse/{0} | Fabric issue
+https://splunk.atlassian.io/en-US/app/search/sre_cloudid_lookup | Splunk - find cloudid & hostname
+https://atlassian.rewardgateway.com.au/SmartSpending | Atlas Shop
+https://ecosystem.atlassian.net/servicedesk/customer/portal/24 | Atlaskit Raise Request
+
+
+https://license-encoder.internal.uswest.atlassian.io/server | Licence go b
+
+https://connect-inspector.atlassian.io/page/start | Connect inspector.
+https://deployment-bamboo.internal.atlassian.com/deploy/viewEnvironment.action?id=140115975 | Vertigo release
+https://deployment-bamboo.internal.atlassian.com/userlogin!doDefault.action?os_destination=%2Fchain%2FviewChain.action%3FplanKey%3DCONFREL-ARTIFACTS | Release Artifact
+http://tango.localhost.atl-test.space/wiki | Local vertigo
+http://tango.localhost.atl-test.space/wiki/admin/confluence-collaborative-editor-plugin/doconfigure.action | Synchrony config
+https://manager.prod.atl-paas.net/services/ | Micros service
+
+https://confluence-cloud-bamboo.internal.atlassian.com/browse/{0} | Bamboo build plan...
+
+# Atlassian:
+https://jira.atlassian.com/browse/{0} | Search JIRA by issue key...
+
+# Slug
+https://splunk.atlassian.io/en-GB/app/search/confluence_sre__unicorn_instances?form.product=products.confluence.licensed%3Dtrue&form.environment=jirastudio-prd&form.version=products.jira.version%3D*%20OR%20products.confluence.version%3D*%20OR%20products.bamboo.version%3D*&form.hash=*&form.hostname=*&form.canaries=instance.defaultManifest%3D* | Confluence SRE - Unicorn Instances
+
+# NPM
+https://unpkg.com/{0} | See released package in NPM
+
+# People and team
+https://product-fabric.atlassian.net/people/team/a85bb148-753e-44ec-bba2-df7e17170b2f | People and team
+https://product-fabric.atlassian.net/wiki/spaces/PTD/overview | P&T space
+https://product-fabric.atlassian.net/secure/RapidBoard.jspa?projectKey=DIR&rapidView=58 | P&T board
+https://www.dropbox.com/sh/ktc1n1nj2xp84h6/AAD_9-r-rhhu7Dvzp8n5JWPla?dl=0 | P&T Dropbox
+https://redash.data.internal.atlassian.com/dashboard/people-and-teams# | P&T Redash
+https://redash.data.internal.atlassian.com/dashboard/unified-profile-rollout | P&T unfied-profile-rollout
+https://legion.us-west-2.staging.atl-paas.net/webjars/swagger-ui/index.html?url=https%3A%2F%2Flegion.us-west-2.staging.atl-paas.net%2Fapi%2Fswagger.json | P&T Rest API
+https://id.prod.atl-paas.net/swagger/ | P&T Rest API - Prod
+https://api-private.stg.atlassian.com/directory/graphql | Graphql Endpoint (pf-directoryslc )
+
+# Atlassian ID
+https://id.atlassian.com | Atlassian Id
+https://id.atlassian.com/manage/rest/user | My Prod AAID - Me - Who am I - accountId?
+
+https://engservices-bamboo.internal.atlassian.com/browse/PTC-DIRUI | T&C Eng-services Bamboo build
+https://deployment-bamboo.internal.atlassian.com/browse/PTC-DIRUI | T&C Deploy build
+https://deployment-bamboo.internal.atlassian.com/browse/PTC-DIRUI | T&C Deplyoment Bamboo build
+https://jira.atlassian.com/issues/?filter=84650 | T&C Feedbacks
+
+https://data-portal.us-east-1.staging.public.atl-paas.net/eventdebugger | [Analytic] Data Portal
+https://trello.com/b/fR5eC862/whirlpools-til-summit | Trello - Until Summit
+https://jdog.jira-dev.com/people/search | Staging instance
+https://qa-wac.internal.atlassian.com/try | Provision
+https://hello.atlassian.net/people/team/a85bb148-753e-44ec-bba2-df7e17170b2f | Team page in Hello
+https://ecosystem.atlassian.net/secure/ViewProfile.jspa | Check old profile - not cripspy profile
+https://shipit.atlassian.net/people/557057:e3a2f916-47c9-421f-ae95-8ab44de17af4 | Check old profile - not cripspy profile
+https://tools.ietf.org/html/rfc7643#section-4.1.1
+
+
+# Search info
+https://pug.jira-dev.com/wiki/dosearchsite.action?queryString={0} | Search in Pug...
+https://hello.atlassian.net/wiki/dosearchsite.action?queryString={0} | Search in Hello...
+

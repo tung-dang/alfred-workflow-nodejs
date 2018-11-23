@@ -18,7 +18,8 @@
     "format": "../../scripts/format_files.sh",
     "build": "../../scripts/build.sh",
     "build:live": "../../scripts/build-live.sh",
-    "start": "yarn build:live"
+    "start": "yarn build:live",
+    "ts-node": "ts-node"
   },
   "contributors": [
     {

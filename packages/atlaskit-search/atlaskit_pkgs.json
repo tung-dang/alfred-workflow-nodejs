@@ -19,7 +19,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/bitbucket/panel",
         "name": "panel",
         "groupName": "bitbucket",
-        "version": "0.0.6"
+        "version": "0.0.7"
       }
     ]
   },
@@ -37,7 +37,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/analytics-next",
         "name": "analytics-next",
         "groupName": "core",
-        "version": "3.0.11"
+        "version": "3.1.0"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/avatar",
@@ -67,7 +67,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/blanket",
         "name": "blanket",
         "groupName": "core",
-        "version": "7.0.8"
+        "version": "7.0.9"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/breadcrumbs",
@@ -85,7 +85,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/calendar",
         "name": "calendar",
         "groupName": "core",
-        "version": "7.0.10"
+        "version": "7.0.12"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/checkbox",
@@ -97,7 +97,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/code",
         "name": "code",
         "groupName": "core",
-        "version": "8.0.12"
+        "version": "8.2.0"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/comment",
@@ -115,13 +115,13 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/drawer",
         "name": "drawer",
         "groupName": "core",
-        "version": "2.2.0"
+        "version": "2.4.0"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/dropdown-menu",
         "name": "dropdown-menu",
         "groupName": "core",
-        "version": "6.1.20"
+        "version": "6.1.21"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/droplist",
@@ -145,19 +145,19 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/feedback-collector",
         "name": "feedback-collector",
         "groupName": "core",
-        "version": "0.2.3"
+        "version": "0.2.4"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/field-base",
         "name": "field-base",
         "groupName": "core",
-        "version": "11.0.9"
+        "version": "11.0.10"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/field-radio-group",
         "name": "field-radio-group",
         "groupName": "core",
-        "version": "4.0.9"
+        "version": "4.0.10"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/field-range",
@@ -169,7 +169,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/field-text",
         "name": "field-text",
         "groupName": "core",
-        "version": "7.0.13"
+        "version": "7.0.14"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/field-text-area",
@@ -181,25 +181,25 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/flag",
         "name": "flag",
         "groupName": "core",
-        "version": "9.1.2"
+        "version": "9.1.4"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/form",
         "name": "form",
         "groupName": "core",
-        "version": "4.0.14"
+        "version": "4.0.15"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/global-navigation",
         "name": "global-navigation",
         "groupName": "core",
-        "version": "5.1.0"
+        "version": "5.2.1"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/icon",
         "name": "icon",
         "groupName": "core",
-        "version": "14.2.1"
+        "version": "14.3.0"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/icon-file-type",
@@ -223,7 +223,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/inline-edit",
         "name": "inline-edit",
         "groupName": "core",
-        "version": "7.1.2"
+        "version": "7.1.3"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/inline-message",
@@ -271,25 +271,25 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/modal-dialog",
         "name": "modal-dialog",
         "groupName": "core",
-        "version": "7.0.5"
+        "version": "7.0.10"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/multi-select",
         "name": "multi-select",
         "groupName": "core",
-        "version": "11.0.8"
+        "version": "11.0.9"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/navigation",
         "name": "navigation",
         "groupName": "core",
-        "version": "33.3.2"
+        "version": "33.3.3"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/navigation-next",
         "name": "navigation-next",
         "groupName": "core",
-        "version": "3.22.0"
+        "version": "3.25.1"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/nps",
@@ -301,13 +301,13 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/onboarding",
         "name": "onboarding",
         "groupName": "core",
-        "version": "6.1.5"
+        "version": "6.1.9"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/page",
         "name": "page",
         "groupName": "core",
-        "version": "8.0.9"
+        "version": "8.0.10"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/page-header",
@@ -337,7 +337,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/portal",
         "name": "portal",
         "groupName": "core",
-        "version": "0.0.12"
+        "version": "0.0.14"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/progress-indicator",
@@ -367,7 +367,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/select",
         "name": "select",
         "groupName": "core",
-        "version": "6.1.4"
+        "version": "6.1.7"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/single-select",
@@ -391,7 +391,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/table-tree",
         "name": "table-tree",
         "groupName": "core",
-        "version": "5.0.0"
+        "version": "5.0.1"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/tabs",
@@ -403,7 +403,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/tag",
         "name": "tag",
         "groupName": "core",
-        "version": "6.0.9"
+        "version": "6.1.0"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/tag-group",
@@ -427,13 +427,13 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/tooltip",
         "name": "tooltip",
         "groupName": "core",
-        "version": "12.1.7"
+        "version": "12.1.9"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/core/tree",
         "name": "tree",
         "groupName": "core",
-        "version": "4.1.4"
+        "version": "4.1.5"
       }
     ]
   },
@@ -445,13 +445,13 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/css-packs/css-reset",
         "name": "css-reset",
         "groupName": "css-packs",
-        "version": "3.0.2"
+        "version": "3.0.3"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/css-packs/reduced-ui-pack",
         "name": "reduced-ui-pack",
         "groupName": "css-packs",
-        "version": "10.2.1"
+        "version": "10.3.0"
       }
     ]
   },
@@ -463,7 +463,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/editor/adf-utils",
         "name": "adf-utils",
         "groupName": "editor",
-        "version": "5.0.1"
+        "version": "5.1.4"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/editor/conversation",
@@ -481,7 +481,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/editor/editor-common",
         "name": "editor-common",
         "groupName": "editor",
-        "version": "21.0.0"
+        "version": "21.2.2"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/editor/editor-confluence-transformer",
@@ -493,7 +493,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/editor/editor-core",
         "name": "editor-core",
         "groupName": "editor",
-        "version": "88.0.5"
+        "version": "88.2.9"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/editor/editor-jira-transformer",
@@ -517,19 +517,19 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/editor/editor-mobile-bridge",
         "name": "editor-mobile-bridge",
         "groupName": "editor",
-        "version": "5.3.0"
+        "version": "5.5.0"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/editor/editor-test-helpers",
         "name": "editor-test-helpers",
         "groupName": "editor",
-        "version": "6.2.16"
+        "version": "6.2.18"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/editor/editor-wikimarkup-transformer",
         "name": "editor-wikimarkup-transformer",
         "groupName": "editor",
-        "version": "2.1.26"
+        "version": "2.4.6"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/editor/embedded-document",
@@ -541,13 +541,13 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/editor/json-schema-generator",
         "name": "json-schema-generator",
         "groupName": "editor",
-        "version": "1.2.0"
+        "version": "1.2.1"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/editor/renderer",
         "name": "renderer",
         "groupName": "editor",
-        "version": "30.0.0"
+        "version": "30.2.1"
       }
     ]
   },
@@ -619,7 +619,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/elements/status",
         "name": "status",
         "groupName": "elements",
-        "version": "0.2.4"
+        "version": "0.2.5"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/elements/task-decision",
@@ -631,7 +631,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/elements/user-picker",
         "name": "user-picker",
         "groupName": "elements",
-        "version": "0.0.7"
+        "version": "0.0.17"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/elements/util-data-test",
@@ -684,6 +684,18 @@
     ]
   },
   {
+    "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/jira",
+    "name": "jira",
+    "children": [
+      {
+        "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/jira/color-picker",
+        "name": "color-picker",
+        "groupName": "jira",
+        "version": "0.1.0"
+      }
+    ]
+  },
+  {
     "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/media",
     "name": "media",
     "children": [
@@ -703,7 +715,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/media/media-core",
         "name": "media-core",
         "groupName": "media",
-        "version": "24.4.0"
+        "version": "24.4.1"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/media/media-editor",
@@ -727,13 +739,13 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/media/media-picker",
         "name": "media-picker",
         "groupName": "media",
-        "version": "24.0.0"
+        "version": "24.0.1"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/media/media-store",
         "name": "media-store",
         "groupName": "media",
-        "version": "8.3.0"
+        "version": "8.3.1"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/media/media-test-helpers",
@@ -745,7 +757,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/media/media-ui",
         "name": "media-ui",
         "groupName": "media",
-        "version": "7.4.0"
+        "version": "7.4.1"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/media/media-viewer",
@@ -757,7 +769,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/media/smart-card",
         "name": "smart-card",
         "groupName": "media",
-        "version": "8.6.1"
+        "version": "8.8.0"
       }
     ]
   },
@@ -775,7 +787,7 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/people-and-teams/profilecard",
         "name": "profilecard",
         "groupName": "people-and-teams",
-        "version": "5.0.0"
+        "version": "6.0.0"
       }
     ]
   },
@@ -787,13 +799,13 @@
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/search/global-search",
         "name": "global-search",
         "groupName": "search",
-        "version": "5.12.0"
+        "version": "5.12.1"
       },
       {
         "path": "/Users/tthanhdang/src/_atlassian/atlaskit-mk-2/packages/search/quick-search",
         "name": "quick-search",
         "groupName": "search",
-        "version": "5.0.0"
+        "version": "5.1.0"
       }
     ]
   },
