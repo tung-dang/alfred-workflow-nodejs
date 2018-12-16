@@ -6,3 +6,5 @@ icons/
 .idea/
 yarn-error.log
 dist
+
+atlaskit_pkgs.json

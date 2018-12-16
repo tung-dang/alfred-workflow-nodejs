@@ -19,10 +19,12 @@ get_user_path() {
 
 set_path() {
 	if [[ -f "$PATH_CACHE" ]]; then
-		. "$PATH_CACHE"
+		# shellcheck source=/dev/null
+    source "$PATH_CACHE"
 	else
 		get_user_path
-		. "$PATH_CACHE"
+    # shellcheck source=/dev/null
+		source "$PATH_CACHE"
 	fi
 
 	export PATH
@@ -46,5 +48,5 @@ fi
 if has_node; then
 	node "$@"
 else
-	echo $'{"items":[{"title": "Couldn\'t find the `node` binary", "subtitle": "Symlink it to `/usr/local/bin`"}]}'
+	echo $'{ "items": [{ "title": "Couldn\'t find the `node` binary", "subtitle": "Symlink it to `/usr/local/bin`" } ] }'
 fi

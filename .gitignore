@@ -6,3 +6,4 @@ icons/
 .idea/
 yarn-error.log
 dist
+info.plist

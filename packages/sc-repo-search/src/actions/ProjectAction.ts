@@ -19,8 +19,8 @@ export default class ProjectAction implements IAction {
     this.icon = options.icon || DEFAULT_ICON;
   }
 
+  // @ts-ignore
   shouldDisplay(data?: any) {
-    console.debug('==================', data);
     return true;
   }
 
