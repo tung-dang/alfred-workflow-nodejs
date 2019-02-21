@@ -13,7 +13,7 @@
     "@alfred-wf-node/core": "^1.1.2"
   },
   "scripts": {
-    "export-wf": "git archive --format zip --output ./exported-workflow-file/YarnApiSearch.alfredworkflow master",
+    "export-wf": "git archive --format zip --output ./exported-workflow-file/AtlasKitPackagesSarch.alfredworkflow master",
     "export-push": "yarn run export-wf && git add --all && git commit -m \"export workflow to file\" && git push --follow-tags",
     "cleanup": "../../scripts/cleanup.sh",
     "format": "../../scripts/format_files.sh",
