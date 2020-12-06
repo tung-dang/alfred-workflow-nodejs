@@ -17,6 +17,12 @@ export const openDocLink = new OpenBrowserLinkAction({
   name: 'Open document link'
 });
 
+export const openRepoLink = new OpenBrowserLinkAction({
+  propertyName: 'docLink',
+  icon: 'icons/bitbucket.jpg',
+  name: 'Open repo link'
+});
+
 export const openInVSCode = new OpenInVSCodeAction({
   propertyName: 'localFullPage'
 });
@@ -33,9 +39,15 @@ export const packageActions = [
 ];
 
 export const executeActionByKey = (key: string, arg: PackageActionArg) => {
-  packageActions.forEach((action: IAction) => {
+  const action = packageActions.find((action: IAction) => {
     if (action.key === key) {
-      action.execute(arg);
+      return action;
     }
   });
+
+  if (action) {
+    action.execute(arg);
+  } else {
+    openRepoLink.execute(arg);
+  }
 };

@@ -1,7 +1,7 @@
 {
   "name": "@alfred-wf-node/go-bookmarks",
   "main": "dist/index",
-  "types": "lib/index",
+  "types": "dist/index.d.ts",
   "description": "Alfred workflow to search bookmarks in a simple formarted text file",
   "version": "0.0.0",
   "private": true,
@@ -10,7 +10,7 @@
   },
   "homepage": "https://github.com/tung-dang/alfred-workflow-go-links",
   "dependencies": {
-    "@alfred-wf-node/core": "1.1.2"
+    "@alfred-wf-node/core": "^1.1.2"
   },
   "scripts": {
     "export-wf": "tar -cv . | gzip > exported-workflow-file/Go.alfredworkflow",

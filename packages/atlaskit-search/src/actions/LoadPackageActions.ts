@@ -96,6 +96,21 @@ export default class LoadPackageActions {
       })
     );
 
+    // open AK repo link
+    items.push(
+      new AfItem({
+        uid: 'ak-repo-link',
+        title: 'Open repo link',
+        subtitle: '',
+        hasSubItems: false,
+        arg: JSON.stringify({
+          docLink: 'https://bitbucket.org/atlassian/atlassian-frontend/src/master/',
+          name: 'Repository link',
+        }),
+        icon: 'icons/ak_icon.png'
+      })
+    );
+
     this.wf.addItems(items);
     this.wf.feedback();
   };

@@ -1,13 +1,22 @@
 {
   "compilerOptions": {
+    // basic options
     "target": "es6",
     "module": "commonjs",
+    "lib": ["ESNext"],
+    // output
     "rootDir": "src",
     "outDir": "dist",
-    "moduleResolution": "node",
+    "declaration": true,
+    "declarationMap": true,
+    "composite": true,
     "sourceMap": false,
     "removeComments": true,
     // "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
     // "noImplicitReturns": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
@@ -23,10 +32,10 @@
   },
   "include": [
     "**/*.ts",
-    "**/*.json"
   ],
   "exclude": [
     "node_modules",
+    "dist",
     "test",
     "*-test.ts"
   ]

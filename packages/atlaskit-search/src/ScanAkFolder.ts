@@ -75,7 +75,7 @@ export default class ScanAkFolder {
         JSON.stringify(this.groups, null, '  '),
         () => {
           console.info('Write output file successfully');
-          resolve();
+          resolve('');
         }
       );
     });

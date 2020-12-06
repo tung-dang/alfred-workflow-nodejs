@@ -1,12 +1,12 @@
 {
   "name": "@alfred-wf-node/search-source-code-repo",
   "main": "dist/index",
-  "types": "lib/index",
+  "types": "dist/index.d.ts",
   "version": "0.0.0",
   "private": true,
   "dependencies": {
     "@alfred-wf-node/core": "^1.1.2",
-    "git-utils": "^5.4.0"
+    "git-utils": "^5.6.2"
   },
   "scripts": {
     "export-wf": "tar -cv . | gzip > exported-workflow-file/Go.alfredworkflow",

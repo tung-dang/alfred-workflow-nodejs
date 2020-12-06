@@ -56,7 +56,7 @@ export default class LoadProjects {
       });
     });
 
-    // cache in 24h
+    // cache in 1 week
     storage.set(keyCache, folders, ONE_WEEK);
 
     return folders;

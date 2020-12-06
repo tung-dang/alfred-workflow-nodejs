@@ -1,7 +1,7 @@
 {
   "name": "@alfred-wf-node/search-yarn-api",
   "main": "dist/index",
-  "types": "lib/index",
+  "types": "dist/index.d.ts",
   "description": "Alfred workflow to search Yarn API",
   "version": "0.0.0",
   "private": true,
@@ -11,7 +11,7 @@
   "homepage": "https://github.com/tung-dang/alfred-workflow-yarn-api-search",
   "dependencies": {
     "@alfred-wf-node/core": "^1.1.2",
-    "octonode": "^0.9.5"
+    "octonode": "^0.10.0"
   },
   "scripts": {
     "export-wf": "git archive --format zip --output ./exported-workflow-file/YarnApiSearch.alfredworkflow master",

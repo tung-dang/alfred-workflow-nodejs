@@ -133,6 +133,7 @@ export const openInSourceTree = new ProjectAction({
     return exec(command);
   },
   getIcon: (/*data*/) => {
+    // @ts-ignore
     return this.icon;
   }
 });

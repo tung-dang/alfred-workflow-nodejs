@@ -1,8 +1,0 @@
-persist
-.node-persist
-node_modules
-go_list.txt
-icons/
-.idea/
-yarn-error.log
-dist

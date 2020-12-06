@@ -1,7 +1,7 @@
 {
   "name": "@alfred-wf-node/search-enzyme-js",
   "main": "dist/index",
-  "types": "lib/index",
+  "types": "dist/index.d.ts",
   "description": "Alfred workflow to search Enzyme JS API",
   "version": "0.0.0",
   "private": true,
@@ -11,10 +11,10 @@
   "homepage": "https://github.com/tung-dang/alfred-workflow-enzyme-js-api-search",
   "dependencies": {
     "@alfred-wf-node/core": "^1.1.2",
-    "octonode": "^0.9.2"
+    "octonode": "^0.10.0"
   },
   "devDependencies": {
-    "@types/node": "10.3.2"
+    "@types/node": "^14.14.10"
   },
   "scripts": {
     "archive-zip": "git archive --verbose --format zip --output ./exported-workflow/EnzymeJSApiSearch.alfredworkflow master",

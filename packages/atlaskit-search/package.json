@@ -1,7 +1,7 @@
 {
   "name": "@alfred-wf-node/atlaskit-search",
   "main": "dist/index",
-  "types": "lib/index",
+  "types": "dist/index.d.ts",
   "description": "Alfred workflow to search packaegs in AtlasKit",
   "version": "0.0.0",
   "private": true,
