@@ -62,8 +62,6 @@ export default class MainApp {
         this.wf.error(
           'Can not fetch file list from: ',
           YARN_API_PATH,
-          ' - Error: ',
-          error
         );
         return;
       }
@@ -102,6 +100,7 @@ export default class MainApp {
           title: cliName,
           subtitle: urlWebsite,
           arg: openLinkArg,
+          // @ts-ignore
           mods: {
             // if users press CMD, open GitHub link
             cmd: {

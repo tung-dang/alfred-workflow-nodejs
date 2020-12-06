@@ -9,5 +9,9 @@ if ! has_typescript_compiler; then
   exit 1
 fi
 
+echo " - Removing 'dist' folder"
 rm -rf ./dist
+rm -rf ./tsconfig.tsbuildinfo
+
+echo " - Build TS project"
 tsc -p ./tsconfig.json

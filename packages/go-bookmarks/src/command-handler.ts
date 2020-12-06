@@ -105,6 +105,7 @@ export default class CommandHandler {
         params: this._getParamFromQuery()
       },
       icon: 'icon.png',
+      // @ts-ignore
       mods: {
         cmd: {
           valid: true,

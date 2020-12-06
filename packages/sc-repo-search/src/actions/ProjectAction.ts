@@ -4,6 +4,9 @@ import { CommandParams, ProjectActionArg } from '../types';
 const DEFAULT_ICON = 'code.png';
 
 export default class ProjectAction implements IAction {
+    getDesc?: ((arg: any) => string) | undefined;
+    isValid: (arg: any) => boolean;
+    toAlfredItem: (arg: any) => AfItem;
   shortcut: any;
   icon: any;
   key: string;

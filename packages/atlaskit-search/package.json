@@ -10,7 +10,7 @@
   },
   "homepage": "https://github.com/tung-dang/alfred-workflow-yarn-api-search",
   "dependencies": {
-    "@alfred-wf-node/core": "^1.1.2"
+    "@alfred-wf-node/core": "1.1.2"
   },
   "scripts": {
     "export-wf": "git archive --format zip --output ./exported-workflow-file/AtlasKitPackagesSarch.alfredworkflow master",

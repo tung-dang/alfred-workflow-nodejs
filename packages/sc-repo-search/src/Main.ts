@@ -1,4 +1,4 @@
-import { AfWorkflow, storage, settings } from '@alfred-wf-node/core';
+import { AfWorkflow, storage } from '@alfred-wf-node/core';
 import { executeActionByKey } from './actions/project-actions';
 
 const commands = {
@@ -36,7 +36,6 @@ export default class MainApp {
 
     this.wf.onAction(commands.CLEAR_CACHE, () => {
       storage && storage.clear();
-      settings && settings.clear();
     });
   }
 

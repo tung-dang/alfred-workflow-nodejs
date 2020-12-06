@@ -121,6 +121,7 @@ export default class MainApp {
             actionName: 'open_link',
             link: urlWebsite
           },
+          // @ts-ignore
           mods: {
             // if users press CMD, open GitHub link
             cmd: {
@@ -128,7 +129,8 @@ export default class MainApp {
                 actionName: 'open_link',
                 link: url
               },
-              subtitle: url
+              subtitle: url,
+              valid: true,
             }
           }
         })

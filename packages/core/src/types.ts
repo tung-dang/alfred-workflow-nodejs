@@ -6,11 +6,11 @@ export type AlfredIconType = {
 };
 
 export type ModType = {
-  valid: boolean;
-  arg: any;
-  subtitle: string;
-  icon: AlfredIconType;
-  variables: any;
+  valid?: boolean;
+  arg?: any;
+  subtitle?: string;
+  icon?: AlfredIconType;
+  variables?: any;
 };
 
 // Reference from: https://www.alfredapp.com/help/workflows/inputs/script-filter/json/

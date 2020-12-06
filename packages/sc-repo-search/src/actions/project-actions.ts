@@ -57,6 +57,7 @@ export const openInItermAction = new ProjectAction({
       'end tell\n' +
       'end tell\n';
     const script = OPEN_IN_ITERM_AS.replace('%s', data.path);
+    // @ts-ignore
     utils.applescript.execute(script);
   }
 });
@@ -80,6 +81,8 @@ export const openInNewItermSplitPanelAction = new ProjectAction({
       'end tell\n';
 
     const script = OPEN_IN_ITERM_NEW_SPLIT_PANEL_AS.replace('%s', data.path);
+
+    // @ts-ignore
     utils.applescript.execute(script);
   }
 });
@@ -100,6 +103,7 @@ export const openInItermCurrentSessionAction = new ProjectAction({
       'end tell\n';
 
     const script = OPEN_IN_ITERM_CURRENT_SESSION_AS.replace('%s', data.path);
+    // @ts-ignore
     utils.applescript.execute(script);
   }
 });
@@ -159,6 +163,7 @@ export const executeActionByKey = (
   actionKey: string,
   actionArg: CommandParams
 ) => {
+  // @ts-ignore
   projectActions.forEach((action: ProjectAction) => {
     if (action.key === actionKey || action.name === actionKey) {
       action.execute(actionArg);

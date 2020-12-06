@@ -166,85 +166,15 @@
         "signature": "475c48ff918b939028397db2b42f49660a51cfd0c8e3bd3b87bf22046ae80bfc",
         "affectsGlobalScope": false
       },
-      "./src/constants.ts": {
-        "version": "06845da3dbf6a5da8d834b1c42c806e6aee7c7d45f24ec4d4a2714b28bd2691c",
-        "signature": "db674fb2c788b99630bc43305ecf6fd0f4ad7f59315bac15c4754a9fcbb3f10d",
-        "affectsGlobalScope": false
-      },
-      "./src/types.ts": {
-        "version": "6030da75c4f8eb6f2aed4a3d8a8d4ea0e6f197ee3f9d7e6587c6fe3eb35aee28",
+      "../core/dist/types.d.ts": {
+        "version": "674d3e3b492dc9cf72ce13faa2e1b95f73d5fc98a74ca4a4ee9e9337b9727cc7",
         "signature": "674d3e3b492dc9cf72ce13faa2e1b95f73d5fc98a74ca4a4ee9e9337b9727cc7",
         "affectsGlobalScope": false
       },
-      "./src/afitem.ts": {
-        "version": "eda6a97892b2be6a4b594b1d653f24fff71dbbaa981be29632b3c4a42b69252c",
+      "../core/dist/afitem.d.ts": {
+        "version": "4ffa6a27e3d45f8c29da98c3b59be4b418d9a6b62630fabe5920a35a1ed7f8c4",
         "signature": "4ffa6a27e3d45f8c29da98c3b59be4b418d9a6b62630fabe5920a35a1ed7f8c4",
         "affectsGlobalScope": false
-      },
-      "./src/storage.ts": {
-        "version": "a86047c19e5a3fe2257ce125138bf75b9b53f561bcdd7297307e9f0626cc6176",
-        "signature": "c1662761e94d09ca73202831f634ed498ef0d2d3db7f6ff9c7714e08171a7c31",
-        "affectsGlobalScope": false
-      },
-      "../../node_modules/fuzzy/lib/fuzzy.d.ts": {
-        "version": "dfefdcf01b5764302755cdcbc15dc91057eaa6204e2386cefe82a8687896eae9",
-        "signature": "dfefdcf01b5764302755cdcbc15dc91057eaa6204e2386cefe82a8687896eae9",
-        "affectsGlobalScope": false
-      },
-      "./src/utilities.ts": {
-        "version": "c9c3aba3d6e6807e3f96a8f3e30b4970adddfbac18957176c3dabcad0f4e3861",
-        "signature": "84f26de2b7996caae8484557ae235146c4399ed5cfb52b12eef3a2a495a0465e",
-        "affectsGlobalScope": false
-      },
-      "./src/afworkflow.ts": {
-        "version": "927b2376fe0d901befeec040853252a76a9e4d3696779c0d3eca34c54ac01cac",
-        "signature": "c6995197107352f18470920d24a97e545aa482bf64d1d626d8666942c8d79f45",
-        "affectsGlobalScope": false
-      },
-      "./src/actions/abstractaction.ts": {
-        "version": "f30464163c28c5a1ab55c57f90efe91a738e027bd2f24d59030cf2b695d9a306",
-        "signature": "e8c4bb353f412b60244048e677ba9dcd8c376505860ef1ea1ea754efcb6b83c4",
-        "affectsGlobalScope": false
-      },
-      "./src/actions/openinfinderaction.ts": {
-        "version": "d90c7112b6c66ce70dc2eea214fc42a12fcfd8fb44a67b10d24db8c7dd9f073e",
-        "signature": "991625c7c591e5da5405088f286027bdbb26cff864298333b7cc38c2a31d6708",
-        "affectsGlobalScope": false
-      },
-      "./src/actions/openbrowserlinkaction.ts": {
-        "version": "4a41c56f51e9c299f5aa336a7d64db93d25e7847eaab6d87b483d4fd93629f95",
-        "signature": "c82b64a3378932ae9ff1944e48b64f94ce2c358aeafda7de8c8feba2ded02414",
-        "affectsGlobalScope": false
-      },
-      "./src/actions/openinvscodeaction.ts": {
-        "version": "86d0c7c3b015711343c36958df87751a7711cbb89c28a9fe50892c8d4f7df7bf",
-        "signature": "e3e3e8d16fef54a88e435b78239d2cec4db4481202d734640a0b2a0feda2782d",
-        "affectsGlobalScope": false
-      },
-      "./src/actions/openinsublimetextaction.ts": {
-        "version": "0ce28acc9242be14deaf7ed58b126ade2774881d6773a039acf2401cb1caa0c2",
-        "signature": "cb5b8631329e3cc3e3c5ecbe5fff978bc8e2b508cf81b6fa5dd9b677970269f4",
-        "affectsGlobalScope": false
-      },
-      "../../node_modules/clipboardy/index.d.ts": {
-        "version": "45335b5a58b3252030108af7ff3654402c3fd8317417d11c6993207d6dbebd6f",
-        "signature": "45335b5a58b3252030108af7ff3654402c3fd8317417d11c6993207d6dbebd6f",
-        "affectsGlobalScope": false
-      },
-      "./src/actions/copytoclipboardaction.ts": {
-        "version": "b7302676d98507caa3064368438a29e530c0d4749bb6ade8d06a8ca800b90dbd",
-        "signature": "5906a25a6ae5705d3c113e42164ab13ff40baebd9395af33d9bb7ab1972fa1b4",
-        "affectsGlobalScope": false
-      },
-      "./src/index.ts": {
-        "version": "e6f866b9e8a1f7bb675df0ea89a9a76e2858578a502621836e354931a264885a",
-        "signature": "f9450e9409e5619cce42bd2ee0c68fd854d34c62fbaf8bac981f3d92aaa4be8e",
-        "affectsGlobalScope": false
-      },
-      "../../node_modules/@types/mocha/index.d.ts": {
-        "version": "4862143e5418707aff61e5377e99300af3abcaa705a4a20908ca565bbe9e50d1",
-        "signature": "4862143e5418707aff61e5377e99300af3abcaa705a4a20908ca565bbe9e50d1",
-        "affectsGlobalScope": true
       },
       "../../node_modules/@types/node/globals.d.ts": {
         "version": "cdbd1c3e0c329abaa9442d3dd8b62699464a26b2e8e36fbde362bd4e7d490f16",
@@ -480,6 +410,76 @@
         "version": "5825520e2099309182c6e2a2b3061b060d42a098c58f67d1754880a7e2cce99a",
         "signature": "5825520e2099309182c6e2a2b3061b060d42a098c58f67d1754880a7e2cce99a",
         "affectsGlobalScope": false
+      },
+      "../core/dist/afworkflow.d.ts": {
+        "version": "c6995197107352f18470920d24a97e545aa482bf64d1d626d8666942c8d79f45",
+        "signature": "c6995197107352f18470920d24a97e545aa482bf64d1d626d8666942c8d79f45",
+        "affectsGlobalScope": false
+      },
+      "../core/dist/actions/abstractaction.d.ts": {
+        "version": "e8c4bb353f412b60244048e677ba9dcd8c376505860ef1ea1ea754efcb6b83c4",
+        "signature": "e8c4bb353f412b60244048e677ba9dcd8c376505860ef1ea1ea754efcb6b83c4",
+        "affectsGlobalScope": false
+      },
+      "../core/dist/actions/openinfinderaction.d.ts": {
+        "version": "991625c7c591e5da5405088f286027bdbb26cff864298333b7cc38c2a31d6708",
+        "signature": "991625c7c591e5da5405088f286027bdbb26cff864298333b7cc38c2a31d6708",
+        "affectsGlobalScope": false
+      },
+      "../core/dist/actions/openbrowserlinkaction.d.ts": {
+        "version": "c82b64a3378932ae9ff1944e48b64f94ce2c358aeafda7de8c8feba2ded02414",
+        "signature": "c82b64a3378932ae9ff1944e48b64f94ce2c358aeafda7de8c8feba2ded02414",
+        "affectsGlobalScope": false
+      },
+      "../core/dist/actions/openinvscodeaction.d.ts": {
+        "version": "e3e3e8d16fef54a88e435b78239d2cec4db4481202d734640a0b2a0feda2782d",
+        "signature": "e3e3e8d16fef54a88e435b78239d2cec4db4481202d734640a0b2a0feda2782d",
+        "affectsGlobalScope": false
+      },
+      "../core/dist/actions/openinsublimetextaction.d.ts": {
+        "version": "cb5b8631329e3cc3e3c5ecbe5fff978bc8e2b508cf81b6fa5dd9b677970269f4",
+        "signature": "cb5b8631329e3cc3e3c5ecbe5fff978bc8e2b508cf81b6fa5dd9b677970269f4",
+        "affectsGlobalScope": false
+      },
+      "../core/dist/actions/copytoclipboardaction.d.ts": {
+        "version": "5906a25a6ae5705d3c113e42164ab13ff40baebd9395af33d9bb7ab1972fa1b4",
+        "signature": "5906a25a6ae5705d3c113e42164ab13ff40baebd9395af33d9bb7ab1972fa1b4",
+        "affectsGlobalScope": false
+      },
+      "../core/dist/utilities.d.ts": {
+        "version": "84f26de2b7996caae8484557ae235146c4399ed5cfb52b12eef3a2a495a0465e",
+        "signature": "84f26de2b7996caae8484557ae235146c4399ed5cfb52b12eef3a2a495a0465e",
+        "affectsGlobalScope": false
+      },
+      "../core/dist/storage.d.ts": {
+        "version": "c1662761e94d09ca73202831f634ed498ef0d2d3db7f6ff9c7714e08171a7c31",
+        "signature": "c1662761e94d09ca73202831f634ed498ef0d2d3db7f6ff9c7714e08171a7c31",
+        "affectsGlobalScope": false
+      },
+      "../core/dist/index.d.ts": {
+        "version": "f9450e9409e5619cce42bd2ee0c68fd854d34c62fbaf8bac981f3d92aaa4be8e",
+        "signature": "f9450e9409e5619cce42bd2ee0c68fd854d34c62fbaf8bac981f3d92aaa4be8e",
+        "affectsGlobalScope": false
+      },
+      "./src/types.ts": {
+        "version": "06dde152c88316a3bc72ecc75685740b52edd19da76afe39b24809a9a9dc73c8",
+        "signature": "5f9b561960a9b88b68a3c4272f531f056f6196efd2b09f0f4739013148683948",
+        "affectsGlobalScope": false
+      },
+      "./src/main.ts": {
+        "version": "96206aad232d2da6da39e4ea32d26cd3c2257fac5b06deb92b268f4703bf0e98",
+        "signature": "72a0ee3fa5d8d3eeaeb018e29706eefb8b2a58a0f712a1df7b1841b7cde07d07",
+        "affectsGlobalScope": false
+      },
+      "./src/index.ts": {
+        "version": "f0c7b3ddf003a37b5bb7fa8c333c692d022f0894d73c71877fdf1bea0ae43645",
+        "signature": "f667f6b1d66ba55f0dcd27f5ff050063fecfe289bad00e8c5d48344a775c1439",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/mocha/index.d.ts": {
+        "version": "4862143e5418707aff61e5377e99300af3abcaa705a4a20908ca565bbe9e50d1",
+        "signature": "4862143e5418707aff61e5377e99300af3abcaa705a4a20908ca565bbe9e50d1",
+        "affectsGlobalScope": true
       }
     },
     "options": {
@@ -681,73 +681,68 @@
       "../../node_modules/@types/node/zlib.d.ts": [
         "../../node_modules/@types/node/stream.d.ts"
       ],
-      "./src/actions/abstractaction.ts": [
-        "./src/afitem.ts",
-        "./src/types.ts"
+      "../core/dist/actions/abstractaction.d.ts": [
+        "../core/dist/afitem.d.ts",
+        "../core/dist/types.d.ts"
       ],
-      "./src/actions/copytoclipboardaction.ts": [
-        "../../node_modules/@types/node/path.d.ts",
-        "../../node_modules/clipboardy/index.d.ts",
-        "./src/actions/abstractaction.ts",
-        "./src/types.ts"
+      "../core/dist/actions/copytoclipboardaction.d.ts": [
+        "../core/dist/actions/abstractaction.d.ts",
+        "../core/dist/types.d.ts"
       ],
-      "./src/actions/openbrowserlinkaction.ts": [
+      "../core/dist/actions/openbrowserlinkaction.d.ts": [
         "../../node_modules/@types/node/child_process.d.ts",
-        "../../node_modules/@types/node/path.d.ts",
-        "./src/actions/abstractaction.ts",
-        "./src/types.ts"
+        "../../node_modules/@types/node/index.d.ts",
+        "../core/dist/actions/abstractaction.d.ts",
+        "../core/dist/types.d.ts"
       ],
-      "./src/actions/openinfinderaction.ts": [
+      "../core/dist/actions/openinfinderaction.d.ts": [
         "../../node_modules/@types/node/child_process.d.ts",
-        "../../node_modules/@types/node/path.d.ts",
-        "./src/actions/abstractaction.ts",
-        "./src/types.ts"
+        "../../node_modules/@types/node/index.d.ts",
+        "../core/dist/actions/abstractaction.d.ts",
+        "../core/dist/types.d.ts"
       ],
-      "./src/actions/openinsublimetextaction.ts": [
+      "../core/dist/actions/openinsublimetextaction.d.ts": [
         "../../node_modules/@types/node/child_process.d.ts",
-        "../../node_modules/@types/node/path.d.ts",
-        "./src/actions/abstractaction.ts",
-        "./src/types.ts"
+        "../../node_modules/@types/node/index.d.ts",
+        "../core/dist/actions/abstractaction.d.ts",
+        "../core/dist/types.d.ts"
       ],
-      "./src/actions/openinvscodeaction.ts": [
+      "../core/dist/actions/openinvscodeaction.d.ts": [
         "../../node_modules/@types/node/child_process.d.ts",
-        "../../node_modules/@types/node/path.d.ts",
-        "./src/actions/abstractaction.ts",
-        "./src/types.ts"
+        "../../node_modules/@types/node/index.d.ts",
+        "../core/dist/actions/abstractaction.d.ts",
+        "../core/dist/types.d.ts"
       ],
-      "./src/afitem.ts": [
-        "./src/constants.ts",
-        "./src/types.ts"
+      "../core/dist/afitem.d.ts": [
+        "../core/dist/types.d.ts"
       ],
-      "./src/afworkflow.ts": [
+      "../core/dist/afworkflow.d.ts": [
         "../../node_modules/@types/node/events.d.ts",
-        "./src/afitem.ts",
-        "./src/constants.ts",
-        "./src/storage.ts",
-        "./src/types.ts",
-        "./src/utilities.ts"
+        "../../node_modules/@types/node/index.d.ts",
+        "../core/dist/afitem.d.ts",
+        "../core/dist/types.d.ts"
       ],
-      "./src/constants.ts": [
-        "../../node_modules/@types/node/path.d.ts"
+      "../core/dist/index.d.ts": [
+        "../core/dist/actions/copytoclipboardaction.d.ts",
+        "../core/dist/actions/openbrowserlinkaction.d.ts",
+        "../core/dist/actions/openinfinderaction.d.ts",
+        "../core/dist/actions/openinsublimetextaction.d.ts",
+        "../core/dist/actions/openinvscodeaction.d.ts",
+        "../core/dist/afitem.d.ts",
+        "../core/dist/afworkflow.d.ts",
+        "../core/dist/storage.d.ts",
+        "../core/dist/types.d.ts",
+        "../core/dist/utilities.d.ts"
+      ],
+      "../core/dist/types.d.ts": [
+        "../core/dist/afitem.d.ts"
       ],
       "./src/index.ts": [
-        "./src/actions/copytoclipboardaction.ts",
-        "./src/actions/openbrowserlinkaction.ts",
-        "./src/actions/openinfinderaction.ts",
-        "./src/actions/openinsublimetextaction.ts",
-        "./src/actions/openinvscodeaction.ts",
-        "./src/afitem.ts",
-        "./src/afworkflow.ts",
-        "./src/storage.ts",
-        "./src/types.ts",
-        "./src/utilities.ts"
+        "./src/main.ts"
       ],
-      "./src/types.ts": [
-        "./src/afitem.ts"
-      ],
-      "./src/utilities.ts": [
-        "../../node_modules/fuzzy/lib/fuzzy.d.ts",
-        "./src/storage.ts"
+      "./src/main.ts": [
+        "../core/dist/index.d.ts",
+        "./src/types.ts"
       ]
     },
     "exportedModulesMap": {
@@ -918,56 +913,65 @@
       "../../node_modules/@types/node/zlib.d.ts": [
         "../../node_modules/@types/node/stream.d.ts"
       ],
-      "./src/actions/abstractaction.ts": [
-        "./src/afitem.ts",
-        "./src/types.ts"
+      "../core/dist/actions/abstractaction.d.ts": [
+        "../core/dist/afitem.d.ts",
+        "../core/dist/types.d.ts"
       ],
-      "./src/actions/copytoclipboardaction.ts": [
-        "./src/actions/abstractaction.ts",
-        "./src/types.ts"
+      "../core/dist/actions/copytoclipboardaction.d.ts": [
+        "../core/dist/actions/abstractaction.d.ts",
+        "../core/dist/types.d.ts"
       ],
-      "./src/actions/openbrowserlinkaction.ts": [
+      "../core/dist/actions/openbrowserlinkaction.d.ts": [
         "../../node_modules/@types/node/child_process.d.ts",
-        "./src/actions/abstractaction.ts",
-        "./src/types.ts"
+        "../../node_modules/@types/node/index.d.ts",
+        "../core/dist/actions/abstractaction.d.ts",
+        "../core/dist/types.d.ts"
       ],
-      "./src/actions/openinfinderaction.ts": [
+      "../core/dist/actions/openinfinderaction.d.ts": [
         "../../node_modules/@types/node/child_process.d.ts",
-        "./src/actions/abstractaction.ts",
-        "./src/types.ts"
+        "../../node_modules/@types/node/index.d.ts",
+        "../core/dist/actions/abstractaction.d.ts",
+        "../core/dist/types.d.ts"
       ],
-      "./src/actions/openinsublimetextaction.ts": [
+      "../core/dist/actions/openinsublimetextaction.d.ts": [
         "../../node_modules/@types/node/child_process.d.ts",
-        "./src/actions/abstractaction.ts",
-        "./src/types.ts"
+        "../../node_modules/@types/node/index.d.ts",
+        "../core/dist/actions/abstractaction.d.ts",
+        "../core/dist/types.d.ts"
       ],
-      "./src/actions/openinvscodeaction.ts": [
+      "../core/dist/actions/openinvscodeaction.d.ts": [
         "../../node_modules/@types/node/child_process.d.ts",
-        "./src/actions/abstractaction.ts",
-        "./src/types.ts"
+        "../../node_modules/@types/node/index.d.ts",
+        "../core/dist/actions/abstractaction.d.ts",
+        "../core/dist/types.d.ts"
       ],
-      "./src/afitem.ts": [
-        "./src/types.ts"
+      "../core/dist/afitem.d.ts": [
+        "../core/dist/types.d.ts"
       ],
-      "./src/afworkflow.ts": [
+      "../core/dist/afworkflow.d.ts": [
         "../../node_modules/@types/node/events.d.ts",
-        "./src/afitem.ts",
+        "../../node_modules/@types/node/index.d.ts",
+        "../core/dist/afitem.d.ts",
+        "../core/dist/types.d.ts"
+      ],
+      "../core/dist/index.d.ts": [
+        "../core/dist/actions/copytoclipboardaction.d.ts",
+        "../core/dist/actions/openbrowserlinkaction.d.ts",
+        "../core/dist/actions/openinfinderaction.d.ts",
+        "../core/dist/actions/openinsublimetextaction.d.ts",
+        "../core/dist/actions/openinvscodeaction.d.ts",
+        "../core/dist/afitem.d.ts",
+        "../core/dist/afworkflow.d.ts",
+        "../core/dist/storage.d.ts",
+        "../core/dist/types.d.ts",
+        "../core/dist/utilities.d.ts"
+      ],
+      "../core/dist/types.d.ts": [
+        "../core/dist/afitem.d.ts"
+      ],
+      "./src/main.ts": [
+        "../core/dist/index.d.ts",
         "./src/types.ts"
-      ],
-      "./src/index.ts": [
-        "./src/actions/copytoclipboardaction.ts",
-        "./src/actions/openbrowserlinkaction.ts",
-        "./src/actions/openinfinderaction.ts",
-        "./src/actions/openinsublimetextaction.ts",
-        "./src/actions/openinvscodeaction.ts",
-        "./src/afitem.ts",
-        "./src/afworkflow.ts",
-        "./src/storage.ts",
-        "./src/types.ts",
-        "./src/utilities.ts"
-      ],
-      "./src/types.ts": [
-        "./src/afitem.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -1019,8 +1023,6 @@
       "../../node_modules/@types/node/wasi.d.ts",
       "../../node_modules/@types/node/worker_threads.d.ts",
       "../../node_modules/@types/node/zlib.d.ts",
-      "../../node_modules/clipboardy/index.d.ts",
-      "../../node_modules/fuzzy/lib/fuzzy.d.ts",
       "../../node_modules/typescript/lib/lib.dom.d.ts",
       "../../node_modules/typescript/lib/lib.dom.iterable.d.ts",
       "../../node_modules/typescript/lib/lib.es2015.collection.d.ts",
@@ -1053,19 +1055,21 @@
       "../../node_modules/typescript/lib/lib.esnext.intl.d.ts",
       "../../node_modules/typescript/lib/lib.scripthost.d.ts",
       "../../node_modules/typescript/lib/lib.webworker.importscripts.d.ts",
-      "./src/actions/abstractaction.ts",
-      "./src/actions/copytoclipboardaction.ts",
-      "./src/actions/openbrowserlinkaction.ts",
-      "./src/actions/openinfinderaction.ts",
-      "./src/actions/openinsublimetextaction.ts",
-      "./src/actions/openinvscodeaction.ts",
-      "./src/afitem.ts",
-      "./src/afworkflow.ts",
-      "./src/constants.ts",
+      "../core/dist/actions/abstractaction.d.ts",
+      "../core/dist/actions/copytoclipboardaction.d.ts",
+      "../core/dist/actions/openbrowserlinkaction.d.ts",
+      "../core/dist/actions/openinfinderaction.d.ts",
+      "../core/dist/actions/openinsublimetextaction.d.ts",
+      "../core/dist/actions/openinvscodeaction.d.ts",
+      "../core/dist/afitem.d.ts",
+      "../core/dist/afworkflow.d.ts",
+      "../core/dist/index.d.ts",
+      "../core/dist/storage.d.ts",
+      "../core/dist/types.d.ts",
+      "../core/dist/utilities.d.ts",
       "./src/index.ts",
-      "./src/storage.ts",
+      "./src/main.ts",
       "./src/types.ts",
-      "./src/utilities.ts",
       "./typings.d.ts"
     ]
   },

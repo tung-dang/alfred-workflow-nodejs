@@ -10,7 +10,7 @@
   },
   "homepage": "https://github.com/tung-dang/alfred-workflow-yarn-api-search",
   "dependencies": {
-    "@alfred-wf-node/core": "^1.1.2",
+    "@alfred-wf-node/core": "1.1.2",
     "octonode": "^0.10.0"
   },
   "scripts": {

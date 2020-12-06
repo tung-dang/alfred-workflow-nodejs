@@ -57,7 +57,7 @@
     "es6"
   ],
   "bin": {
-    "run-node": "../../scripts/run-node"
+    "run-node": "../../scripts/run-node.sh"
   },
   "license": "MIT"
 }
