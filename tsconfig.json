@@ -1,3 +1,10 @@
 {
-  "extends": "./tsconfig.base.json"
+  "compilerOptions": {
+    "baseUrl": "../packages"
+  },
+  "paths": {
+    "@alfred-wf-node/core/*": [
+      "core/src/*"
+    ]
+  }
 }

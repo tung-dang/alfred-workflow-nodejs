@@ -161,11 +161,6 @@
         "signature": "89bf2b7a601b73ea4311eda9c41f86a58994fec1bee3b87c4a14d68d9adcdcbd",
         "affectsGlobalScope": true
       },
-      "./typings.d.ts": {
-        "version": "475c48ff918b939028397db2b42f49660a51cfd0c8e3bd3b87bf22046ae80bfc",
-        "signature": "475c48ff918b939028397db2b42f49660a51cfd0c8e3bd3b87bf22046ae80bfc",
-        "affectsGlobalScope": false
-      },
       "./src/constants.ts": {
         "version": "06845da3dbf6a5da8d834b1c42c806e6aee7c7d45f24ec4d4a2714b28bd2691c",
         "signature": "db674fb2c788b99630bc43305ecf6fd0f4ad7f59315bac15c4754a9fcbb3f10d",
@@ -182,7 +177,7 @@
         "affectsGlobalScope": false
       },
       "./src/storage.ts": {
-        "version": "a86047c19e5a3fe2257ce125138bf75b9b53f561bcdd7297307e9f0626cc6176",
+        "version": "d21a3465b6aae33f9a87084d06ac3a9b8cc34b34fbcb12a9a5fb008419a148be",
         "signature": "c1662761e94d09ca73202831f634ed498ef0d2d3db7f6ff9c7714e08171a7c31",
         "affectsGlobalScope": false
       },
@@ -485,11 +480,8 @@
     "options": {
       "target": 2,
       "module": 1,
-      "rootDir": "./src",
-      "outDir": "./dist",
       "declaration": true,
       "declarationMap": true,
-      "composite": true,
       "sourceMap": false,
       "removeComments": true,
       "moduleResolution": 2,
@@ -510,6 +502,9 @@
         "mocha",
         "node"
       ],
+      "rootDir": "./src",
+      "outDir": "./dist",
+      "composite": true,
       "project": "./tsconfig.json",
       "configFilePath": "./tsconfig.json"
     },
@@ -1065,8 +1060,7 @@
       "./src/index.ts",
       "./src/storage.ts",
       "./src/types.ts",
-      "./src/utilities.ts",
-      "./typings.d.ts"
+      "./src/utilities.ts"
     ]
   },
   "version": "4.1.2"

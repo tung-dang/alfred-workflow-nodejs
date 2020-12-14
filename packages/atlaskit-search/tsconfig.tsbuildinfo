@@ -457,72 +457,89 @@
         "affectsGlobalScope": false
       },
       "./src/types.ts": {
-        "version": "e3036da3787784a1c796a5a7c2d4deb34375f97346acaa6ed04130c96fa19c15",
-        "signature": "d52ae5cfb947fa49ef0068e0c817063a1e30b958797324dd656f85adc58b3914",
+        "version": "3fbc9d04233ca718212c6a74eea20896c61f03e043fbe3ff333b0701d96a92da",
+        "signature": "e536f61bee87992c72bf1b1a9be7eaa4ae794fe3778127c358c54dc571ed1c63",
         "affectsGlobalScope": false
       },
-      "./src/actions/projectaction.ts": {
-        "version": "94c582e0ec211921ffd6a1c55b4575a796e1872cba055e41b5465bec0a06991c",
-        "signature": "2ee01665f2f3f1a1fd7d02270f0a1f5409c9964f5635cd075c48086cbc0591c0",
+      "./src/actions/packageactions.ts": {
+        "version": "17f171d5c299f0111b006576f0916bde578f5c543563fff96b3a6e134566d09c",
+        "signature": "0db306a1f2a1f28b82c0eca1068dcd25b950f2785a128767184c74a1b69ba2a1",
         "affectsGlobalScope": false
       },
-      "./src/actions/project-actions.ts": {
-        "version": "ab7e95bf0f1cab195704cff6f7dbc1a40cc29f087dfbdb4ac6996e3f61422958",
-        "signature": "e3165b3622dee6b218e4ff42741caf469b11243a5017be80c1d6b345d587816d",
+      "./src/utils/fs.ts": {
+        "version": "131ecef390e2437b1f406403b4df274c4ddf69f977cb6e8baeafce98f2631c28",
+        "signature": "4ad852e78d9faef955c4dc1af0efa5acc4023c8cdb12f610c324c243d519b620",
         "affectsGlobalScope": false
       },
-      "./src/git-info.ts": {
-        "version": "adc7a464174a3234d1d839b31cd278b341ab48f6176899df400a68233cb18e12",
-        "signature": "2878e91f47ea3bfc9a76d35ce5bb6a889e7132b4562ed87865ea4192e8b92fed",
+      "./src/scanakfolder.ts": {
+        "version": "d34f1b45e53b4cd6d0e88703266a9a2db1401bf15279b2decd074bdd48126171",
+        "signature": "7809efd33f1c5bf3f3e4fdde1cf6d9141fe275a559669e3ca4a20b6291f89d72",
         "affectsGlobalScope": false
       },
-      "./src/utils.ts": {
-        "version": "1fce28958a09e524f9b9738b8111238b762b6d969d61afa1aed26792bcbefc0b",
-        "signature": "24a217303f131b28aa8b74156635642457a5819acfc915ac08311e82dff32c55",
-        "affectsGlobalScope": false
-      },
-      "./src/actions/loadprojects.ts": {
-        "version": "c2517fec12fe63d4d56ebd15a27a12139f3d3e1073af8b37ea57b0fbf124cd89",
-        "signature": "22c92c870c0299bdd825bcba07f9ffbaa675ea5add8030cba05c0ce38538ea74",
+      "./src/actions/loadpackageactions.ts": {
+        "version": "6ea511009fc3b48bd6d255f55ef23137f7fa3f9eb400f6c1dfaea851871e9082",
+        "signature": "ffff8296bab9bc71e4c63c2ab5515b443ed3f36038e4b1519ad8a4b39b5f98ac",
         "affectsGlobalScope": false
       },
       "./src/main.ts": {
-        "version": "4b177672e58e27d7ab9da7c444fe947d047c87d44bb6fbc06b4fe0b652a22b29",
-        "signature": "0da54e53abcbf0f93c6a51ab4c40c3d50e9a4941c68ccd1f264057200570fc42",
+        "version": "1ca914c256a72d9e895b86645bb4d0e116daaace6a4768fe37f345158c82b1fa",
+        "signature": "e683c97912b7bf620509f27babbd6a8668412063799b4fe9fb8f9063eddff738",
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
         "version": "f0c7b3ddf003a37b5bb7fa8c333c692d022f0894d73c71877fdf1bea0ae43645",
-        "signature": "f667f6b1d66ba55f0dcd27f5ff050063fecfe289bad00e8c5d48344a775c1439",
+        "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
         "affectsGlobalScope": false
       },
-      "./src/test.ts": {
-        "version": "273d843d2cea7f166c563b912b3d2c7037c55fbec39623c32969d0da6a90b5ba",
-        "signature": "468c5e810ee6135c626bd78262f5d2b095675475f0d4c882b9fa9164cd624933",
-        "affectsGlobalScope": true
+      "./src/utils/site.ts": {
+        "version": "a6e1cebb709c6c668e34b5ea17fdf5ef2f97805c0705b9e303129f73f90780fe",
+        "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "affectsGlobalScope": false
       },
-      "./src/actions/project-git-action.ts": {
-        "version": "eae928aa35eff3196e056f62052bdaaf9cf4d609171ba166eb5bb7de0bf9136b",
-        "signature": "1e9448b2bd22c2782a9e1c38d3fa5407760fa8d3851f01ba19b85179e447ce39",
+      "./src/utils/url.ts": {
+        "version": "67bcb06b6aa3b9e26ae9a51387addf9de2027fdf6dadc52077a574b42cf1a4dc",
+        "signature": "455bf89c067e13d7d50a193dcf6bfd90be0622b7f48d5a2f824f835022fb7acf",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/istanbul-lib-coverage/index.d.ts": {
+        "version": "de18acda71730bac52f4b256ce7511bb56cc21f6f114c59c46782eff2f632857",
+        "signature": "de18acda71730bac52f4b256ce7511bb56cc21f6f114c59c46782eff2f632857",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/istanbul-lib-report/index.d.ts": {
+        "version": "7eb06594824ada538b1d8b48c3925a83e7db792f47a081a62cf3e5c4e23cf0ee",
+        "signature": "7eb06594824ada538b1d8b48c3925a83e7db792f47a081a62cf3e5c4e23cf0ee",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/istanbul-reports/index.d.ts": {
+        "version": "029769d13d9917e3284cb2356ed28a6576e8b07ae6a06ee1e672518adf21a102",
+        "signature": "029769d13d9917e3284cb2356ed28a6576e8b07ae6a06ee1e672518adf21a102",
         "affectsGlobalScope": false
       },
       "../../node_modules/@types/mocha/index.d.ts": {
         "version": "4862143e5418707aff61e5377e99300af3abcaa705a4a20908ca565bbe9e50d1",
         "signature": "4862143e5418707aff61e5377e99300af3abcaa705a4a20908ca565bbe9e50d1",
         "affectsGlobalScope": true
+      },
+      "../../node_modules/@types/yargs-parser/index.d.ts": {
+        "version": "fdfbe321c556c39a2ecf791d537b999591d0849e971dd938d88f460fea0186f6",
+        "signature": "fdfbe321c556c39a2ecf791d537b999591d0849e971dd938d88f460fea0186f6",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/yargs/index.d.ts": {
+        "version": "1a81627b04dd2feab19e26d3df04e79f50d5dae42b9b5f9181d23dc820c9f048",
+        "signature": "1a81627b04dd2feab19e26d3df04e79f50d5dae42b9b5f9181d23dc820c9f048",
+        "affectsGlobalScope": false
       }
     },
     "options": {
       "target": 2,
       "module": 1,
-      "declaration": true,
-      "declarationMap": true,
+      "rootDir": "./src",
+      "outDir": "./dist",
+      "moduleResolution": 2,
       "sourceMap": false,
       "removeComments": true,
-      "moduleResolution": 2,
-      "esModuleInterop": true,
-      "forceConsistentCasingInFileNames": true,
-      "skipLibCheck": true,
       "strictNullChecks": true,
       "strictFunctionTypes": true,
       "alwaysStrict": true,
@@ -533,17 +550,18 @@
       "resolveJsonModule": true,
       "allowSyntheticDefaultImports": true,
       "experimentalDecorators": true,
-      "types": [
-        "mocha",
-        "node"
-      ],
-      "rootDir": "./src",
-      "outDir": "./dist",
       "composite": true,
       "project": "./tsconfig.json",
       "configFilePath": "./tsconfig.json"
     },
     "referencedMap": {
+      "../../node_modules/@types/istanbul-lib-report/index.d.ts": [
+        "../../node_modules/@types/istanbul-lib-coverage/index.d.ts"
+      ],
+      "../../node_modules/@types/istanbul-reports/index.d.ts": [
+        "../../node_modules/@types/istanbul-lib-coverage/index.d.ts",
+        "../../node_modules/@types/istanbul-lib-report/index.d.ts"
+      ],
       "../../node_modules/@types/node/base.d.ts": [
         "../../node_modules/@types/node/assert.d.ts",
         "../../node_modules/@types/node/ts3.6/base.d.ts"
@@ -711,84 +729,17 @@
       "../../node_modules/@types/node/zlib.d.ts": [
         "../../node_modules/@types/node/stream.d.ts"
       ],
-      "../core/dist/actions/abstractaction.d.ts": [
-        "../core/dist/afitem.d.ts",
-        "../core/dist/types.d.ts"
+      "../../node_modules/@types/yargs/index.d.ts": [
+        "../../node_modules/@types/yargs-parser/index.d.ts"
       ],
-      "../core/dist/actions/copytoclipboardaction.d.ts": [
-        "../core/dist/actions/abstractaction.d.ts",
-        "../core/dist/types.d.ts"
-      ],
-      "../core/dist/actions/openbrowserlinkaction.d.ts": [
-        "../../node_modules/@types/node/child_process.d.ts",
-        "../../node_modules/@types/node/index.d.ts",
-        "../core/dist/actions/abstractaction.d.ts",
-        "../core/dist/types.d.ts"
-      ],
-      "../core/dist/actions/openinfinderaction.d.ts": [
-        "../../node_modules/@types/node/child_process.d.ts",
-        "../../node_modules/@types/node/index.d.ts",
-        "../core/dist/actions/abstractaction.d.ts",
-        "../core/dist/types.d.ts"
-      ],
-      "../core/dist/actions/openinsublimetextaction.d.ts": [
-        "../../node_modules/@types/node/child_process.d.ts",
-        "../../node_modules/@types/node/index.d.ts",
-        "../core/dist/actions/abstractaction.d.ts",
-        "../core/dist/types.d.ts"
-      ],
-      "../core/dist/actions/openinvscodeaction.d.ts": [
-        "../../node_modules/@types/node/child_process.d.ts",
-        "../../node_modules/@types/node/index.d.ts",
-        "../core/dist/actions/abstractaction.d.ts",
-        "../core/dist/types.d.ts"
-      ],
-      "../core/dist/afitem.d.ts": [
-        "../core/dist/types.d.ts"
-      ],
-      "../core/dist/afworkflow.d.ts": [
-        "../../node_modules/@types/node/events.d.ts",
-        "../../node_modules/@types/node/index.d.ts",
-        "../core/dist/afitem.d.ts",
-        "../core/dist/types.d.ts"
-      ],
-      "../core/dist/index.d.ts": [
-        "../core/dist/actions/copytoclipboardaction.d.ts",
-        "../core/dist/actions/openbrowserlinkaction.d.ts",
-        "../core/dist/actions/openinfinderaction.d.ts",
-        "../core/dist/actions/openinsublimetextaction.d.ts",
-        "../core/dist/actions/openinvscodeaction.d.ts",
-        "../core/dist/afitem.d.ts",
-        "../core/dist/afworkflow.d.ts",
-        "../core/dist/storage.d.ts",
-        "../core/dist/types.d.ts",
-        "../core/dist/utilities.d.ts"
-      ],
-      "../core/dist/types.d.ts": [
-        "../core/dist/afitem.d.ts"
-      ],
-      "./src/actions/loadprojects.ts": [
+      "./src/actions/loadpackageactions.ts": [
         "../core/dist/index.d.ts",
-        "./src/actions/project-actions.ts",
-        "./src/actions/projectaction.ts",
-        "./src/types.ts",
-        "./src/utils.ts"
-      ],
-      "./src/actions/project-actions.ts": [
-        "../../node_modules/@types/node/child_process.d.ts",
-        "../core/dist/index.d.ts",
-        "./src/actions/projectaction.ts",
+        "./src/actions/packageactions.ts",
+        "./src/scanakfolder.ts",
         "./src/types.ts"
       ],
-      "./src/actions/project-git-action.ts": [
-        "./src/actions/projectaction.ts"
-      ],
-      "./src/actions/projectaction.ts": [
+      "./src/actions/packageactions.ts": [
         "../core/dist/index.d.ts",
-        "./src/types.ts"
-      ],
-      "./src/git-info.ts": [
-        "../../node_modules/@types/node/util.d.ts",
         "./src/types.ts"
       ],
       "./src/index.ts": [
@@ -796,19 +747,85 @@
       ],
       "./src/main.ts": [
         "../core/dist/index.d.ts",
-        "./src/actions/loadprojects.ts",
-        "./src/actions/project-actions.ts",
+        "./src/actions/loadpackageactions.ts",
+        "./src/actions/packageactions.ts",
         "./src/types.ts"
       ],
-      "./src/utils.ts": [
+      "./src/scanakfolder.ts": [
+        "../../node_modules/@types/node/fs.d.ts",
+        "./src/types.ts",
+        "./src/utils/fs.ts"
+      ],
+      "./src/utils/fs.ts": [
         "../../node_modules/@types/node/fs.d.ts",
         "../../node_modules/@types/node/path.d.ts",
-        "../core/dist/index.d.ts",
-        "./src/git-info.ts",
         "./src/types.ts"
+      ],
+      "../core/dist/actions/abstractaction.d.ts": [
+        "../core/dist/afitem.d.ts",
+        "../core/dist/types.d.ts"
+      ],
+      "../core/dist/actions/copytoclipboardaction.d.ts": [
+        "../core/dist/actions/abstractaction.d.ts",
+        "../core/dist/types.d.ts"
+      ],
+      "../core/dist/actions/openbrowserlinkaction.d.ts": [
+        "../../node_modules/@types/node/child_process.d.ts",
+        "../../node_modules/@types/node/index.d.ts",
+        "../core/dist/actions/abstractaction.d.ts",
+        "../core/dist/types.d.ts"
+      ],
+      "../core/dist/actions/openinfinderaction.d.ts": [
+        "../../node_modules/@types/node/child_process.d.ts",
+        "../../node_modules/@types/node/index.d.ts",
+        "../core/dist/actions/abstractaction.d.ts",
+        "../core/dist/types.d.ts"
+      ],
+      "../core/dist/actions/openinsublimetextaction.d.ts": [
+        "../../node_modules/@types/node/child_process.d.ts",
+        "../../node_modules/@types/node/index.d.ts",
+        "../core/dist/actions/abstractaction.d.ts",
+        "../core/dist/types.d.ts"
+      ],
+      "../core/dist/actions/openinvscodeaction.d.ts": [
+        "../../node_modules/@types/node/child_process.d.ts",
+        "../../node_modules/@types/node/index.d.ts",
+        "../core/dist/actions/abstractaction.d.ts",
+        "../core/dist/types.d.ts"
+      ],
+      "../core/dist/afitem.d.ts": [
+        "../core/dist/types.d.ts"
+      ],
+      "../core/dist/afworkflow.d.ts": [
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/index.d.ts",
+        "../core/dist/afitem.d.ts",
+        "../core/dist/types.d.ts"
+      ],
+      "../core/dist/index.d.ts": [
+        "../core/dist/actions/copytoclipboardaction.d.ts",
+        "../core/dist/actions/openbrowserlinkaction.d.ts",
+        "../core/dist/actions/openinfinderaction.d.ts",
+        "../core/dist/actions/openinsublimetextaction.d.ts",
+        "../core/dist/actions/openinvscodeaction.d.ts",
+        "../core/dist/afitem.d.ts",
+        "../core/dist/afworkflow.d.ts",
+        "../core/dist/storage.d.ts",
+        "../core/dist/types.d.ts",
+        "../core/dist/utilities.d.ts"
+      ],
+      "../core/dist/types.d.ts": [
+        "../core/dist/afitem.d.ts"
       ]
     },
     "exportedModulesMap": {
+      "../../node_modules/@types/istanbul-lib-report/index.d.ts": [
+        "../../node_modules/@types/istanbul-lib-coverage/index.d.ts"
+      ],
+      "../../node_modules/@types/istanbul-reports/index.d.ts": [
+        "../../node_modules/@types/istanbul-lib-coverage/index.d.ts",
+        "../../node_modules/@types/istanbul-lib-report/index.d.ts"
+      ],
       "../../node_modules/@types/node/base.d.ts": [
         "../../node_modules/@types/node/assert.d.ts",
         "../../node_modules/@types/node/ts3.6/base.d.ts"
@@ -976,6 +993,25 @@
       "../../node_modules/@types/node/zlib.d.ts": [
         "../../node_modules/@types/node/stream.d.ts"
       ],
+      "../../node_modules/@types/yargs/index.d.ts": [
+        "../../node_modules/@types/yargs-parser/index.d.ts"
+      ],
+      "./src/actions/loadpackageactions.ts": [
+        "./src/types.ts"
+      ],
+      "./src/actions/packageactions.ts": [
+        "../core/dist/index.d.ts",
+        "./src/types.ts"
+      ],
+      "./src/main.ts": [
+        "../core/dist/index.d.ts"
+      ],
+      "./src/scanakfolder.ts": [
+        "./src/types.ts"
+      ],
+      "./src/utils/fs.ts": [
+        "./src/types.ts"
+      ],
       "../core/dist/actions/abstractaction.d.ts": [
         "../core/dist/afitem.d.ts",
         "../core/dist/types.d.ts"
@@ -1031,34 +1067,12 @@
       ],
       "../core/dist/types.d.ts": [
         "../core/dist/afitem.d.ts"
-      ],
-      "./src/actions/loadprojects.ts": [
-        "../core/dist/index.d.ts",
-        "./src/types.ts"
-      ],
-      "./src/actions/project-actions.ts": [
-        "../core/dist/index.d.ts",
-        "./src/actions/projectaction.ts",
-        "./src/types.ts"
-      ],
-      "./src/actions/project-git-action.ts": [
-        "./src/actions/projectaction.ts"
-      ],
-      "./src/actions/projectaction.ts": [
-        "../core/dist/index.d.ts",
-        "./src/types.ts"
-      ],
-      "./src/git-info.ts": [
-        "./src/types.ts"
-      ],
-      "./src/main.ts": [
-        "../core/dist/index.d.ts"
-      ],
-      "./src/utils.ts": [
-        "./src/types.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
+      "../../node_modules/@types/istanbul-lib-coverage/index.d.ts",
+      "../../node_modules/@types/istanbul-lib-report/index.d.ts",
+      "../../node_modules/@types/istanbul-reports/index.d.ts",
       "../../node_modules/@types/mocha/index.d.ts",
       "../../node_modules/@types/node/assert.d.ts",
       "../../node_modules/@types/node/async_hooks.d.ts",
@@ -1107,6 +1121,8 @@
       "../../node_modules/@types/node/wasi.d.ts",
       "../../node_modules/@types/node/worker_threads.d.ts",
       "../../node_modules/@types/node/zlib.d.ts",
+      "../../node_modules/@types/yargs-parser/index.d.ts",
+      "../../node_modules/@types/yargs/index.d.ts",
       "../../node_modules/typescript/lib/lib.dom.d.ts",
       "../../node_modules/typescript/lib/lib.dom.iterable.d.ts",
       "../../node_modules/typescript/lib/lib.es2015.collection.d.ts",
@@ -1139,6 +1155,15 @@
       "../../node_modules/typescript/lib/lib.esnext.intl.d.ts",
       "../../node_modules/typescript/lib/lib.scripthost.d.ts",
       "../../node_modules/typescript/lib/lib.webworker.importscripts.d.ts",
+      "./src/actions/loadpackageactions.ts",
+      "./src/actions/packageactions.ts",
+      "./src/index.ts",
+      "./src/main.ts",
+      "./src/scanakfolder.ts",
+      "./src/types.ts",
+      "./src/utils/fs.ts",
+      "./src/utils/site.ts",
+      "./src/utils/url.ts",
       "../core/dist/actions/abstractaction.d.ts",
       "../core/dist/actions/copytoclipboardaction.d.ts",
       "../core/dist/actions/openbrowserlinkaction.d.ts",
@@ -1150,17 +1175,7 @@
       "../core/dist/index.d.ts",
       "../core/dist/storage.d.ts",
       "../core/dist/types.d.ts",
-      "../core/dist/utilities.d.ts",
-      "./src/actions/loadprojects.ts",
-      "./src/actions/project-actions.ts",
-      "./src/actions/project-git-action.ts",
-      "./src/actions/projectaction.ts",
-      "./src/git-info.ts",
-      "./src/index.ts",
-      "./src/main.ts",
-      "./src/test.ts",
-      "./src/types.ts",
-      "./src/utils.ts"
+      "../core/dist/utilities.d.ts"
     ]
   },
   "version": "4.1.2"

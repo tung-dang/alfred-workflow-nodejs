@@ -4,11 +4,8 @@
     "target": "es6",
     "module": "commonjs",
     // output
-    "rootDir": "./src",
-    "outDir": "./dist",
     "declaration": true,
     "declarationMap": true,
-    "composite": true,
     "sourceMap": false,
     "removeComments": true,
     // "strict": true,

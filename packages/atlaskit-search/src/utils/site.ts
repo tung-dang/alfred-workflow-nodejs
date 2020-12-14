@@ -1,4 +1,4 @@
-// import * as fs from './fs';
+// import fs from './fs';
 
 // const siteData: GroupPackage = data;
 // export default siteData;

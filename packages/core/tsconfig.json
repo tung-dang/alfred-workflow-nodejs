@@ -1,1 +1,11 @@
-/Users/tthanhdang/src/_my-src/alfred-workflow-node/tsconfig.json
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "composite": true
+  },
+  "include": [
+    "src/**/*.**",
+  ]
+}

@@ -161,11 +161,6 @@
         "signature": "89bf2b7a601b73ea4311eda9c41f86a58994fec1bee3b87c4a14d68d9adcdcbd",
         "affectsGlobalScope": true
       },
-      "./typings.d.ts": {
-        "version": "475c48ff918b939028397db2b42f49660a51cfd0c8e3bd3b87bf22046ae80bfc",
-        "signature": "475c48ff918b939028397db2b42f49660a51cfd0c8e3bd3b87bf22046ae80bfc",
-        "affectsGlobalScope": false
-      },
       "../core/dist/types.d.ts": {
         "version": "674d3e3b492dc9cf72ce13faa2e1b95f73d5fc98a74ca4a4ee9e9337b9727cc7",
         "signature": "674d3e3b492dc9cf72ce13faa2e1b95f73d5fc98a74ca4a4ee9e9337b9727cc7",
@@ -487,7 +482,7 @@
         "affectsGlobalScope": false
       },
       "./src/export-to-chrome-bookmarks.ts": {
-        "version": "e45feca5d4fed8c62ddb7c338d1ede614f0d866969f39406c2426e591e0a5c40",
+        "version": "66a9812d0cc3984b6c66916c75817beaa590128a4ea98850c8162b8900c026d5",
         "signature": "3c68bc6dee696843b6770e8648473ba0bf9b8df07efd7948c0232d1abd09de9f",
         "affectsGlobalScope": false
       },
@@ -505,11 +500,8 @@
     "options": {
       "target": 2,
       "module": 1,
-      "rootDir": "./src",
-      "outDir": "./dist",
       "declaration": true,
       "declarationMap": true,
-      "composite": true,
       "sourceMap": false,
       "removeComments": true,
       "moduleResolution": 2,
@@ -530,6 +522,9 @@
         "mocha",
         "node"
       ],
+      "rootDir": "./src",
+      "outDir": "./dist",
+      "composite": true,
       "project": "./tsconfig.json",
       "configFilePath": "./tsconfig.json"
     },
@@ -1116,8 +1111,7 @@
       "./src/helpers.ts",
       "./src/index.ts",
       "./src/main.ts",
-      "./src/types.ts",
-      "./typings.d.ts"
+      "./src/types.ts"
     ]
   },
   "version": "4.1.2"

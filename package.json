@@ -11,8 +11,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "dependencies": {
-  },
   "bugs": {
     "url": "https://github.com/tung-dang/alfred-workflow-nodejs-next/issues"
   },

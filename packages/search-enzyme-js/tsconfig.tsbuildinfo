@@ -161,11 +161,6 @@
         "signature": "89bf2b7a601b73ea4311eda9c41f86a58994fec1bee3b87c4a14d68d9adcdcbd",
         "affectsGlobalScope": true
       },
-      "./typings.d.ts": {
-        "version": "475c48ff918b939028397db2b42f49660a51cfd0c8e3bd3b87bf22046ae80bfc",
-        "signature": "475c48ff918b939028397db2b42f49660a51cfd0c8e3bd3b87bf22046ae80bfc",
-        "affectsGlobalScope": false
-      },
       "../core/dist/types.d.ts": {
         "version": "674d3e3b492dc9cf72ce13faa2e1b95f73d5fc98a74ca4a4ee9e9337b9727cc7",
         "signature": "674d3e3b492dc9cf72ce13faa2e1b95f73d5fc98a74ca4a4ee9e9337b9727cc7",
@@ -485,11 +480,8 @@
     "options": {
       "target": 2,
       "module": 1,
-      "rootDir": "./src",
-      "outDir": "./dist",
       "declaration": true,
       "declarationMap": true,
-      "composite": true,
       "sourceMap": false,
       "removeComments": true,
       "moduleResolution": 2,
@@ -510,6 +502,9 @@
         "mocha",
         "node"
       ],
+      "rootDir": "./src",
+      "outDir": "./dist",
+      "composite": true,
       "project": "./tsconfig.json",
       "configFilePath": "./tsconfig.json"
     },
@@ -1069,8 +1064,7 @@
       "../core/dist/utilities.d.ts",
       "./src/index.ts",
       "./src/main.ts",
-      "./src/types.ts",
-      "./typings.d.ts"
+      "./src/types.ts"
     ]
   },
   "version": "4.1.2"
